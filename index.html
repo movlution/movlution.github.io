@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Faris Miqdad | Game Developer & Software Engineer</title>
+  <meta name="description" content="Portfolio of Faris Miqdad - Game Programmer, Unity Enthusiast, and Software Engineer. Showcasing games, apps, and interactive experiences." />
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#f0f4ff',
+              100: '#e0eaff',
+              500: '#4f46e5',
+              600: '#4338ca',
+              700: '#3730a3',
+            },
+            accent: {
+              cyan: '#06b6d4',
+              purple: '#a855f7',
+              pink: '#ec4899',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .glass {
+      background: rgba(17, 24, 39, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-card {
+      background: rgba(24, 31, 50, 0.55);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .glass-card:hover {
+      border-color: rgba(99, 102, 241, 0.35);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 30px -10px rgba(0, 0, 0, 0.5), 0 0 20px -5px rgba(99, 102, 241, 0.2);
+    }
+    .glow-blob {
+      filter: blur(90px);
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body class="bg-[#0b0f19] text-slate-200 font-sans selection:bg-indigo-500 selection:text-white min-h-screen relative overflow-x-hidden">
+
+  <!-- Ambient Glow Backgrounds -->
+  <div class="fixed top-0 left-1/4 w-96 h-96 bg-indigo-600/15 glow-blob rounded-full z-0"></div>
+  <div class="fixed top-1/3 right-10 w-96 h-96 bg-purple-600/15 glow-blob rounded-full z-0"></div>
+  <div class="fixed bottom-10 left-1/3 w-[500px] h-[500px] bg-cyan-600/10 glow-blob rounded-full z-0"></div>
+
+  <!-- Navbar -->
+  <nav class="fixed top-0 left-0 right-0 z-50 glass">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-2 text-lg font-bold tracking-tight text-white group">
+        <span class="p-1.5 rounded-lg bg-indigo-500/20 text-indigo-400 group-hover:bg-indigo-500/30 transition">
+          <i data-lucide="gamepad-2" class="w-5 h-5"></i>
+        </span>
+        <span>Movlution<span class="text-indigo-400">.</span></span>
+      </a>
+
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+        <a href="#about" class="hover:text-white transition">About</a>
+        <a href="#skills" class="hover:text-white transition">Skills</a>
+        <a href="#projects" class="hover:text-white transition">Projects</a>
+        <a href="#experience" class="hover:text-white transition">Experience</a>
+        <a href="#contact" class="hover:text-white transition">Contact</a>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="https://github.com/movlution" target="_blank" rel="noopener noreferrer" 
+           class="p-2 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800/60 transition" title="GitHub">
+          <i data-lucide="github" class="w-5 h-5"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/farismiqdad/" target="_blank" rel="noopener noreferrer" 
+           class="p-2 text-slate-400 hover:text-cyan-400 rounded-lg hover:bg-slate-800/60 transition" title="LinkedIn">
+          <i data-lucide="linkedin" class="w-5 h-5"></i>
+        </a>
+        <a href="#contact" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold uppercase tracking-wider bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg shadow-lg shadow-indigo-600/30 transition">
+          <span>Let's Talk</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="relative z-10 pt-32 pb-20 md:pt-40 md:pb-28">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-300 text-xs font-medium tracking-wide">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            Available for Opportunities & Collaborations
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+            Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-cyan-400">Faris Miqdad</span>
+          </h1>
+
+          <p class="text-lg sm:text-xl text-slate-300 font-medium">
+            Game Developer • Unity Programmer • Software Engineer
+          </p>
+
+          <p class="text-slate-400 leading-relaxed text-sm sm:text-base max-w-2xl">
+            Passionate game programmer dedicated to crafting engaging gameplay systems, responsive interactive mechanics, and robust software architecture. Founder of <strong class="text-slate-200">Basement GameDev Community</strong> and creator behind <strong class="text-slate-200">Mainra Games</strong>.
+          </p>
+
+          <!-- Buttons -->
+          <div class="flex flex-wrap items-center gap-4 pt-2">
+            <a href="#projects" class="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl font-semibold shadow-lg shadow-indigo-600/30 transition">
+              <i data-lucide="sparkles" class="w-4 h-4"></i>
+              <span>View Projects</span>
+            </a>
+            <a href="https://www.linkedin.com/in/farismiqdad/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 text-slate-200 rounded-xl font-semibold transition">
+              <i data-lucide="linkedin" class="w-4 h-4 text-cyan-400"></i>
+              <span>LinkedIn Profile</span>
+            </a>
+            <a href="https://movlution.itch.io/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 text-slate-200 rounded-xl font-semibold transition">
+              <i data-lucide="gamepad" class="w-4 h-4 text-pink-400"></i>
+              <span>itch.io Games</span>
+            </a>
+          </div>
+
+          <!-- Quick Stats -->
+          <div class="grid grid-cols-3 gap-4 pt-6 border-t border-slate-800/80 max-w-md">
+            <div>
+              <div class="text-2xl font-bold text-white">10+</div>
+              <div class="text-xs text-slate-400">Games & Apps</div>
+            </div>
+            <div>
+              <div class="text-2xl font-bold text-white">Unity</div>
+              <div class="text-xs text-slate-400">2D/3D & C#</div>
+            </div>
+            <div>
+              <div class="text-2xl font-bold text-white">Founder</div>
+              <div class="text-xs text-slate-400">Basement Dev</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Card / Profile Display -->
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="relative w-full max-w-sm">
+            <div class="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-3xl blur opacity-30 group-hover:opacity-100 transition duration-1000"></div>
+            <div class="relative glass-card rounded-3xl p-6 border border-slate-700/50 shadow-2xl">
+              <div class="flex items-center gap-4 mb-6">
+                <img src="https://avatars.githubusercontent.com/u/56767913?v=4" alt="Faris Miqdad Avatar" class="w-16 h-16 rounded-2xl border-2 border-indigo-400/50 shadow-md object-cover" />
+                <div>
+                  <h3 class="text-lg font-bold text-white">Faris Miqdad</h3>
+                  <p class="text-xs text-indigo-400 font-mono">@movlution</p>
+                  <p class="text-xs text-slate-400 mt-0.5">Cairo, Egypt / Indonesia</p>
+                </div>
+              </div>
+
+              <!-- Terminal style status widget -->
+              <div class="bg-[#0d121f] rounded-xl p-4 font-mono text-xs text-slate-300 space-y-2 border border-slate-800">
+                <div class="flex items-center gap-1.5 pb-2 border-b border-slate-800/80">
+                  <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span>
+                  <span class="text-[10px] text-slate-500 ml-2">profile_status.json</span>
+                </div>
+                <p><span class="text-purple-400">role:</span> <span class="text-amber-300">"Game Programmer"</span></p>
+                <p><span class="text-purple-400">primary_engine:</span> <span class="text-amber-300">"Unity (C#)"</span></p>
+                <p><span class="text-purple-400">active_focus:</span> <span class="text-emerald-300">"Gameplay, Tooling & Web Apps"</span></p>
+                <p><span class="text-purple-400">status:</span> <span class="text-cyan-300">"Building & Learning Everyday"</span></p>
+              </div>
+
+              <div class="mt-6 flex items-center justify-between text-xs text-slate-400 px-1">
+                <span>Direct Contact:</span>
+                <a href="mailto:movlution@gmail.com" class="text-indigo-400 hover:text-indigo-300 font-medium">movlution@gmail.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- About / Bio Section -->
+  <section id="about" class="relative z-10 py-20 border-t border-slate-800/60">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center mb-16">
+        <h2 class="text-xs font-bold uppercase tracking-widest text-indigo-400 mb-2">About Me</h2>
+        <h3 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">Turning creative game concepts into reality</h3>
+        <p class="text-slate-400 mt-4 leading-relaxed">
+          I am passionate about software engineering and game development. With experience in Unity (C#) and full-stack web technologies, I love designing fluid game mechanics, interactive simulations, and reliable digital products.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="glass-card rounded-2xl p-6">
+          <div class="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center mb-4">
+            <i data-lucide="gamepad-2" class="w-6 h-6"></i>
+          </div>
+          <h4 class="text-lg font-bold text-white mb-2">Game Development</h4>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Specialized in Unity 2D & 3D, gameplay physics, state-based UI architecture (StatefulUI), custom shaders, and interactive systems.
+          </p>
+        </div>
+
+        <div class="glass-card rounded-2xl p-6">
+          <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center mb-4">
+            <i data-lucide="code-2" class="w-6 h-6"></i>
+          </div>
+          <h4 class="text-lg font-bold text-white mb-2">Software & Web Apps</h4>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Building web utilities, wedding platforms, and workflow management systems with modern web stacks, REST APIs, and database integrations.
+          </p>
+        </div>
+
+        <div class="glass-card rounded-2xl p-6">
+          <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center mb-4">
+            <i data-lucide="users" class="w-6 h-6"></i>
+          </div>
+          <h4 class="text-lg font-bold text-white mb-2">Community Builder</h4>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Founder of Basement GameDev Community, fostering collaboration, mentoring peers, and organizing collaborative game jams.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="relative z-10 py-20 bg-slate-900/30 border-t border-slate-800/60">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center mb-16">
+        <h2 class="text-xs font-bold uppercase tracking-widest text-indigo-400 mb-2">Technical Skills</h2>
+        <h3 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">Tools & Technologies</h3>
+        <p class="text-slate-400 mt-3 text-sm sm:text-base">A snapshot of technologies I use for game development, scripting, and web projects.</p>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+        <!-- Skill Item -->
+        <div class="glass-card rounded-xl p-4 text-center group">
+          <div class="text-indigo-400 mb-2 flex justify-center group-hover:scale-110 transition">
+            <i data-lucide="cpu" class="w-7 h-7"></i>
+          </div>
+          <div class="text-sm font-semibold text-white">C#</div>
+          <div class="text-[11px] text-slate-400 mt-1">Core Language</div>
+        </div>
+
+        <div class="glass-card rounded-xl p-4 text-center group">
+          <div class="text-indigo-400 mb-2 flex justify-center group-hover:scale-110 transition">
+            <i data-lucide="gamepad-2" class="w-7 h-7"></i>
+          </div>
+          <div class="text-sm font-semibold text-white">Unity Engine</div>
+          <div class="text-[11px] text-slate-400 mt-1">2D / 3D Games</div>
+        </div>
+
+        <div class="glass-card rounded-xl p-4 text-center group">
+          <div class="text-cyan-400 mb-2 flex justify-center group-hover:scale-110 transition">
+            <i data-lucide="code" class="w-7 h-7"></i>
+          </div>
+          <div class="text-sm font-semibold text-white">JavaScript / TS</div>
+          <div class="text-[11px] text-slate-400 mt-1">Frontend & Web</div>
+        </div>
+
+        <div class="glass-card rounded-xl p-4 text-center group">
+          <div class="text-amber-400 mb-2 flex justify-center group-hover:scale-110 transition">
+            <i data-lucide="terminal" class="w-7 h-7"></i>
+          </div>
+          <div class="text-sm font-semibold text-white">Python</div>
+          <div class="text-[11px] text-slate-400 mt-1">Automation & Tools</div>
+        </div>
+
+        <div class="glass-card rounded-xl p-4 text-center group">
+          <div class="text-emerald-400 mb-2 flex justify-center group-hover:scale-110 transition">
+            <i data-lucide="layout" class="w-7 h-7"></i>
+          </div>
+          <div class="text-sm font-semibold text-white">UI/UX Systems</div>
+          <div class="text-[11px] text-slate-400 mt-1">StatefulUI, Tailwind</div>
+        </div>
+
+        <div class="glass-card rounded-xl p-4 text-center group">
+          <div class="text-rose-400 mb-2 flex justify-center group-hover:scale-110 transition">
+            <i data-lucide="git-branch" class="w-7 h-7"></i>
+          </div>
+          <div class="text-sm font-semibold text-white">Git & GitHub</div>
+          <div class="text-[11px] text-slate-400 mt-1">Version Control</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="relative z-10 py-20 border-t border-slate-800/60">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-14">
+        <div>
+          <h2 class="text-xs font-bold uppercase tracking-widest text-indigo-400 mb-2">Featured Work</h2>
+          <h3 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">Projects & Case Studies</h3>
+          <p class="text-slate-400 mt-2 text-sm sm:text-base">Selected games, web platforms, and mobile apps created by Faris Miqdad.</p>
+        </div>
+        <div class="mt-4 md:mt-0 flex gap-2">
+          <span class="text-xs px-3 py-1.5 rounded-lg bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">Game Dev</span>
+          <span class="text-xs px-3 py-1.5 rounded-lg bg-purple-500/10 text-purple-300 border border-purple-500/20">Web & Apps</span>
+        </div>
+      </div>
+
+      <!-- Projects Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Project 1: inviteme.id / Weeding-Website -->
+        <div class="glass-card rounded-2xl overflow-hidden flex flex-col group">
+          <div class="h-44 bg-gradient-to-br from-indigo-900/60 via-purple-900/40 to-slate-900 flex items-center justify-center p-6 relative">
+            <i data-lucide="heart-handshake" class="w-16 h-16 text-indigo-400/80 group-hover:scale-110 transition duration-300"></i>
+            <div class="absolute top-3 right-3 text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+              Web App
+            </div>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+            <div>
+              <h4 class="text-lg font-bold text-white group-hover:text-indigo-300 transition">inviteme.id (Wedding Platform)</h4>
+              <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                Platform undangan pernikahan online interaktif dengan manajemen tamu, RSVP, QR check-in, dan integrasi WhatsApp blast.
+              </p>
+            </div>
+            <div>
+              <div class="flex flex-wrap gap-1.5 mb-4">
+                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-mono">Next.js / Web</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-mono">TailwindCSS</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-mono">Supabase</span>
+              </div>
+              <div class="flex items-center gap-3 text-xs">
+                <a href="https://github.com/movlution/Weeding-Website" target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:text-white flex items-center gap-1 font-medium">
+                  <i data-lucide="github" class="w-3.5 h-3.5"></i> Repository
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2: Cairo Cargo Connect -->
+        <div class="glass-card rounded-2xl overflow-hidden flex flex-col group">
+          <div class="h-44 bg-gradient-to-br from-cyan-900/50 via-slate-900 to-slate-900 flex items-center justify-center p-6 relative">
+            <i data-lucide="plane-takeoff" class="w-16 h-16 text-cyan-400/80 group-hover:scale-110 transition duration-300"></i>
+            <div class="absolute top-3 right-3 text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+              Logistics
+            </div>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+            <div>
+              <h4 class="text-lg font-bold text-white group-hover:text-cyan-300 transition">Cairo Cargo Connect & BagageTracker</h4>
+              <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                Sistem pelacakan jadwal bagasi dan logistik rute Kairo-Jakarta dengan notifikasi real-time dan manajemen status kargo.
+              </p>
+            </div>
+            <div>
+              <div class="flex flex-wrap gap-1.5 mb-4">
+                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-mono">Mobile & Web</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-mono">Logistics API</span>
+              </div>
+              <div class="flex items-center gap-3 text-xs">
+                <a href="https://github.com/movlution/cairo-cargo-connect" target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:text-white flex items-center gap-1 font-medium">
+                  <i data-lucide="github" class="w-3.5 h-3.5"></i> Repository
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3: Mainra Games Services & Itch Games -->
+        <div class="glass-card rounded-2xl overflow-hidden flex flex-col group">
+          <div class="h-44 bg-gradient-to-br from-pink-900/50 via-purple-900/40 to-slate-900 flex items-center justify-center p-6 relative">
+            <i data-lucide="gamepad" class="w-16 h-16 text-pink-400/80 group-hover:scale-110 transition duration-300"></i>
+            <div class="absolute top-3 right-3 text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-pink-500/20 text-pink-300 border border-pink-500/30">
+              Game Dev
+            </div>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+            <div>
+              <h4 class="text-lg font-bold text-white group-hover:text-pink-300 transition">Mainra Games Portfolio</h4>
+              <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                Koleksi game casual dan arcade yang dikembangkan dengan Unity Engine, tersedia untuk dimainkan di itch.io dan platform game lainnya.
+              </p>
+            </div>
+            <div>
+              <div class="flex flex-wrap gap-1.5 mb-4">
+                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-mono">Unity 3D</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-mono">C#</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-mono">itch.io</span>
+              </div>
+              <div class="flex items-center gap-3 text-xs">
+                <a href="https://movlution.itch.io/" target="_blank" rel="noopener noreferrer" class="text-pink-400 hover:text-pink-300 flex items-center gap-1 font-medium">
+                  <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Play on itch.io
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4: StatefulUI & Unity Game Architecture -->
+        <div class="glass-card rounded-2xl overflow-hidden flex flex-col group">
+          <div class="h-44 bg-gradient-to-br from-indigo-950 via-slate-900 to-slate-900 flex items-center justify-center p-6 relative">
+            <i data-lucide="layers" class="w-16 h-16 text-indigo-400/80 group-hover:scale-110 transition duration-300"></i>
+            <div class="absolute top-3 right-3 text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+              Unity Library
+            </div>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+            <div>
+              <h4 class="text-lg font-bold text-white group-hover:text-indigo-300 transition">StatefulUI & Game Systems</h4>
+              <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                Struktur arsitektur UI state-based untuk Unity demi menciptakan antarmuka game yang scalable, terpisah antar komponen, dan mudah di-maintain.
+              </p>
+            </div>
+            <div>
+              <div class="flex flex-wrap gap-1.5 mb-4">
+                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-mono">Unity C#</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-mono">Architecture</span>
+              </div>
+              <div class="flex items-center gap-3 text-xs">
+                <a href="https://github.com/movlution/StatefulUI" target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:text-white flex items-center gap-1 font-medium">
+                  <i data-lucide="github" class="w-3.5 h-3.5"></i> View Fork & Docs
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 5: Game Edukasi & AR Vuforia -->
+        <div class="glass-card rounded-2xl overflow-hidden flex flex-col group">
+          <div class="h-44 bg-gradient-to-br from-emerald-950/60 via-slate-900 to-slate-900 flex items-center justify-center p-6 relative">
+            <i data-lucide="sparkle" class="w-16 h-16 text-emerald-400/80 group-hover:scale-110 transition duration-300"></i>
+            <div class="absolute top-3 right-3 text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+              AR & Education
+            </div>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+            <div>
+              <h4 class="text-lg font-bold text-white group-hover:text-emerald-300 transition">Game Edukasi & AR Experience</h4>
+              <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                Pengembangan game edukasi interaktif untuk pengenalan hewan dan latihan augmented reality (AR) interaktif menggunakan Vuforia SDK.
+              </p>
+            </div>
+            <div>
+              <div class="flex flex-wrap gap-1.5 mb-4">
+                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-mono">Unity</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-mono">Vuforia AR</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-mono">C#</span>
+              </div>
+              <div class="flex items-center gap-3 text-xs">
+                <a href="https://github.com/movlution/Latihan-AR-Vuforia" target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:text-white flex items-center gap-1 font-medium">
+                  <i data-lucide="github" class="w-3.5 h-3.5"></i> Repository
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 6: RENT-CAR-PROFESSIONAL -->
+        <div class="glass-card rounded-2xl overflow-hidden flex flex-col group">
+          <div class="h-44 bg-gradient-to-br from-amber-950/60 via-slate-900 to-slate-900 flex items-center justify-center p-6 relative">
+            <i data-lucide="car" class="w-16 h-16 text-amber-400/80 group-hover:scale-110 transition duration-300"></i>
+            <div class="absolute top-3 right-3 text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">
+              Web Portal
+            </div>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+            <div>
+              <h4 class="text-lg font-bold text-white group-hover:text-amber-300 transition">Rent Car Professional</h4>
+              <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                Website pemesanan dan katalog rental mobil profesional dengan integrasi pemesanan langsung, informasi armada, dan kontak cepat.
+              </p>
+            </div>
+            <div>
+              <div class="flex flex-wrap gap-1.5 mb-4">
+                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-mono">Web Application</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-mono">UI Design</span>
+              </div>
+              <div class="flex items-center gap-3 text-xs">
+                <a href="https://github.com/movlution/RENT-CAR-PROFESSIONAL" target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:text-white flex items-center gap-1 font-medium">
+                  <i data-lucide="github" class="w-3.5 h-3.5"></i> Repository
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience & Education / LinkedIn Synchronized Section -->
+  <section id="experience" class="relative z-10 py-20 bg-slate-900/30 border-t border-slate-800/60">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center mb-16">
+        <h2 class="text-xs font-bold uppercase tracking-widest text-indigo-400 mb-2">Career & Journey</h2>
+        <h3 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">Experience & Activities</h3>
+        <p class="text-slate-400 mt-3 text-sm sm:text-base">
+          Synced with LinkedIn & Community engagements. Ready to be updated as your profile expands.
+        </p>
+      </div>
+
+      <div class="max-w-3xl mx-auto space-y-8">
+        
+        <!-- Item 1 -->
+        <div class="relative pl-8 sm:pl-10 border-l border-indigo-500/30 group">
+          <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-[#0b0f19] border-2 border-indigo-500 group-hover:bg-indigo-500 transition"></div>
+          <div>
+            <div class="inline-block text-[11px] font-mono px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 mb-1">
+              Founder & Lead Developer
+            </div>
+            <h4 class="text-lg font-bold text-white">Mainra Games</h4>
+            <p class="text-xs text-slate-400">Independent Game Studio</p>
+            <p class="text-sm text-slate-300 mt-2 leading-relaxed">
+              Leading the development of independent games and interactive tools using Unity (C#). Overseeing full lifecycle from ideation, mechanics design, prototyping, to release.
+            </p>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="relative pl-8 sm:pl-10 border-l border-indigo-500/30 group">
+          <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-[#0b0f19] border-2 border-purple-500 group-hover:bg-purple-500 transition"></div>
+          <div>
+            <div class="inline-block text-[11px] font-mono px-2 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20 mb-1">
+              Community Founder
+            </div>
+            <h4 class="text-lg font-bold text-white">Basement GameDev Community</h4>
+            <p class="text-xs text-slate-400">Discord Community & Collaboration Hub</p>
+            <p class="text-sm text-slate-300 mt-2 leading-relaxed">
+              Founded an active developer hub for game programmers, artists, and sound designers to learn, share insights, and collaborate on shared indie projects.
+            </p>
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="relative pl-8 sm:pl-10 border-l border-indigo-500/30 group">
+          <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-[#0b0f19] border-2 border-cyan-500 group-hover:bg-cyan-500 transition"></div>
+          <div>
+            <div class="inline-block text-[11px] font-mono px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 mb-1">
+              Professional Profile
+            </div>
+            <h4 class="text-lg font-bold text-white">LinkedIn Profile Sync</h4>
+            <p class="text-xs text-slate-400">linkedin.com/in/farismiqdad</p>
+            <p class="text-sm text-slate-300 mt-2 leading-relaxed">
+              Detail pengalaman kerja formal, sertifikasi, riwayat magang, dan proyek institusi dapat diperbarui langsung dengan mudah pada file konfigurasi/konten portofolio ini.
+            </p>
+            <div class="mt-3">
+              <a href="https://www.linkedin.com/in/farismiqdad/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold text-cyan-400 hover:text-cyan-300">
+                <span>Buka Profil LinkedIn Lengkap</span>
+                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Social Section -->
+  <section id="contact" class="relative z-10 py-24 border-t border-slate-800/60">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      
+      <h2 class="text-xs font-bold uppercase tracking-widest text-indigo-400 mb-2">Get in Touch</h2>
+      <h3 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">Let's build something remarkable together</h3>
+      <p class="text-slate-400 mt-4 max-w-xl mx-auto leading-relaxed text-sm sm:text-base">
+        Whether you have a game project in mind, need software engineering expertise, or want to connect on LinkedIn, my inbox is always open.
+      </p>
+
+      <div class="mt-10 flex flex-wrap justify-center items-center gap-4">
+        <a href="mailto:movlution@gmail.com" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold shadow-lg shadow-indigo-600/30 transition">
+          <i data-lucide="mail" class="w-4 h-4"></i>
+          <span>movlution@gmail.com</span>
+        </a>
+        <a href="https://www.linkedin.com/in/farismiqdad/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-semibold transition">
+          <i data-lucide="linkedin" class="w-4 h-4 text-cyan-400"></i>
+          <span>Connect on LinkedIn</span>
+        </a>
+        <a href="https://discord.gg/zreAsusu25" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-semibold transition">
+          <i data-lucide="message-circle" class="w-4 h-4 text-indigo-400"></i>
+          <span>Discord Community</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="relative z-10 border-t border-slate-800/80 py-8 bg-[#090d16]">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+      <p>© 2026 Faris Miqdad (movlution). All rights reserved.</p>
+      <div class="flex items-center gap-6">
+        <a href="https://github.com/movlution" target="_blank" rel="noopener noreferrer" class="hover:text-slate-300 transition">GitHub</a>
+        <a href="https://www.linkedin.com/in/farismiqdad/" target="_blank" rel="noopener noreferrer" class="hover:text-slate-300 transition">LinkedIn</a>
+        <a href="https://movlution.itch.io/" target="_blank" rel="noopener noreferrer" class="hover:text-slate-300 transition">itch.io</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lucide Icon Initialization -->
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
