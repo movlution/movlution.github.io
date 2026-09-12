@@ -3,20 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Faris Miqdad | Game Developer & Creative Engineer</title>
-  <meta name="description" content="Portfolio of Faris Miqdad (@movlution) - Unity Game Developer, Creative Technologist, and Software Engineer." />
+  <title>Faris Miqdad — Game Developer & Software Engineer</title>
+  <meta name="description" content="Portfolio of Faris Miqdad (@movlution) — Game programmer, Unity developer, and software engineer." />
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
-  <!-- Canvas Confetti -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  
-  <!-- Fonts -->
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
   <script>
     tailwind.config = {
@@ -24,419 +21,130 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
             mono: ['"JetBrains Mono"', 'monospace'],
-            pixel: ['"Press Start 2P"', 'cursive'],
           },
           colors: {
-            arcade: {
-              bg: '#080915',
-              card: '#101426',
-              cyan: '#00f5d4',
-              pink: '#f72585',
-              purple: '#7209b7',
-              yellow: '#fee440',
-              neon: '#4cc9f0',
+            surface: {
+              DEFAULT: '#090d16',
+              card: '#0f172a',
+              subtle: '#1e293b',
+              border: '#1e293b',
             }
-          },
-          boxShadow: {
-            'neon-cyan': '0 0 25px rgba(0, 245, 212, 0.45)',
-            'neon-pink': '0 0 25px rgba(247, 37, 133, 0.45)',
-            'neon-purple': '0 0 25px rgba(114, 9, 183, 0.5)',
-            'arcade-btn': '0 5px 0 #3b0764',
-            'arcade-btn-active': '0 0 0 #3b0764',
           }
         }
       }
     }
   </script>
+
   <style>
-    /* Custom Cyberpunk / Arcade CRT & Grid overlay */
-    .cyber-grid {
-      background-size: 40px 40px;
-      background-image: 
-        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    body {
+      background-color: #080c14;
+      color: #cbd5e1;
+      font-family: 'Plus Jakarta Sans', sans-serif;
     }
     
-    .glass-arcade {
-      background: rgba(16, 20, 38, 0.72);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      position: relative;
-    }
-    .glass-arcade::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      padding: 1px;
-      background: linear-gradient(135deg, rgba(0, 245, 212, 0.25), rgba(247, 37, 133, 0.15), transparent);
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none;
+    /* Clean subtle background glow */
+    .hero-glow {
+      background: radial-gradient(circle 600px at 50% -10%, rgba(99, 102, 241, 0.12), transparent 70%);
     }
 
-    .arcade-card {
-      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    .project-card {
+      background: #0d1322;
+      border: 1px solid #1e293b;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
     }
-    .arcade-card:hover {
-      transform: translateY(-6px) scale(1.01);
-      box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.7), 0 0 22px -3px rgba(0, 245, 212, 0.35);
-      border-color: rgba(0, 245, 212, 0.5);
-    }
-
-    .pixel-badge {
-      text-shadow: 0 0 8px rgba(254, 228, 64, 0.6);
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: #334155;
+      box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(99, 102, 241, 0.2);
     }
 
-    /* Scanline effect */
-    .scanlines {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
-      background-size: 100% 4px;
-      z-index: 40;
-      pointer-events: none;
-      opacity: 0.35;
-    }
-
-    /* Sound effect simulation */
-    .arcade-click:active {
-      transform: translateY(3px);
+    /* Browser Mockup Header */
+    .mockup-header {
+      background: #090e1a;
+      border-bottom: 1px solid #1e293b;
     }
   </style>
 </head>
-<body class="bg-arcade-bg text-slate-200 font-sans selection:bg-arcade-pink selection:text-white min-h-screen relative overflow-x-hidden cyber-grid">
+<body class="selection:bg-indigo-500/30 selection:text-indigo-200 min-h-screen flex flex-col antialiased">
 
-  <div class="scanlines"></div>
-
-  <!-- Ambient Light Orbs -->
-  <div class="fixed top-12 left-10 w-96 h-96 bg-arcade-purple/20 blur-[130px] rounded-full pointer-events-none z-0"></div>
-  <div class="fixed top-1/2 right-0 w-[450px] h-[450px] bg-arcade-pink/15 blur-[140px] rounded-full pointer-events-none z-0"></div>
-  <div class="fixed bottom-10 left-1/3 w-[500px] h-[500px] bg-arcade-cyan/15 blur-[150px] rounded-full pointer-events-none z-0"></div>
-
-  <!-- Top Gamer Status Ticker -->
-  <div class="relative z-50 bg-[#060810]/90 border-b border-white/5 py-1.5 px-4 text-xs font-mono text-slate-400 flex items-center justify-between overflow-x-auto gap-4">
-    <div class="flex items-center gap-2 shrink-0">
-      <span class="w-2 h-2 rounded-full bg-arcade-cyan animate-ping"></span>
-      <span class="font-pixel text-[10px] text-arcade-cyan">PLAYER 1:</span>
-      <span class="text-white font-semibold">FARIS MIQDAD (@movlution)</span>
-    </div>
-    <div class="hidden sm:flex items-center gap-6 text-[11px]">
-      <span class="text-slate-500">QUEST: <span class="text-arcade-yellow">GAME DEVELOPMENT & APPS</span></span>
-      <span class="text-slate-500">HP: <span class="text-emerald-400">100/100</span></span>
-      <span class="text-slate-500">MANA: <span class="text-arcade-neon">UNITY C#</span></span>
-      <span class="text-slate-500">LOCATION: <span class="text-slate-300">CAIRO / INDONESIA</span></span>
-    </div>
-    <div class="flex items-center gap-3 shrink-0">
-      <button id="easterEggBtn" onclick="triggerLevelUp()" class="text-[10px] font-pixel px-2 py-0.5 rounded bg-arcade-pink/20 hover:bg-arcade-pink/30 text-arcade-pink border border-arcade-pink/40 cursor-pointer transition arcade-click" title="Click for Level Up FX!">
-        ★ LEVEL UP!
-      </button>
-    </div>
-  </div>
-
-  <!-- Main Navbar -->
-  <nav class="sticky top-0 z-50 glass-arcade border-b border-white/10">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+  <!-- Header / Navigation -->
+  <header class="sticky top-0 z-40 bg-[#080c14]/80 backdrop-blur-md border-b border-slate-800/70">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
       
-      <!-- Brand Logo -->
-      <a href="#" class="flex items-center gap-3 text-lg font-bold tracking-tight text-white group">
-        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-arcade-purple to-arcade-pink p-0.5 flex items-center justify-center shadow-neon-pink group-hover:scale-105 transition">
-          <div class="w-full h-full bg-[#0d1020] rounded-[10px] flex items-center justify-center">
-            <i data-lucide="gamepad-2" class="w-5 h-5 text-arcade-cyan"></i>
-          </div>
+      <!-- Brand -->
+      <a href="#" class="flex items-center gap-2.5 text-slate-100 font-semibold tracking-tight hover:text-white transition">
+        <div class="w-7 h-7 rounded-lg bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
+          <i data-lucide="gamepad-2" class="w-4 h-4"></i>
         </div>
-        <div class="flex flex-col">
-          <span class="font-extrabold tracking-wider leading-none">MOVLUTION<span class="text-arcade-cyan">.</span></span>
-          <span class="text-[9px] font-pixel text-slate-400 tracking-widest mt-0.5">DEV_STATION</span>
-        </div>
+        <span class="text-sm font-bold tracking-wide">Faris Miqdad <span class="text-indigo-400 font-mono text-xs font-normal">(@movlution)</span></span>
       </a>
 
-      <!-- Desktop Links -->
-      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300 font-mono">
-        <a href="#about" class="hover:text-arcade-cyan transition flex items-center gap-1.5">
-          <span class="text-arcade-pink text-xs">#</span>ABOUT
-        </a>
-        <a href="#skills" class="hover:text-arcade-cyan transition flex items-center gap-1.5">
-          <span class="text-arcade-yellow text-xs">#</span>SKILLS
-        </a>
-        <a href="#projects" class="hover:text-arcade-cyan transition flex items-center gap-1.5">
-          <span class="text-arcade-cyan text-xs">#</span>PROJECTS
-        </a>
-        <a href="#experience" class="hover:text-arcade-cyan transition flex items-center gap-1.5">
-          <span class="text-purple-400 text-xs">#</span>EXPERIENCE
-        </a>
-        <a href="#contact" class="hover:text-arcade-cyan transition flex items-center gap-1.5">
-          <span class="text-emerald-400 text-xs">#</span>CONTACT
-        </a>
-      </div>
+      <!-- Nav Links -->
+      <nav class="hidden md:flex items-center gap-7 text-xs font-medium text-slate-400">
+        <a href="#about" class="hover:text-slate-200 transition">About</a>
+        <a href="#projects" class="hover:text-slate-200 transition">Projects</a>
+        <a href="#skills" class="hover:text-slate-200 transition">Skills</a>
+        <a href="#experience" class="hover:text-slate-200 transition">Experience</a>
+        <a href="#contact" class="hover:text-slate-200 transition">Contact</a>
+      </nav>
 
-      <!-- Action & Socials -->
+      <!-- Action -->
       <div class="flex items-center gap-3">
         <a href="https://github.com/movlution" target="_blank" rel="noopener noreferrer" 
-           class="p-2 text-slate-400 hover:text-white rounded-lg hover:bg-white/5 transition" title="GitHub Profile">
-          <i data-lucide="github" class="w-5 h-5"></i>
+           class="p-2 text-slate-400 hover:text-slate-200 rounded-lg hover:bg-slate-800/60 transition" aria-label="GitHub Profile">
+          <i data-lucide="github" class="w-4 h-4"></i>
         </a>
         <a href="https://www.linkedin.com/in/farismiqdad/" target="_blank" rel="noopener noreferrer" 
-           class="p-2 text-slate-400 hover:text-arcade-cyan rounded-lg hover:bg-white/5 transition" title="LinkedIn Profile">
-          <i data-lucide="linkedin" class="w-5 h-5"></i>
+           class="p-2 text-slate-400 hover:text-slate-200 rounded-lg hover:bg-slate-800/60 transition" aria-label="LinkedIn Profile">
+          <i data-lucide="linkedin" class="w-4 h-4"></i>
         </a>
-        <a href="#contact" class="relative group hidden sm:inline-flex items-center gap-2 px-4 py-2 text-xs font-mono font-bold tracking-wider uppercase text-white bg-gradient-to-r from-arcade-purple to-arcade-pink rounded-xl shadow-neon-pink hover:opacity-95 transition arcade-click">
-          <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
-          <span>PRESS START</span>
-        </a>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Hero Section with Arcade Flair -->
-  <section class="relative z-10 pt-20 pb-20 md:pt-32 md:pb-28">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        
-        <!-- Left Hero Copy -->
-        <div class="lg:col-span-7 space-y-6">
-          
-          <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-arcade-cyan/40 bg-arcade-cyan/10 text-arcade-cyan text-xs font-mono">
-            <span class="relative flex h-2 w-2">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-arcade-cyan opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-2 w-2 bg-arcade-cyan"></span>
-            </span>
-            <span>SYSTEM STATUS: READY TO CODE & SHIP</span>
-          </div>
-
-          <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-tight">
-            Leveling Up Code & <br/>
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-arcade-cyan via-arcade-yellow to-arcade-pink">
-              Interactive Game Worlds
-            </span>
-          </h1>
-
-          <p class="text-base sm:text-lg text-slate-300 font-mono flex items-center gap-2">
-            <span class="text-arcade-pink">const</span> developer = <span class="text-arcade-yellow">"Faris Miqdad"</span>; 
-            <span class="text-slate-500">// Unity & Software Dev</span>
-          </p>
-
-          <p class="text-slate-400 leading-relaxed text-sm sm:text-base max-w-xl">
-            Passionate game programmer dedicated to crafting responsive mechanics, state-driven architectures, and playful user experiences. Creator of <strong class="text-white">Mainra Games</strong> and founder of <strong class="text-white">Basement GameDev Community</strong>.
-          </p>
-
-          <!-- Interactive Action CTA Buttons -->
-          <div class="flex flex-wrap items-center gap-4 pt-3">
-            <a href="#projects" class="inline-flex items-center gap-2.5 px-6 py-3.5 bg-gradient-to-r from-arcade-cyan to-blue-500 text-slate-950 font-bold rounded-xl shadow-neon-cyan hover:brightness-110 transition arcade-click font-mono text-sm">
-              <i data-lucide="play-circle" class="w-4 h-4"></i>
-              <span>EXPLORE PROJECTS</span>
-            </a>
-            
-            <a href="https://movlution.itch.io/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2.5 px-6 py-3.5 bg-arcade-card hover:bg-[#181e36] border border-arcade-pink/40 text-arcade-pink font-semibold rounded-xl transition arcade-click font-mono text-sm shadow-neon-pink">
-              <i data-lucide="gamepad-2" class="w-4 h-4"></i>
-              <span>PLAY ON ITCH.IO</span>
-            </a>
-
-            <a href="https://www.linkedin.com/in/farismiqdad/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-3.5 bg-arcade-card hover:bg-[#181e36] border border-white/10 text-slate-300 hover:text-white rounded-xl transition font-mono text-sm">
-              <i data-lucide="linkedin" class="w-4 h-4 text-[#0077b5]"></i>
-              <span>LINKEDIN</span>
-            </a>
-          </div>
-
-          <!-- Live Game-style Stats Widget -->
-          <div class="grid grid-cols-3 gap-3 pt-6 max-w-lg">
-            <div class="glass-arcade p-3.5 rounded-xl border-l-2 border-l-arcade-cyan">
-              <div class="text-xs font-mono text-slate-400 flex items-center gap-1.5">
-                <i data-lucide="sword" class="w-3.5 h-3.5 text-arcade-cyan"></i> EXP
-              </div>
-              <div class="text-xl font-bold text-white font-mono mt-1">10+ GAMES</div>
-              <div class="text-[10px] text-arcade-cyan/80">Arcade & Mobile</div>
-            </div>
-
-            <div class="glass-arcade p-3.5 rounded-xl border-l-2 border-l-arcade-yellow">
-              <div class="text-xs font-mono text-slate-400 flex items-center gap-1.5">
-                <i data-lucide="shield" class="w-3.5 h-3.5 text-arcade-yellow"></i> MAIN STAT
-              </div>
-              <div class="text-xl font-bold text-white font-mono mt-1">UNITY 3D/2D</div>
-              <div class="text-[10px] text-arcade-yellow/80">C# & StatefulUI</div>
-            </div>
-
-            <div class="glass-arcade p-3.5 rounded-xl border-l-2 border-l-arcade-pink">
-              <div class="text-xs font-mono text-slate-400 flex items-center gap-1.5">
-                <i data-lucide="users" class="w-3.5 h-3.5 text-arcade-pink"></i> GUILD
-              </div>
-              <div class="text-xl font-bold text-white font-mono mt-1">BASEMENT</div>
-              <div class="text-[10px] text-arcade-pink/80">Founder & Host</div>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Right Retro Arcade Machine / Character Card -->
-        <div class="lg:col-span-5 flex justify-center">
-          <div class="relative w-full max-w-md">
-            <!-- Neon Glow ring -->
-            <div class="absolute -inset-1 bg-gradient-to-r from-arcade-cyan via-arcade-purple to-arcade-pink rounded-3xl blur-lg opacity-40 animate-pulse"></div>
-            
-            <div class="relative glass-arcade rounded-3xl p-6 border border-white/15 shadow-2xl bg-[#0c1022]/90">
-              
-              <!-- Card Header -->
-              <div class="flex items-center justify-between pb-4 mb-4 border-b border-white/10">
-                <div class="flex items-center gap-2 font-pixel text-[11px] text-arcade-yellow">
-                  <i data-lucide="trophy" class="w-4 h-4 text-arcade-yellow"></i>
-                  <span>DEV_PROFILE.EXE</span>
-                </div>
-                <div class="flex gap-1.5">
-                  <span class="w-3 h-3 rounded-full bg-rose-500/80"></span>
-                  <span class="w-3 h-3 rounded-full bg-amber-500/80"></span>
-                  <span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
-                </div>
-              </div>
-
-              <!-- Avatar & Character Info -->
-              <div class="flex items-center gap-4 mb-5">
-                <div class="relative">
-                  <img src="https://avatars.githubusercontent.com/u/56767913?v=4" alt="Faris Miqdad" class="w-20 h-20 rounded-2xl border-2 border-arcade-cyan shadow-neon-cyan object-cover" />
-                  <span class="absolute -bottom-2 -right-2 bg-arcade-pink text-white font-pixel text-[9px] px-1.5 py-0.5 rounded shadow">LVL 99</span>
-                </div>
-                <div>
-                  <h3 class="text-xl font-bold text-white tracking-wide">Faris Miqdad</h3>
-                  <p class="text-xs font-mono text-arcade-cyan">@movlution</p>
-                  <p class="text-xs text-slate-400 mt-1 flex items-center gap-1">
-                    <i data-lucide="map-pin" class="w-3 h-3 text-arcade-pink"></i> Cairo, Egypt / ID
-                  </p>
-                </div>
-              </div>
-
-              <!-- Interactive Mini Game Quest Box -->
-              <div class="bg-[#070a16] rounded-xl p-4 border border-white/5 space-y-2.5 font-mono text-xs">
-                <div class="text-[11px] text-slate-400 uppercase tracking-wider flex justify-between">
-                  <span>ACTIVE ABILITIES:</span>
-                  <span class="text-arcade-cyan">BUFF ACTIVE</span>
-                </div>
-                
-                <div class="space-y-1.5">
-                  <div class="flex justify-between text-[11px]">
-                    <span class="text-slate-300">🎮 Unity Gameplay Logic</span>
-                    <span class="text-emerald-400 font-bold">95%</span>
-                  </div>
-                  <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-                    <div class="bg-gradient-to-r from-arcade-cyan to-emerald-400 h-full w-[95%] rounded-full"></div>
-                  </div>
-
-                  <div class="flex justify-between text-[11px] pt-1">
-                    <span class="text-slate-300">⚡ C# Architecture & Clean Code</span>
-                    <span class="text-arcade-yellow font-bold">90%</span>
-                  </div>
-                  <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-                    <div class="bg-gradient-to-r from-arcade-yellow to-amber-500 h-full w-[90%] rounded-full"></div>
-                  </div>
-
-                  <div class="flex justify-between text-[11px] pt-1">
-                    <span class="text-slate-300">🌐 Full-Stack Web & Tools</span>
-                    <span class="text-arcade-pink font-bold">85%</span>
-                  </div>
-                  <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-                    <div class="bg-gradient-to-r from-purple-500 to-arcade-pink h-full w-[85%] rounded-full"></div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Sound Toggle & Fun Interactive -->
-              <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs text-slate-400">
-                <span class="flex items-center gap-1.5 font-mono">
-                  <i data-lucide="sparkles" class="w-3.5 h-3.5 text-arcade-yellow"></i>
-                  Indie Game Programmer
-                </span>
-                <button onclick="playChime()" class="text-xs font-mono text-arcade-cyan hover:text-white flex items-center gap-1 cursor-pointer arcade-click">
-                  <i data-lucide="volume-2" class="w-3.5 h-3.5"></i> Play SFX
-                </button>
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Interactive Mini Game Showcase / Game Pitch -->
-  <section class="relative z-10 py-12 bg-gradient-to-r from-arcade-purple/20 via-arcade-card to-arcade-pink/10 border-y border-white/10">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
-      <div class="flex items-center gap-4">
-        <div class="w-14 h-14 rounded-2xl bg-arcade-pink/20 border border-arcade-pink/40 flex items-center justify-center text-arcade-pink shrink-0 shadow-neon-pink">
-          <i data-lucide="joystick" class="w-8 h-8 animate-bounce"></i>
-        </div>
-        <div>
-          <span class="font-pixel text-[10px] text-arcade-yellow tracking-wider">FEATURED INDIE LAB:</span>
-          <h3 class="text-xl font-bold text-white">Mainra Games & Itch.io Release Station</h3>
-          <p class="text-xs text-slate-400 mt-1 font-mono">Play published prototypes, browser games, and game jam creations directly.</p>
-        </div>
-      </div>
-      <div class="flex items-center gap-3">
-        <a href="https://movlution.itch.io/" target="_blank" rel="noopener noreferrer" class="px-5 py-3 rounded-xl bg-arcade-pink hover:bg-pink-600 text-white font-mono font-bold text-xs tracking-wider uppercase shadow-neon-pink transition arcade-click flex items-center gap-2">
-          <span>GO TO ITCH.IO ARCADE</span>
-          <i data-lucide="external-link" class="w-4 h-4"></i>
+        <a href="mailto:movlution@gmail.com" 
+           class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium border border-slate-700 transition">
+          <i data-lucide="mail" class="w-3.5 h-3.5"></i>
+          <span>Email Me</span>
         </a>
       </div>
-    </div>
-  </section>
 
-  <!-- About Me: Story & Philosophy -->
-  <section id="about" class="relative z-10 py-24">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative hero-glow pt-20 pb-16 md:pt-28 md:pb-24 border-b border-slate-800/40">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8">
       
-      <div class="max-w-3xl mx-auto text-center mb-16">
-        <div class="inline-block font-pixel text-[10px] text-arcade-cyan px-3 py-1 rounded bg-arcade-cyan/10 border border-arcade-cyan/30 mb-3">
-          PLAYER BIO
+      <div class="max-w-3xl">
+        
+        <!-- Status Pill -->
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs font-medium mb-6">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+          Available for Game Dev & Software Engineering
         </div>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-          Crafting Meaningful Gameplay & Seamless Software
-        </h2>
-        <p class="text-slate-400 mt-4 leading-relaxed text-sm sm:text-base">
-          My journey revolves around game mechanics, graphics programming, and solving engineering problems. Whether it is scripting fluid character controllers in Unity, organizing dev communities, or developing high-impact web apps.
+
+        <!-- Headline -->
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-[1.15]">
+          Game Developer & Software Engineer crafting clean, playful experiences.
+        </h1>
+
+        <p class="text-base sm:text-lg text-slate-400 mt-5 leading-relaxed font-normal">
+          I'm Faris Miqdad. I specialize in Unity game programming (C#), interactive systems, and web application development. Founder of <strong class="text-slate-200 font-medium">Mainra Games</strong> and <strong class="text-slate-200 font-medium">Basement GameDev Community</strong>.
         </p>
-      </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        
-        <div class="glass-arcade rounded-2xl p-6 arcade-card">
-          <div class="w-12 h-12 rounded-xl bg-arcade-cyan/10 border border-arcade-cyan/30 text-arcade-cyan flex items-center justify-center mb-5">
-            <i data-lucide="gamepad" class="w-6 h-6"></i>
-          </div>
-          <h3 class="text-lg font-bold text-white mb-2">Game Mechanics & Physics</h3>
-          <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
-            Building 2D/3D physics, collision handling, procedural generation, camera behaviors, and sound systems inside Unity using clean C# patterns.
-          </p>
-          <div class="mt-4 pt-3 border-t border-white/5 font-mono text-[11px] text-arcade-cyan flex items-center gap-1">
-            <span>Unity • C# • StatefulUI</span>
-          </div>
-        </div>
-
-        <div class="glass-arcade rounded-2xl p-6 arcade-card">
-          <div class="w-12 h-12 rounded-xl bg-arcade-pink/10 border border-arcade-pink/30 text-arcade-pink flex items-center justify-center mb-5">
-            <i data-lucide="laptop" class="w-6 h-6"></i>
-          </div>
-          <h3 class="text-lg font-bold text-white mb-2">Web Apps & Tools</h3>
-          <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
-            Developing full-stack platforms such as inviteme.id and logistics solutions with responsive glassmorphism UI, real-time sync, and scalable databases.
-          </p>
-          <div class="mt-4 pt-3 border-t border-white/5 font-mono text-[11px] text-arcade-pink flex items-center gap-1">
-            <span>JavaScript • Tailwind • APIs</span>
-          </div>
-        </div>
-
-        <div class="glass-arcade rounded-2xl p-6 arcade-card">
-          <div class="w-12 h-12 rounded-xl bg-arcade-yellow/10 border border-arcade-yellow/30 text-arcade-yellow flex items-center justify-center mb-5">
-            <i data-lucide="users" class="w-6 h-6"></i>
-          </div>
-          <h3 class="text-lg font-bold text-white mb-2">Community Leadership</h3>
-          <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
-            Founding Basement GameDev Community to empower developers, artists, and creators to form teams, build games, and learn modern software workflows.
-          </p>
-          <div class="mt-4 pt-3 border-t border-white/5 font-mono text-[11px] text-arcade-yellow flex items-center gap-1">
-            <span>Discord Hub • Collaboration</span>
-          </div>
+        <!-- CTA Links -->
+        <div class="flex flex-wrap items-center gap-3.5 pt-8">
+          <a href="#projects" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-xs sm:text-sm shadow-sm transition">
+            <span>View Featured Work</span>
+            <i data-lucide="arrow-down" class="w-4 h-4"></i>
+          </a>
+          <a href="https://movlution.itch.io/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium text-xs sm:text-sm border border-slate-700 transition">
+            <i data-lucide="gamepad-2" class="w-4 h-4 text-indigo-400"></i>
+            <span>itch.io Games</span>
+          </a>
+          <a href="https://www.linkedin.com/in/farismiqdad/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium text-xs sm:text-sm border border-slate-700 transition">
+            <i data-lucide="linkedin" class="w-4 h-4 text-sky-400"></i>
+            <span>LinkedIn Profile</span>
+          </a>
         </div>
 
       </div>
@@ -444,342 +152,345 @@
     </div>
   </section>
 
-  <!-- Technical Skills: Inventory Slot Style -->
-  <section id="skills" class="relative z-10 py-24 bg-[#0a0d1d]/80 border-t border-white/5">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+  <!-- Featured Projects Section with Real Visual Previews -->
+  <section id="projects" class="py-20 md:py-24">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8">
       
-      <div class="max-w-3xl mx-auto text-center mb-16">
-        <div class="inline-block font-pixel text-[10px] text-arcade-yellow px-3 py-1 rounded bg-arcade-yellow/10 border border-arcade-yellow/30 mb-3">
-          INVENTORY & TECH LOADOUT
-        </div>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Equipped Weapons & Spells</h2>
-        <p class="text-slate-400 mt-3 text-sm sm:text-base font-mono">The frameworks, languages, and toolsets in my daily arsenal.</p>
-      </div>
-
-      <!-- Grid of Inventory Slots -->
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-
-        <div class="glass-arcade p-4 rounded-xl text-center group arcade-card border border-white/10 hover:border-arcade-cyan">
-          <div class="w-12 h-12 mx-auto rounded-lg bg-arcade-cyan/10 text-arcade-cyan flex items-center justify-center mb-3 group-hover:scale-110 transition">
-            <i data-lucide="cpu" class="w-6 h-6"></i>
-          </div>
-          <div class="text-sm font-bold text-white font-mono">C# (C-Sharp)</div>
-          <div class="text-[11px] text-slate-400 font-mono mt-1">Core Weapon</div>
-          <div class="mt-2 text-[10px] text-arcade-cyan font-pixel">MAX LEVEL</div>
-        </div>
-
-        <div class="glass-arcade p-4 rounded-xl text-center group arcade-card border border-white/10 hover:border-arcade-pink">
-          <div class="w-12 h-12 mx-auto rounded-lg bg-arcade-pink/10 text-arcade-pink flex items-center justify-center mb-3 group-hover:scale-110 transition">
-            <i data-lucide="gamepad-2" class="w-6 h-6"></i>
-          </div>
-          <div class="text-sm font-bold text-white font-mono">Unity Engine</div>
-          <div class="text-[11px] text-slate-400 font-mono mt-1">2D / 3D Games</div>
-          <div class="mt-2 text-[10px] text-arcade-pink font-pixel">PRIMARY</div>
-        </div>
-
-        <div class="glass-arcade p-4 rounded-xl text-center group arcade-card border border-white/10 hover:border-arcade-yellow">
-          <div class="w-12 h-12 mx-auto rounded-lg bg-arcade-yellow/10 text-arcade-yellow flex items-center justify-center mb-3 group-hover:scale-110 transition">
-            <i data-lucide="code" class="w-6 h-6"></i>
-          </div>
-          <div class="text-sm font-bold text-white font-mono">JavaScript / TS</div>
-          <div class="text-[11px] text-slate-400 font-mono mt-1">Frontend / Web</div>
-          <div class="mt-2 text-[10px] text-arcade-yellow font-pixel">HIGH LEVEL</div>
-        </div>
-
-        <div class="glass-arcade p-4 rounded-xl text-center group arcade-card border border-white/10 hover:border-purple-400">
-          <div class="w-12 h-12 mx-auto rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center mb-3 group-hover:scale-110 transition">
-            <i data-lucide="terminal" class="w-6 h-6"></i>
-          </div>
-          <div class="text-sm font-bold text-white font-mono">Python</div>
-          <div class="text-[11px] text-slate-400 font-mono mt-1">Script & Tools</div>
-          <div class="mt-2 text-[10px] text-purple-400 font-pixel">TACTICAL</div>
-        </div>
-
-        <div class="glass-arcade p-4 rounded-xl text-center group arcade-card border border-white/10 hover:border-emerald-400">
-          <div class="w-12 h-12 mx-auto rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-3 group-hover:scale-110 transition">
-            <i data-lucide="layers" class="w-6 h-6"></i>
-          </div>
-          <div class="text-sm font-bold text-white font-mono">StatefulUI</div>
-          <div class="text-[11px] text-slate-400 font-mono mt-1">Game UI System</div>
-          <div class="mt-2 text-[10px] text-emerald-400 font-pixel">MASTERED</div>
-        </div>
-
-        <div class="glass-arcade p-4 rounded-xl text-center group arcade-card border border-white/10 hover:border-rose-400">
-          <div class="w-12 h-12 mx-auto rounded-lg bg-rose-500/10 text-rose-400 flex items-center justify-center mb-3 group-hover:scale-110 transition">
-            <i data-lucide="git-branch" class="w-6 h-6"></i>
-          </div>
-          <div class="text-sm font-bold text-white font-mono">Git & GitHub</div>
-          <div class="text-[11px] text-slate-400 font-mono mt-1">Version Control</div>
-          <div class="mt-2 text-[10px] text-rose-400 font-pixel">ESSENTIAL</div>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Featured Projects Section -->
-  <section id="projects" class="relative z-10 py-24">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-14">
+      <!-- Section Header -->
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
         <div>
-          <div class="inline-block font-pixel text-[10px] text-arcade-pink px-3 py-1 rounded bg-arcade-pink/10 border border-arcade-pink/30 mb-3">
-            QUEST ARCHIVES
-          </div>
-          <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Featured Projects & Games</h2>
-          <p class="text-slate-400 mt-2 text-sm sm:text-base font-mono">A curated collection of live apps, open-source repos, and game releases.</p>
+          <span class="text-xs font-semibold uppercase tracking-wider text-indigo-400 font-mono">Portfolio</span>
+          <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight mt-1">Featured Projects</h2>
+          <p class="text-sm text-slate-400 mt-1">Selected web platforms, released games, and developer tools.</p>
         </div>
-
-        <!-- Filter tabs / tags -->
-        <div class="mt-6 md:mt-0 flex flex-wrap gap-2">
-          <span class="text-xs font-mono px-3 py-1.5 rounded-lg bg-arcade-cyan/15 text-arcade-cyan border border-arcade-cyan/30">
-            ★ ALL BUILDS
-          </span>
-          <span class="text-xs font-mono px-3 py-1.5 rounded-lg bg-white/5 text-slate-400 border border-white/10">
-            UNITY 3D
-          </span>
-          <span class="text-xs font-mono px-3 py-1.5 rounded-lg bg-white/5 text-slate-400 border border-white/10">
-            WEB APPS
-          </span>
+        <div class="text-xs font-mono text-slate-500">
+          Showing 6 curated works
         </div>
       </div>
 
-      <!-- Project Cards Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Projects Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-7">
 
-        <!-- Card 0: INDO GAME DEV Collective Platform -->
-        <div class="glass-arcade rounded-2xl overflow-hidden flex flex-col group arcade-card border border-white/10 hover:border-arcade-cyan">
-          <div class="h-48 bg-gradient-to-br from-[#051923] via-[#003554] to-[#006494] p-6 relative flex items-center justify-center overflow-hidden">
-            <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#00f5d4_1px,transparent_1px)] [background-size:16px_16px]"></div>
-            <i data-lucide="globe-2" class="w-16 h-16 text-arcade-cyan group-hover:scale-125 transition duration-500"></i>
-            <span class="absolute top-3 right-3 font-pixel text-[9px] px-2 py-1 rounded bg-arcade-cyan text-slate-950 shadow-neon-cyan">
-              COLLECTIVE WEB
-            </span>
+        <!-- Project 1: INDO GAME DEV Collective -->
+        <div class="project-card rounded-xl overflow-hidden flex flex-col">
+          <!-- Real UI Mockup Preview -->
+          <div class="mockup-header px-4 py-2.5 flex items-center justify-between text-xs text-slate-400">
+            <div class="flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-red-500/60"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-amber-500/60"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/60"></span>
+              <span class="ml-2 font-mono text-[11px] text-slate-400">indogamedev.vercel.app</span>
+            </div>
+            <span class="text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">Live on Play Store</span>
           </div>
+          
+          <div class="relative bg-[#070b14] border-b border-slate-800/80 p-6 flex flex-col justify-center min-h-[180px] group overflow-hidden">
+            <!-- Simulated web app UI banner preview -->
+            <div class="flex items-center gap-4">
+              <img src="assets/previews/indogamedev-icon.svg" alt="IndoGameDev Logo" class="w-14 h-14 rounded-xl p-2 bg-slate-800/80 border border-slate-700 shadow-sm" />
+              <div>
+                <div class="text-xs font-mono text-indigo-400 font-semibold">INDO GAME DEV Collective Project</div>
+                <h4 class="text-xl font-bold text-white mt-0.5">Direktori & Komunitas Game Dev</h4>
+                <p class="text-xs text-slate-400 mt-1">Direktori • Playtest Event • Job Portal • Medium Blog</p>
+              </div>
+            </div>
+            
+            <div class="mt-4 pt-4 border-t border-slate-800/60 flex items-center justify-between text-xs text-slate-400">
+              <span>Mobile Version: <strong>Google Play Store</strong></span>
+              <span class="font-mono text-slate-500">com.mainragames.indogamedev</span>
+            </div>
+          </div>
+
+          <!-- Card Content -->
           <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
             <div>
-              <div class="flex items-center justify-between text-xs text-slate-400 font-mono mb-1">
-                <span>ECOSYSTEM: INDIE GAMEDEV</span>
-                <span class="text-arcade-cyan">PLAY STORE & WEB</span>
-              </div>
-              <h3 class="text-lg font-bold text-white group-hover:text-arcade-cyan transition">INDO GAME DEV Collective</h3>
-              <p class="text-xs text-slate-400 mt-2 leading-relaxed">
-                Platform direktori dan ekosistem komunitas pengembang game Indonesia yang memuat direktori studio/developer, sesi playtest, agenda event, info job portal, blog, serta rilis resmi di Google Play Store.
+              <h3 class="text-lg font-bold text-white">INDO GAME DEV Collective</h3>
+              <p class="text-xs sm:text-sm text-slate-400 mt-2 leading-relaxed">
+                Platform ekosistem komprehensif bagi developer game Indonesia. Menghubungkan kreator independen, agenda playtest berkala, direktori studio, lowongan kerja industri game, dan aplikasi Android di Play Store.
               </p>
             </div>
+            
             <div>
-              <div class="flex flex-wrap gap-1.5 mb-4">
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800/90 text-slate-300">Vercel Web App</span>
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800/90 text-slate-300">Google Play Store</span>
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800/90 text-slate-300">GameDev Community</span>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">Vercel Web</span>
+                <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">Google Play Store</span>
+                <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">Firebase</span>
               </div>
-              <div class="flex items-center gap-4 text-xs font-mono font-bold">
-                <a href="https://indogamedev.vercel.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-arcade-cyan hover:text-white transition">
-                  <i data-lucide="external-link" class="w-4 h-4"></i>
-                  <span>VISIT WEB</span>
+
+              <div class="flex items-center gap-4 text-xs font-semibold">
+                <a href="https://indogamedev.vercel.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-indigo-400 hover:text-indigo-300 transition">
+                  <span>Visit Website</span>
+                  <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
                 </a>
-                <a href="https://play.google.com/store/apps/details?id=com.mainragames.indogamedev" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-arcade-yellow hover:text-white transition">
+                <a href="https://play.google.com/store/apps/details?id=com.mainragames.indogamedev" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-slate-300 hover:text-white transition">
+                  <span>Play Store App</span>
                   <i data-lucide="play" class="w-3.5 h-3.5"></i>
-                  <span>PLAY STORE</span>
                 </a>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Card 1: Mainra Games / Itch -->
-        <div class="glass-arcade rounded-2xl overflow-hidden flex flex-col group arcade-card border border-white/10 hover:border-arcade-pink">
-          <div class="h-48 bg-gradient-to-br from-[#2a0845] via-[#6441a5] to-[#1a1c29] p-6 relative flex items-center justify-center overflow-hidden">
-            <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#f72585_1px,transparent_1px)] [background-size:16px_16px]"></div>
-            <i data-lucide="gamepad-2" class="w-16 h-16 text-arcade-pink group-hover:scale-125 transition duration-500"></i>
-            <span class="absolute top-3 right-3 font-pixel text-[9px] px-2 py-1 rounded bg-arcade-pink text-white shadow-neon-pink">
-              LIVE GAME
-            </span>
+        <!-- Project 2: inviteme.id (With Image Preview) -->
+        <div class="project-card rounded-xl overflow-hidden flex flex-col">
+          <!-- Mockup Header -->
+          <div class="mockup-header px-4 py-2.5 flex items-center justify-between text-xs text-slate-400">
+            <div class="flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-red-500/60"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-amber-500/60"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/60"></span>
+              <span class="ml-2 font-mono text-[11px] text-slate-400">inviteme.id</span>
+            </div>
+            <span class="text-[11px] font-mono text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded border border-indigo-500/20">Production SaaS</span>
           </div>
+
+          <!-- Real Image Preview -->
+          <div class="relative bg-[#070b14] border-b border-slate-800/80 overflow-hidden h-[180px] flex items-center justify-center">
+            <img src="assets/previews/inviteme.png" alt="inviteme.id platform preview" class="w-full h-full object-cover object-top hover:scale-105 transition duration-500" />
+          </div>
+
+          <!-- Card Content -->
           <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
             <div>
-              <div class="flex items-center justify-between text-xs text-slate-400 font-mono mb-1">
-                <span>GENRE: ARCADE / CASUAL</span>
-                <span class="text-arcade-pink">ITCH.IO</span>
-              </div>
-              <h3 class="text-lg font-bold text-white group-hover:text-arcade-pink transition">Mainra Games Portfolio</h3>
-              <p class="text-xs text-slate-400 mt-2 leading-relaxed">
-                Showcase game indie Unity interaktif yang dirilis untuk publik di itch.io. Menguji mekanik game seru, gameplay loop teruji, dan responsivitas kontrol.
+              <h3 class="text-lg font-bold text-white">inviteme.id — Wedding Platform</h3>
+              <p class="text-xs sm:text-sm text-slate-400 mt-2 leading-relaxed">
+                Platform digital invitation terintegrasi dengan kustomisasi tema interaktif, manajemen tamu real-time, RSVP online, check-in QR Code di venue, dan WhatsApp blast automation.
               </p>
             </div>
+
             <div>
-              <div class="flex flex-wrap gap-1.5 mb-4">
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800/90 text-slate-300">Unity 3D</span>
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800/90 text-slate-300">C# Scripts</span>
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800/90 text-slate-300">Web Player</span>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">Next.js</span>
+                <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">TailwindCSS</span>
+                <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">Supabase</span>
               </div>
-              <a href="https://movlution.itch.io/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-mono font-bold text-arcade-pink hover:text-white transition">
-                <span>MAIN DI ITCH.IO</span>
-                <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
-              </a>
+
+              <div class="flex items-center gap-4 text-xs font-semibold">
+                <a href="https://github.com/movlution/Weeding-Website" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-indigo-400 hover:text-indigo-300 transition">
+                  <i data-lucide="github" class="w-3.5 h-3.5"></i>
+                  <span>GitHub Repository</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Card 2: inviteme.id -->
-        <div class="glass-arcade rounded-2xl overflow-hidden flex flex-col group arcade-card border border-white/10 hover:border-arcade-cyan">
-          <div class="h-48 bg-gradient-to-br from-[#0f2027] via-[#203a43] to-[#2c5364] p-6 relative flex items-center justify-center overflow-hidden">
-            <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#00f5d4_1px,transparent_1px)] [background-size:16px_16px]"></div>
-            <i data-lucide="sparkles" class="w-16 h-16 text-arcade-cyan group-hover:scale-125 transition duration-500"></i>
-            <span class="absolute top-3 right-3 font-pixel text-[9px] px-2 py-1 rounded bg-arcade-cyan text-slate-950 shadow-neon-cyan">
-              PROD WEB
-            </span>
+        <!-- Project 3: Mainra Games (itch.io) -->
+        <div class="project-card rounded-xl overflow-hidden flex flex-col">
+          <!-- Mockup Header -->
+          <div class="mockup-header px-4 py-2.5 flex items-center justify-between text-xs text-slate-400">
+            <div class="flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-red-500/60"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-amber-500/60"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/60"></span>
+              <span class="ml-2 font-mono text-[11px] text-slate-400">movlution.itch.io</span>
+            </div>
+            <span class="text-[11px] font-mono text-rose-400 bg-rose-500/10 px-2 py-0.5 rounded border border-rose-500/20">Playable Games</span>
           </div>
+
+          <!-- Gameplay / Game Studio Preview Mockup -->
+          <div class="relative bg-gradient-to-br from-[#1b1e36] to-[#0b0e1b] border-b border-slate-800/80 p-6 flex flex-col justify-center min-h-[180px]">
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 rounded-xl bg-rose-500/10 border border-rose-500/30 flex items-center justify-center text-rose-400">
+                <i data-lucide="gamepad-2" class="w-8 h-8"></i>
+              </div>
+              <div>
+                <span class="text-xs font-mono text-rose-400 font-semibold">Indie Game Releases</span>
+                <h4 class="text-xl font-bold text-white mt-0.5">Mainra Games Studio</h4>
+                <p class="text-xs text-slate-400 mt-1">2D/3D Unity Arcade Games & Game Jam Projects</p>
+              </div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800/70 text-xs text-slate-400 flex items-center justify-between">
+              <span>Platform: WebGL & Desktop</span>
+              <span class="text-rose-400 font-semibold">Play in Browser</span>
+            </div>
+          </div>
+
+          <!-- Card Content -->
           <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
             <div>
-              <div class="flex items-center justify-between text-xs text-slate-400 font-mono mb-1">
-                <span>DOMAIN: SAAS / WEB</span>
-                <span class="text-arcade-cyan">v1 LIVE</span>
-              </div>
-              <h3 class="text-lg font-bold text-white group-hover:text-arcade-cyan transition">inviteme.id (Wedding Platform)</h3>
-              <p class="text-xs text-slate-400 mt-2 leading-relaxed">
-                Platform undangan online interaktif dengan RSVP instan, check-in QR, manajemen tamu real-time, dan desain undangan modern elegan.
+              <h3 class="text-lg font-bold text-white">Mainra Games Portfolio</h3>
+              <p class="text-xs sm:text-sm text-slate-400 mt-2 leading-relaxed">
+                Koleksi rilis game indie yang dibuat dengan Unity Engine (C#). Menghadirkan mekanisme gameplay arcade yang responsif, visual retro modern, dan game loop yang solid.
               </p>
             </div>
+
             <div>
-              <div class="flex flex-wrap gap-1.5 mb-4">
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800/90 text-slate-300">Next.js / React</span>
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800/90 text-slate-300">TailwindCSS</span>
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800/90 text-slate-300">Supabase</span>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">Unity 3D/2D</span>
+                <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">C# Scripts</span>
+                <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">itch.io WebGL</span>
               </div>
-              <a href="https://github.com/movlution/Weeding-Website" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-mono font-bold text-arcade-cyan hover:text-white transition">
-                <span>VIEW REPOSITORY</span>
-                <i data-lucide="github" class="w-4 h-4"></i>
-              </a>
+
+              <div class="flex items-center gap-4 text-xs font-semibold">
+                <a href="https://movlution.itch.io/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-rose-400 hover:text-rose-300 transition">
+                  <i data-lucide="play" class="w-3.5 h-3.5"></i>
+                  <span>Play on itch.io</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Card 3: StatefulUI & Unity Architecture -->
-        <div class="glass-arcade rounded-2xl overflow-hidden flex flex-col group arcade-card border border-white/10 hover:border-arcade-yellow">
-          <div class="h-48 bg-gradient-to-br from-[#1e130c] via-[#9a8478]/20 to-[#101426] p-6 relative flex items-center justify-center overflow-hidden">
-            <i data-lucide="layers" class="w-16 h-16 text-arcade-yellow group-hover:scale-125 transition duration-500"></i>
-            <span class="absolute top-3 right-3 font-pixel text-[9px] px-2 py-1 rounded bg-arcade-yellow text-slate-950">
-              FRAMEWORK
-            </span>
+        <!-- Project 4: Cairo Cargo Connect -->
+        <div class="project-card rounded-xl overflow-hidden flex flex-col">
+          <!-- Mockup Header -->
+          <div class="mockup-header px-4 py-2.5 flex items-center justify-between text-xs text-slate-400">
+            <div class="flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-red-500/60"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-amber-500/60"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/60"></span>
+              <span class="ml-2 font-mono text-[11px] text-slate-400">cairo-cargo-connect</span>
+            </div>
+            <span class="text-[11px] font-mono text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/20">Logistics & Tracking</span>
           </div>
+
+          <!-- Preview Header Mockup -->
+          <div class="relative bg-gradient-to-br from-[#0c1e28] to-[#07131b] border-b border-slate-800/80 p-6 flex flex-col justify-center min-h-[180px]">
+            <div class="flex items-center gap-4">
+              <img src="assets/previews/cairo-cargo-logo.svg" alt="Cairo Cargo Connect Logo" class="w-14 h-14 rounded-xl p-2 bg-slate-800/80 border border-slate-700 shadow-sm" />
+              <div>
+                <span class="text-xs font-mono text-cyan-400 font-semibold">Cairo - Jakarta Cargo Route</span>
+                <h4 class="text-xl font-bold text-white mt-0.5">Cairo Cargo Connect</h4>
+                <p class="text-xs text-slate-400 mt-1">Real-time Baggage Schedule & Cargo Tracking</p>
+              </div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800/70 text-xs text-slate-400 flex items-center justify-between">
+              <span>Audit Resi & Logistics Management</span>
+              <span class="text-cyan-400 font-mono text-[11px]">Freebuff Project</span>
+            </div>
+          </div>
+
+          <!-- Card Content -->
           <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
             <div>
-              <div class="flex items-center justify-between text-xs text-slate-400 font-mono mb-1">
-                <span>STACK: UNITY ENGINE</span>
-                <span class="text-arcade-yellow">LIB</span>
-              </div>
-              <h3 class="text-lg font-bold text-white group-hover:text-arcade-yellow transition">StatefulUI Architecture</h3>
-              <p class="text-xs text-slate-400 mt-2 leading-relaxed">
-                Struktur pengembangan antarmuka pengguna berbasis status (state-based UI) di Unity untuk mempermudah animasi, navigasi menu, dan UI responsiveness.
+              <h3 class="text-lg font-bold text-white">Cairo Cargo Connect & BagageTracker</h3>
+              <p class="text-xs sm:text-sm text-slate-400 mt-2 leading-relaxed">
+                Aplikasi manajemen logistik kargo dan pelacakan bagasi penerbangan Kairo—Jakarta dengan integrasi data resi otomatis, validasi manifes, dan live update status penerbangan.
               </p>
             </div>
+
             <div>
-              <div class="flex flex-wrap gap-1.5 mb-4">
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800/90 text-slate-300">Unity C#</span>
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800/90 text-slate-300">UI Architecture</span>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">TypeScript</span>
+                <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">Convex DB</span>
+                <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">Vite & React</span>
               </div>
-              <a href="https://github.com/movlution/StatefulUI" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-mono font-bold text-arcade-yellow hover:text-white transition">
-                <span>VIEW REPOSITORY</span>
-                <i data-lucide="github" class="w-4 h-4"></i>
-              </a>
+
+              <div class="flex items-center gap-4 text-xs font-semibold">
+                <a href="https://github.com/movlution/cairo-cargo-connect" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-cyan-400 hover:text-cyan-300 transition">
+                  <i data-lucide="github" class="w-3.5 h-3.5"></i>
+                  <span>GitHub Repository</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Card 4: Cairo Cargo Connect & BagageTracker -->
-        <div class="glass-arcade rounded-2xl overflow-hidden flex flex-col group arcade-card border border-white/10 hover:border-emerald-400">
-          <div class="h-48 bg-gradient-to-br from-[#093028] via-[#237a57]/30 to-[#101426] p-6 relative flex items-center justify-center overflow-hidden">
-            <i data-lucide="plane" class="w-16 h-16 text-emerald-400 group-hover:scale-125 transition duration-500"></i>
-            <span class="absolute top-3 right-3 font-pixel text-[9px] px-2 py-1 rounded bg-emerald-500 text-slate-950">
-              LOGISTICS
-            </span>
+        <!-- Project 5: StatefulUI -->
+        <div class="project-card rounded-xl overflow-hidden flex flex-col">
+          <div class="mockup-header px-4 py-2.5 flex items-center justify-between text-xs text-slate-400">
+            <div class="flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-red-500/60"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-amber-500/60"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/60"></span>
+              <span class="ml-2 font-mono text-[11px] text-slate-400">github.com/movlution/StatefulUI</span>
+            </div>
+            <span class="text-[11px] font-mono text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">Unity Library</span>
           </div>
+
+          <div class="relative bg-gradient-to-br from-[#1f1608] to-[#0c0f17] border-b border-slate-800/80 p-6 flex flex-col justify-center min-h-[180px]">
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400">
+                <i data-lucide="layers" class="w-8 h-8"></i>
+              </div>
+              <div>
+                <span class="text-xs font-mono text-amber-400 font-semibold">Architecture Framework</span>
+                <h4 class="text-xl font-bold text-white mt-0.5">Stateful UI for Unity</h4>
+                <p class="text-xs text-slate-400 mt-1">Structured state-based UI development in Unity</p>
+              </div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800/70 text-xs text-slate-400 flex items-center justify-between">
+              <span>Clean Code & Decoupled State</span>
+              <span class="text-amber-400 font-mono text-[11px]">Unity 2022+</span>
+            </div>
+          </div>
+
           <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
             <div>
-              <div class="flex items-center justify-between text-xs text-slate-400 font-mono mb-1">
-                <span>PLATFORM: MOBILE / WEB</span>
-                <span class="text-emerald-400">TRACKER</span>
-              </div>
-              <h3 class="text-lg font-bold text-white group-hover:text-emerald-400 transition">Cairo Cargo Connect</h3>
-              <p class="text-xs text-slate-400 mt-2 leading-relaxed">
-                Aplikasi pelacakan jadwal bagasi dan logistik pengiriman Kairo - Jakarta dengan live timeline status barang dan pencatatan komprehensif.
+              <h3 class="text-lg font-bold text-white">StatefulUI — Unity Game UI Architecture</h3>
+              <p class="text-xs sm:text-sm text-slate-400 mt-2 leading-relaxed">
+                Library arsitektur antarmuka berbasis state machine untuk Unity. Memisahkan logika presentasi, animasi menu, dan manipulasi elemen UI agar tetap scalable dan mudah diuji.
               </p>
             </div>
+
             <div>
-              <div class="flex flex-wrap gap-1.5 mb-4">
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800/90 text-slate-300">Tracking System</span>
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800/90 text-slate-300">API Integration</span>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">C#</span>
+                <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">Unity Engine</span>
+                <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">Open Source</span>
               </div>
-              <a href="https://github.com/movlution/cairo-cargo-connect" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-mono font-bold text-emerald-400 hover:text-white transition">
-                <span>VIEW REPOSITORY</span>
-                <i data-lucide="github" class="w-4 h-4"></i>
-              </a>
+
+              <div class="flex items-center gap-4 text-xs font-semibold">
+                <a href="https://github.com/movlution/StatefulUI" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-amber-400 hover:text-amber-300 transition">
+                  <i data-lucide="github" class="w-3.5 h-3.5"></i>
+                  <span>GitHub Repository</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Card 5: AR & Education Games -->
-        <div class="glass-arcade rounded-2xl overflow-hidden flex flex-col group arcade-card border border-white/10 hover:border-arcade-neon">
-          <div class="h-48 bg-gradient-to-br from-[#141E30] to-[#243B55] p-6 relative flex items-center justify-center overflow-hidden">
-            <i data-lucide="scan-face" class="w-16 h-16 text-arcade-neon group-hover:scale-125 transition duration-500"></i>
-            <span class="absolute top-3 right-3 font-pixel text-[9px] px-2 py-1 rounded bg-arcade-neon text-slate-950">
-              AR ENGINE
-            </span>
-          </div>
-          <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
-            <div>
-              <div class="flex items-center justify-between text-xs text-slate-400 font-mono mb-1">
-                <span>TECH: VUFORIA AR</span>
-                <span class="text-arcade-neon">INTERACTIVE</span>
-              </div>
-              <h3 class="text-lg font-bold text-white group-hover:text-arcade-neon transition">Latihan AR & Game Edukasi</h3>
-              <p class="text-xs text-slate-400 mt-2 leading-relaxed">
-                Implementasi Augmented Reality (AR) menggunakan marker tracking Vuforia SDK serta game edukatif interaktif untuk anak-anak.
-              </p>
+        <!-- Project 6: AR Experience & Education -->
+        <div class="project-card rounded-xl overflow-hidden flex flex-col">
+          <div class="mockup-header px-4 py-2.5 flex items-center justify-between text-xs text-slate-400">
+            <div class="flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-red-500/60"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-amber-500/60"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/60"></span>
+              <span class="ml-2 font-mono text-[11px] text-slate-400">github.com/movlution/Latihan-AR-Vuforia</span>
             </div>
-            <div>
-              <div class="flex flex-wrap gap-1.5 mb-4">
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800/90 text-slate-300">Vuforia AR</span>
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800/90 text-slate-300">Unity Mobile</span>
-              </div>
-              <a href="https://github.com/movlution/Latihan-AR-Vuforia" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-mono font-bold text-arcade-neon hover:text-white transition">
-                <span>VIEW REPOSITORY</span>
-                <i data-lucide="github" class="w-4 h-4"></i>
-              </a>
-            </div>
+            <span class="text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">Augmented Reality</span>
           </div>
-        </div>
 
-        <!-- Card 6: Rent Car Professional -->
-        <div class="glass-arcade rounded-2xl overflow-hidden flex flex-col group arcade-card border border-white/10 hover:border-purple-400">
-          <div class="h-48 bg-gradient-to-br from-[#302b63] via-[#24243e] to-[#0f0c29] p-6 relative flex items-center justify-center overflow-hidden">
-            <i data-lucide="car" class="w-16 h-16 text-purple-400 group-hover:scale-125 transition duration-500"></i>
-            <span class="absolute top-3 right-3 font-pixel text-[9px] px-2 py-1 rounded bg-purple-500 text-white">
-              CLIENT APP
-            </span>
+          <div class="relative bg-gradient-to-br from-[#0c1f19] to-[#07130f] border-b border-slate-800/80 p-6 flex flex-col justify-center min-h-[180px]">
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                <i data-lucide="scan" class="w-8 h-8"></i>
+              </div>
+              <div>
+                <span class="text-xs font-mono text-emerald-400 font-semibold">Marker-based AR Engine</span>
+                <h4 class="text-xl font-bold text-white mt-0.5">Vuforia AR & Educational Game</h4>
+                <p class="text-xs text-slate-400 mt-1">Interactive 3D tracking & kids education games</p>
+              </div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800/70 text-xs text-slate-400 flex items-center justify-between">
+              <span>Target: Mobile Android</span>
+              <span class="text-emerald-400 font-mono text-[11px]">Vuforia SDK</span>
+            </div>
           </div>
+
           <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
             <div>
-              <div class="flex items-center justify-between text-xs text-slate-400 font-mono mb-1">
-                <span>SECTOR: AUTOMOTIVE</span>
-                <span class="text-purple-400">RENTAL WEB</span>
-              </div>
-              <h3 class="text-lg font-bold text-white group-hover:text-purple-300 transition">RENT-CAR-PROFESSIONAL</h3>
-              <p class="text-xs text-slate-400 mt-2 leading-relaxed">
-                Platform web katalog armada rental mobil dengan alur reservasi cepat, penghitungan tarif, dan integrasi WhatsApp customer service.
+              <h3 class="text-lg font-bold text-white">AR Experience & Game Edukasi</h3>
+              <p class="text-xs sm:text-sm text-slate-400 mt-2 leading-relaxed">
+                Penerapan Augmented Reality interaktif dengan marker tracking menggunakan Vuforia SDK, dipadukan dengan game pengenalan edukasi hewan yang interaktif dan ramah anak.
               </p>
             </div>
+
             <div>
-              <div class="flex flex-wrap gap-1.5 mb-4">
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800/90 text-slate-300">Responsive UI</span>
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800/90 text-slate-300">Frontend Portal</span>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">Unity 3D</span>
+                <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">Vuforia SDK</span>
+                <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">Android APK</span>
               </div>
-              <a href="https://github.com/movlution/RENT-CAR-PROFESSIONAL" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-mono font-bold text-purple-400 hover:text-white transition">
-                <span>VIEW REPOSITORY</span>
-                <i data-lucide="github" class="w-4 h-4"></i>
-              </a>
+
+              <div class="flex items-center gap-4 text-xs font-semibold">
+                <a href="https://github.com/movlution/Latihan-AR-Vuforia" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-emerald-400 hover:text-emerald-300 transition">
+                  <i data-lucide="github" class="w-3.5 h-3.5"></i>
+                  <span>GitHub Repository</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -789,109 +500,128 @@
     </div>
   </section>
 
-  <!-- Experience / Quest Log (LinkedIn Synchronized) -->
-  <section id="experience" class="relative z-10 py-24 bg-[#0a0d1d]/90 border-t border-white/5">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+  <!-- Technical Skills: Clean Grid -->
+  <section id="skills" class="py-20 bg-[#090e18] border-t border-slate-800/60">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8">
       
-      <div class="max-w-3xl mx-auto text-center mb-16">
-        <div class="inline-block font-pixel text-[10px] text-arcade-cyan px-3 py-1 rounded bg-arcade-cyan/10 border border-arcade-cyan/30 mb-3">
-          QUEST LOG & CAMPAIGN
-        </div>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Experience & Career Milestones</h2>
-        <p class="text-slate-400 mt-3 text-sm sm:text-base font-mono">Synced with LinkedIn credentials and community leadership.</p>
+      <div class="max-w-2xl mb-12">
+        <span class="text-xs font-semibold uppercase tracking-wider text-indigo-400 font-mono">Expertise</span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight mt-1">Skills & Tooling</h2>
+        <p class="text-sm text-slate-400 mt-1">Core languages, game engines, and modern web development technologies.</p>
       </div>
 
-      <div class="max-w-3xl mx-auto space-y-6">
-
-        <!-- Quest 1 -->
-        <div class="glass-arcade p-6 rounded-2xl border-l-4 border-l-arcade-pink arcade-card">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
-            <div>
-              <span class="font-pixel text-[9px] px-2 py-0.5 rounded bg-arcade-pink/20 text-arcade-pink border border-arcade-pink/30">
-                CURRENT ROLE
-              </span>
-              <h3 class="text-lg font-bold text-white mt-1">Founder & Lead Programmer</h3>
-              <p class="text-xs text-slate-400 font-mono">Mainra Games • Independent Game Studio</p>
-            </div>
-            <div class="text-xs font-mono text-arcade-pink sm:text-right">
-              <span>2024 — PRESENT</span>
-            </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3.5">
+        
+        <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-slate-700 transition">
+          <div class="text-indigo-400 mb-2">
+            <i data-lucide="cpu" class="w-5 h-5"></i>
           </div>
-          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            Menghandle arsitektur game indie secara menyeluruh: mulai dari ideasi konsep, pemrograman core gameplay di Unity (C#), implementasi UI/UX game, hingga publishing dan maintenance ke itch.io.
-          </p>
+          <div class="text-sm font-semibold text-white">C#</div>
+          <div class="text-xs text-slate-400 mt-0.5">Primary Language</div>
         </div>
 
-        <!-- Quest 1.5: INDO GAME DEV -->
-        <div class="glass-arcade p-6 rounded-2xl border-l-4 border-l-arcade-cyan arcade-card">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
-            <div>
-              <span class="font-pixel text-[9px] px-2 py-0.5 rounded bg-arcade-cyan/20 text-arcade-cyan border border-arcade-cyan/30">
-                ECOSYSTEM PROJECT
-              </span>
-              <h3 class="text-lg font-bold text-white mt-1">INDO GAME DEV Collective Platform</h3>
-              <p class="text-xs text-slate-400 font-mono">Web & Mobile Ecosystem • indogamedev.vercel.app</p>
-            </div>
-            <div class="text-xs font-mono text-arcade-cyan sm:text-right">
-              <span>LIVE ON PLAY STORE & WEB</span>
-            </div>
+        <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-slate-700 transition">
+          <div class="text-indigo-400 mb-2">
+            <i data-lucide="gamepad-2" class="w-5 h-5"></i>
           </div>
-          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            Membangun platform kolektif game developer Indonesia yang merangkum direktori studio dan dev lokal, pengumuman playtest, portal job, blog wawasan game development, serta aplikasi mobile pendukung di Google Play Store.
-          </p>
-          <div class="mt-4 flex flex-wrap items-center gap-3">
-            <a href="https://indogamedev.vercel.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-arcade-cyan/20 hover:bg-arcade-cyan/30 text-arcade-cyan font-mono text-xs font-bold transition">
-              <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-              <span>indogamedev.vercel.app</span>
-            </a>
-            <a href="https://play.google.com/store/apps/details?id=com.mainragames.indogamedev" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-arcade-yellow/20 hover:bg-arcade-yellow/30 text-arcade-yellow font-mono text-xs font-bold transition">
-              <i data-lucide="play" class="w-3.5 h-3.5"></i>
-              <span>Google Play Store</span>
-            </a>
+          <div class="text-sm font-semibold text-white">Unity 2D/3D</div>
+          <div class="text-xs text-slate-400 mt-0.5">Gameplay & Physics</div>
+        </div>
+
+        <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-slate-700 transition">
+          <div class="text-indigo-400 mb-2">
+            <i data-lucide="code" class="w-5 h-5"></i>
+          </div>
+          <div class="text-sm font-semibold text-white">TypeScript / JS</div>
+          <div class="text-xs text-slate-400 mt-0.5">Full-Stack Web</div>
+        </div>
+
+        <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-slate-700 transition">
+          <div class="text-indigo-400 mb-2">
+            <i data-lucide="terminal" class="w-5 h-5"></i>
+          </div>
+          <div class="text-sm font-semibold text-white">Python</div>
+          <div class="text-xs text-slate-400 mt-0.5">Scripting & Automation</div>
+        </div>
+
+        <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-slate-700 transition">
+          <div class="text-indigo-400 mb-2">
+            <i data-lucide="layers" class="w-5 h-5"></i>
+          </div>
+          <div class="text-sm font-semibold text-white">UI Architecture</div>
+          <div class="text-xs text-slate-400 mt-0.5">StatefulUI, Tailwind</div>
+        </div>
+
+        <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-slate-700 transition">
+          <div class="text-indigo-400 mb-2">
+            <i data-lucide="git-branch" class="w-5 h-5"></i>
+          </div>
+          <div class="text-sm font-semibold text-white">Git & GitHub</div>
+          <div class="text-xs text-slate-400 mt-0.5">CI/CD & Versioning</div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Career & Experience (LinkedIn) -->
+  <section id="experience" class="py-20 md:py-24 border-t border-slate-800/60">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8">
+      
+      <div class="max-w-2xl mb-12">
+        <span class="text-xs font-semibold uppercase tracking-wider text-indigo-400 font-mono">Journey</span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight mt-1">Experience & Leadership</h2>
+        <p class="text-sm text-slate-400 mt-1">Professional track record and community leadership.</p>
+      </div>
+
+      <div class="max-w-3xl space-y-6">
+        
+        <!-- Experience 1 -->
+        <div class="p-6 rounded-xl bg-slate-900/50 border border-slate-800 flex flex-col sm:flex-row sm:items-baseline justify-between gap-4">
+          <div>
+            <h3 class="text-base font-bold text-white">Founder & Lead Programmer</h3>
+            <p class="text-xs text-indigo-400 font-medium mt-0.5">Mainra Games Studio</p>
+            <p class="text-xs sm:text-sm text-slate-400 mt-2 leading-relaxed">
+              Memimpin pengembangan game independen, riset mekanik gameplay di Unity (C#), arsitektur UI berbasis state, serta pengelolaan publishing ke itch.io dan platform rilis.
+            </p>
+          </div>
+          <div class="shrink-0 text-xs font-mono text-slate-500">
+            2024 — Present
           </div>
         </div>
 
-        <!-- Quest 2 -->
-        <div class="glass-arcade p-6 rounded-2xl border-l-4 border-l-arcade-yellow arcade-card">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
-            <div>
-              <span class="font-pixel text-[9px] px-2 py-0.5 rounded bg-arcade-yellow/20 text-arcade-yellow border border-arcade-yellow/30">
-                COMMUNITY GUILD
-              </span>
-              <h3 class="text-lg font-bold text-white mt-1">Founder & Community Lead</h3>
-              <p class="text-xs text-slate-400 font-mono">Basement GameDev Community</p>
-            </div>
-            <div class="text-xs font-mono text-arcade-yellow sm:text-right">
-              <span>ACTIVE GUILD</span>
-            </div>
+        <!-- Experience 2 -->
+        <div class="p-6 rounded-xl bg-slate-900/50 border border-slate-800 flex flex-col sm:flex-row sm:items-baseline justify-between gap-4">
+          <div>
+            <h3 class="text-base font-bold text-white">Community Founder & Host</h3>
+            <p class="text-xs text-indigo-400 font-medium mt-0.5">Basement GameDev Community</p>
+            <p class="text-xs sm:text-sm text-slate-400 mt-2 leading-relaxed">
+              Membangun wadah bagi programmer, 3D artist, dan pegiat industri game untuk belajar bersama, berkolaborasi, dan berbagi pengalaman seputar produksi game mandiri.
+            </p>
           </div>
-          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            Membangun dan mengelola komunitas developer game untuk berbagi pengalaman, menyelenggarakan diskusi teknis, kolaborasi proyek, serta mentorship bagi programmer pemula.
-          </p>
+          <div class="shrink-0 text-xs font-mono text-slate-500">
+            Active Community
+          </div>
         </div>
 
-        <!-- Quest 3: LinkedIn Connect -->
-        <div class="glass-arcade p-6 rounded-2xl border-l-4 border-l-[#0077b5] arcade-card">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
-            <div>
-              <span class="font-pixel text-[9px] px-2 py-0.5 rounded bg-[#0077b5]/20 text-[#38bdf8] border border-[#0077b5]/30">
-                PROFESSIONAL NETWORK
-              </span>
-              <h3 class="text-lg font-bold text-white mt-1">LinkedIn Profile Synchronization</h3>
-              <p class="text-xs text-slate-400 font-mono">linkedin.com/in/farismiqdad</p>
-            </div>
-            <div class="text-xs font-mono text-cyan-400 sm:text-right">
-              <span>VERIFIED</span>
+        <!-- Experience 3: LinkedIn Sync -->
+        <div class="p-6 rounded-xl bg-slate-900/50 border border-slate-800 flex flex-col sm:flex-row sm:items-baseline justify-between gap-4">
+          <div>
+            <h3 class="text-base font-bold text-white">LinkedIn Professional Profile</h3>
+            <p class="text-xs text-indigo-400 font-medium mt-0.5">linkedin.com/in/farismiqdad</p>
+            <p class="text-xs sm:text-sm text-slate-400 mt-2 leading-relaxed">
+              Seluruh rekam jejak sertifikasi, riwayat proyek formal, dan jaringan profesional dapat diakses langsung melalui profil LinkedIn saya.
+            </p>
+            <div class="mt-4">
+              <a href="https://www.linkedin.com/in/farismiqdad/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-400 hover:text-indigo-300">
+                <span>View Full Profile on LinkedIn</span>
+                <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+              </a>
             </div>
           </div>
-          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            Terhubung langsung dengan seluruh riwayat sertifikasi, pendidikan, pengalaman organisasi, dan resume profesional saya di LinkedIn.
-          </p>
-          <div class="mt-4">
-            <a href="https://www.linkedin.com/in/farismiqdad/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#0077b5] hover:bg-[#005885] text-white font-mono text-xs font-bold transition arcade-click">
-              <i data-lucide="linkedin" class="w-4 h-4"></i>
-              <span>CONNECT ON LINKEDIN</span>
-            </a>
+          <div class="shrink-0 text-xs font-mono text-emerald-400">
+            Verified Profile
           </div>
         </div>
 
@@ -900,107 +630,48 @@
     </div>
   </section>
 
-  <!-- Contact & Final Boss CTA -->
-  <section id="contact" class="relative z-10 py-28 border-t border-white/10">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 md:py-24 bg-[#070b13] border-t border-slate-800/80">
+    <div class="max-w-4xl mx-auto px-5 sm:px-8 text-center">
       
-      <div class="inline-block font-pixel text-[10px] text-arcade-pink px-3 py-1 rounded bg-arcade-pink/10 border border-arcade-pink/30 mb-4 animate-pulse">
-        ★ FINAL STAGE: CO-OP MISSION
-      </div>
-
-      <h2 class="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
-        Ready to Team Up?
-      </h2>
-      <p class="text-slate-400 mt-4 max-w-lg mx-auto leading-relaxed text-sm sm:text-base font-mono">
-        Drop a message for game development opportunities, indie collaborations, or full-stack software development.
+      <span class="text-xs font-semibold uppercase tracking-wider text-indigo-400 font-mono">Contact</span>
+      <h2 class="text-2xl sm:text-4xl font-bold text-white tracking-tight mt-1">Let's Connect & Collaborate</h2>
+      <p class="text-sm sm:text-base text-slate-400 mt-3 max-w-lg mx-auto">
+        Tertarik berkolaborasi pada proyek game, pengembangan aplikasi web, atau diskusi seputar game engineering? Silakan hubungi saya.
       </p>
 
-      <div class="mt-10 flex flex-wrap justify-center items-center gap-4">
-        
-        <a href="mailto:movlution@gmail.com" class="inline-flex items-center gap-2.5 px-7 py-4 rounded-xl bg-gradient-to-r from-arcade-purple to-arcade-pink text-white font-mono font-bold text-sm tracking-wider uppercase shadow-neon-pink hover:opacity-95 transition arcade-click">
+      <div class="mt-8 flex flex-wrap justify-center gap-3.5">
+        <a href="mailto:movlution@gmail.com" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-xs sm:text-sm shadow-sm transition">
           <i data-lucide="mail" class="w-4 h-4"></i>
-          <span>SEND EMAIL: movlution@gmail.com</span>
+          <span>movlution@gmail.com</span>
         </a>
-
-        <a href="https://discord.gg/zreAsusu25" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2.5 px-6 py-4 rounded-xl bg-[#5865F2] hover:bg-[#4752c4] text-white font-mono font-bold text-sm transition arcade-click">
-          <i data-lucide="message-circle" class="w-4 h-4"></i>
-          <span>JOIN DISCORD GUILD</span>
+        <a href="https://www.linkedin.com/in/farismiqdad/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium text-xs sm:text-sm border border-slate-700 transition">
+          <i data-lucide="linkedin" class="w-4 h-4 text-sky-400"></i>
+          <span>LinkedIn</span>
         </a>
-
-        <a href="https://www.linkedin.com/in/farismiqdad/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2.5 px-6 py-4 rounded-xl bg-arcade-card hover:bg-[#181e36] border border-white/10 text-slate-200 font-mono text-sm transition arcade-click">
-          <i data-lucide="linkedin" class="w-4 h-4 text-[#0077b5]"></i>
-          <span>LINKEDIN</span>
+        <a href="https://discord.gg/zreAsusu25" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium text-xs sm:text-sm border border-slate-700 transition">
+          <i data-lucide="message-circle" class="w-4 h-4 text-indigo-400"></i>
+          <span>Discord Guild</span>
         </a>
-
-      </div>
-
-      <div class="mt-12 text-xs font-mono text-slate-500">
-        RESPONSE TIME: &lt; 24 HOURS • GAME-READY PROTOCOL
       </div>
 
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="relative z-10 border-t border-white/10 py-8 bg-[#05060d]">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-500">
-      <div class="flex items-center gap-2">
-        <span class="w-2 h-2 rounded-full bg-arcade-cyan"></span>
-        <p>© 2026 FARIS MIQDAD (MOVLUTION). ALL RIGHTS RESERVED.</p>
-      </div>
-      <div class="flex items-center gap-6">
-        <a href="https://github.com/movlution" target="_blank" rel="noopener noreferrer" class="hover:text-arcade-cyan transition">GITHUB</a>
-        <a href="https://www.linkedin.com/in/farismiqdad/" target="_blank" rel="noopener noreferrer" class="hover:text-arcade-cyan transition">LINKEDIN</a>
-        <a href="https://movlution.itch.io/" target="_blank" rel="noopener noreferrer" class="hover:text-arcade-pink transition">ITCH.IO</a>
+  <!-- Clean Footer -->
+  <footer class="py-8 bg-[#060910] border-t border-slate-800/80">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+      <p>© 2026 Faris Miqdad (@movlution). All rights reserved.</p>
+      <div class="flex items-center gap-5">
+        <a href="https://github.com/movlution" target="_blank" rel="noopener noreferrer" class="hover:text-slate-400 transition">GitHub</a>
+        <a href="https://www.linkedin.com/in/farismiqdad/" target="_blank" rel="noopener noreferrer" class="hover:text-slate-400 transition">LinkedIn</a>
+        <a href="https://movlution.itch.io/" target="_blank" rel="noopener noreferrer" class="hover:text-slate-400 transition">itch.io</a>
       </div>
     </div>
   </footer>
 
-  <!-- Scripts for Game Fun Effects -->
   <script>
-    // Init Lucide Icons
     lucide.createIcons();
-
-    // Sound Synthesizer via Web Audio API (No external assets required)
-    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    
-    function playChime() {
-      if (audioCtx.state === 'suspended') {
-        audioCtx.resume();
-      }
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-      osc.type = 'triangle';
-      
-      // Retro power-up arpeggio
-      const now = audioCtx.currentTime;
-      osc.frequency.setValueAtTime(330, now); // E4
-      osc.frequency.setValueAtTime(440, now + 0.08); // A4
-      osc.frequency.setValueAtTime(554.37, now + 0.16); // C#5
-      osc.frequency.setValueAtTime(659.25, now + 0.24); // E5
-      
-      gain.gain.setValueAtTime(0.15, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
-      
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
-      
-      osc.start(now);
-      osc.stop(now + 0.5);
-    }
-
-    // Confetti and Level-up feedback
-    function triggerLevelUp() {
-      playChime();
-      if (typeof confetti === 'function') {
-        confetti({
-          particleCount: 75,
-          spread: 60,
-          origin: { y: 0.2 },
-          colors: ['#00f5d4', '#f72585', '#7209b7', '#fee440']
-        });
-      }
-    }
   </script>
 </body>
 </html>
