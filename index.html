@@ -41,33 +41,43 @@
   </script>
 
   <style>
+    /* Human Craft & Anti-AI-Slop Styling: Purposeful contrast & structural hierarchy */
     body {
-      background-color: #080c14;
-      color: #cbd5e1;
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #07090e;
+      color: #94a3b8;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
     }
     
-    /* Clean subtle background glow */
+    /* Focused spotlight, zero generic noisy gradient spam */
     .hero-glow {
-      background: radial-gradient(circle 600px at 50% -10%, rgba(99, 102, 241, 0.12), transparent 70%);
+      background: radial-gradient(circle 700px at 50% -15%, rgba(79, 70, 229, 0.08), transparent 70%);
     }
 
     .project-card {
-      background: #0d1322;
-      border: 1px solid #1e293b;
+      background: #0c1019;
+      border: 1px solid #1a2234;
       transform-style: preserve-3d;
-      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
       will-change: transform;
     }
     .project-card:hover {
-      border-color: #3b82f6;
-      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(99, 102, 241, 0.25);
+      border-color: #334155;
+      box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(99, 102, 241, 0.15);
     }
 
-    /* Browser Mockup Header */
+    /* Clean subtle window header */
     .mockup-header {
-      background: #090e1a;
-      border-bottom: 1px solid #1e293b;
+      background: #090d15;
+      border-bottom: 1px solid #161e2e;
+    }
+
+    /* Accessible focus rings */
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid #818cf8;
+      outline-offset: 2px;
+      border-radius: 6px;
     }
 
     /* Floating Motion Graphics Orb */
@@ -104,7 +114,12 @@
     }
   </style>
 </head>
-<body class="selection:bg-indigo-500/30 selection:text-indigo-200 min-h-screen flex flex-col antialiased">
+<body class="selection:bg-indigo-500/20 selection:text-indigo-200 min-h-screen flex flex-col antialiased bg-[#07090e] text-slate-300">
+
+  <!-- Accessible Skip Link -->
+  <a href="#projects" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-indigo-600 focus:text-white focus:rounded-lg focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-400 font-mono text-xs">
+    Skip to projects
+  </a>
 
   <!-- Header / Navigation -->
   <header class="sticky top-0 z-40 bg-[#080c14]/80 backdrop-blur-md border-b border-slate-800/70">
@@ -164,16 +179,36 @@
         </div>
 
         <!-- Headline -->
-        <h1 class="hero-anim-item text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-[1.15]">
-          Unity Developer & Technical Artist bridging gameplay systems, VFX & shaders.
+        <h1 class="hero-anim-item text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-[1.18]">
+          Unity Developer & Technical Artist specializing in gameplay systems, VFX, and developer tools.
         </h1>
 
-        <p class="hero-anim-item text-base sm:text-lg text-slate-400 mt-5 leading-relaxed font-normal">
-          Hi, I'm <strong class="text-white font-semibold">Faris Miqdad Al Barro'</strong>. Creative and technical Game Developer with 4+ years of industry experience, combining Unity C# engineering with Technical Art (VFX/Shaders). Founder of <strong class="text-slate-200 font-medium">MAINRA Games</strong> and <strong class="text-slate-200 font-medium">Basement GameDev Community</strong>. Focused on clean code, performance optimization, and custom developer tooling.
+        <p class="hero-anim-item text-base sm:text-lg text-slate-300 mt-5 leading-relaxed font-normal">
+          Hi, I'm <strong class="text-white font-semibold">Faris Miqdad Al Barro'</strong>. Over 4 years crafting games in Unity (C#) and building technical art pipelines (shaders, VFX). Founder of <strong class="text-slate-100 font-medium">MAINRA Games</strong> (Google Play Publisher) and community lead at <strong class="text-slate-100 font-medium">Basement GameDev</strong>.
         </p>
 
+        <!-- Specific Measurable Accomplishments (Anti-AI-Slop proof points) -->
+        <div class="hero-anim-item grid grid-cols-2 sm:grid-cols-4 gap-3 pt-7 border-t border-slate-800/80 mt-7">
+          <div class="p-3 rounded-lg bg-slate-900/60 border border-slate-800/70">
+            <div class="text-lg sm:text-xl font-bold font-mono text-indigo-400">4+ Years</div>
+            <div class="text-[11px] text-slate-400 mt-0.5">Game Dev Industry</div>
+          </div>
+          <div class="p-3 rounded-lg bg-slate-900/60 border border-slate-800/70">
+            <div class="text-lg sm:text-xl font-bold font-mono text-emerald-400">3 Games</div>
+            <div class="text-[11px] text-slate-400 mt-0.5">Google Play Console</div>
+          </div>
+          <div class="p-3 rounded-lg bg-slate-900/60 border border-slate-800/70">
+            <div class="text-lg sm:text-xl font-bold font-mono text-sky-400">500+</div>
+            <div class="text-[11px] text-slate-400 mt-0.5">LinkedIn Connections</div>
+          </div>
+          <div class="p-3 rounded-lg bg-slate-900/60 border border-slate-800/70">
+            <div class="text-lg sm:text-xl font-bold font-mono text-purple-400">Unity C#</div>
+            <div class="text-[11px] text-slate-400 mt-0.5">VFX & Shaders</div>
+          </div>
+        </div>
+
         <!-- CTA Links -->
-        <div class="hero-anim-item flex flex-wrap items-center gap-3.5 pt-8">
+        <div class="hero-anim-item flex flex-wrap items-center gap-3.5 pt-6">
           <a href="#projects" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-xs sm:text-sm shadow-sm transition">
             <span>View Featured Work</span>
             <i data-lucide="arrow-down" class="w-4 h-4"></i>
@@ -414,7 +449,9 @@
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
               
               <!-- Game 1 -->
-              <a href="https://play.google.com/store/apps/details?id=com.MainraGames.Popit3DFidget" target="_blank" rel="noopener noreferrer" class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-slate-700 flex items-center gap-3 group transition">
+              <a href="https://play.google.com/store/apps/details?id=com.MainraGames.Popit3DFidget" target="_blank" rel="noopener noreferrer" 
+                 class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-slate-700 flex items-center gap-3 group transition"
+                 aria-label="View Pop It 3D Fidget Multiplayer on Google Play Store">
                 <img src="assets/previews/popit.png" alt="Pop It 3D Fidget" class="w-12 h-12 rounded-lg object-cover border border-slate-700/60 shadow-sm shrink-0" />
                 <div class="min-w-0">
                   <div class="text-xs font-bold text-white group-hover:text-emerald-400 transition truncate">Pop It 3D Fidget</div>
@@ -424,7 +461,9 @@
               </a>
 
               <!-- Game 2 -->
-              <a href="https://play.google.com/store/apps/details?id=com.MainraGames.SquishyJellyMerge" target="_blank" rel="noopener noreferrer" class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-slate-700 flex items-center gap-3 group transition">
+              <a href="https://play.google.com/store/apps/details?id=com.MainraGames.SquishyJellyMerge" target="_blank" rel="noopener noreferrer" 
+                 class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-slate-700 flex items-center gap-3 group transition"
+                 aria-label="View Squishy Jelly Merge on Google Play Store">
                 <img src="assets/previews/squishy.png" alt="Squishy Jelly Merge" class="w-12 h-12 rounded-lg object-cover border border-slate-700/60 shadow-sm shrink-0" />
                 <div class="min-w-0">
                   <div class="text-xs font-bold text-white group-hover:text-emerald-400 transition truncate">Squishy Jelly Merge</div>
@@ -434,7 +473,9 @@
               </a>
 
               <!-- Game 3 -->
-              <a href="https://play.google.com/store/apps/details?id=com.Mainra.GamePengenalanBinatang" target="_blank" rel="noopener noreferrer" class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-slate-700 flex items-center gap-3 group transition">
+              <a href="https://play.google.com/store/apps/details?id=com.Mainra.GamePengenalanBinatang" target="_blank" rel="noopener noreferrer" 
+                 class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-slate-700 flex items-center gap-3 group transition"
+                 aria-label="View Game Edukasi Binatang on Google Play Store">
                 <img src="assets/previews/binatang.png" alt="Pengenalan Binatang" class="w-12 h-12 rounded-lg object-cover border border-slate-700/60 shadow-sm shrink-0" />
                 <div class="min-w-0">
                   <div class="text-xs font-bold text-white group-hover:text-emerald-400 transition truncate">Pengenalan Binatang</div>
@@ -633,8 +674,8 @@
     </div>
   </section>
 
-  <!-- Technical Skills: Clean Grid -->
-  <section id="skills" class="py-20 bg-[#090e18] border-t border-slate-800/60">
+  <!-- Technical Skills: Clean Architecture Grid -->
+  <section id="skills" class="py-20 bg-[#06080d] border-t border-slate-800/80">
     <div class="max-w-6xl mx-auto px-5 sm:px-8">
       
       <div class="max-w-2xl mb-12">
@@ -645,7 +686,7 @@
 
       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3.5">
         
-        <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-slate-700 transition">
+        <div class="p-4 rounded-xl bg-[#0b0f19] border border-slate-800/90 hover:border-slate-700 transition">
           <div class="text-indigo-400 mb-2">
             <i data-lucide="cpu" class="w-5 h-5"></i>
           </div>
@@ -653,7 +694,7 @@
           <div class="text-xs text-slate-400 mt-0.5">Core Architecture</div>
         </div>
 
-        <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-slate-700 transition">
+        <div class="p-4 rounded-xl bg-[#0b0f19] border border-slate-800/90 hover:border-slate-700 transition">
           <div class="text-indigo-400 mb-2">
             <i data-lucide="sparkles" class="w-5 h-5"></i>
           </div>
@@ -661,7 +702,7 @@
           <div class="text-xs text-slate-400 mt-0.5">Shader Graph, HLSL</div>
         </div>
 
-        <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-slate-700 transition">
+        <div class="p-4 rounded-xl bg-[#0b0f19] border border-slate-800/90 hover:border-slate-700 transition">
           <div class="text-indigo-400 mb-2">
             <i data-lucide="gamepad-2" class="w-5 h-5"></i>
           </div>
@@ -669,15 +710,15 @@
           <div class="text-xs text-slate-400 mt-0.5">Physics, Mechanics</div>
         </div>
 
-        <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-slate-700 transition">
+        <div class="p-4 rounded-xl bg-[#0b0f19] border border-slate-800/90 hover:border-slate-700 transition">
           <div class="text-indigo-400 mb-2">
             <i data-lucide="zap" class="w-5 h-5"></i>
           </div>
           <div class="text-sm font-semibold text-white">Optimization</div>
-          <div class="text-xs text-slate-400 mt-0.5">Mobile Profiling & Drawcalls</div>
+          <div class="text-xs text-slate-400 mt-0.5">Profiling & Drawcalls</div>
         </div>
 
-        <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-slate-700 transition">
+        <div class="p-4 rounded-xl bg-[#0b0f19] border border-slate-800/90 hover:border-slate-700 transition">
           <div class="text-indigo-400 mb-2">
             <i data-lucide="wrench" class="w-5 h-5"></i>
           </div>
@@ -685,12 +726,12 @@
           <div class="text-xs text-slate-400 mt-0.5">Editor Tools, Automation</div>
         </div>
 
-        <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-slate-700 transition">
+        <div class="p-4 rounded-xl bg-[#0b0f19] border border-slate-800/90 hover:border-slate-700 transition">
           <div class="text-indigo-400 mb-2">
             <i data-lucide="git-branch" class="w-5 h-5"></i>
           </div>
           <div class="text-sm font-semibold text-white">Agile / Scrum</div>
-          <div class="text-xs text-slate-400 mt-0.5">Cross-Functional Leadership</div>
+          <div class="text-xs text-slate-400 mt-0.5">Cross-Functional Lead</div>
         </div>
 
       </div>
