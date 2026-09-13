@@ -697,26 +697,135 @@
     </div>
   </section>
 
-  <!-- Clean Minimalist Footer & Contact -->
-  <footer id="contact" class="py-16 bg-[#05070a] border-t border-white/[0.06]">
-    <div class="max-w-6xl mx-auto px-5 sm:px-8 flex flex-col md:flex-row md:items-center justify-between gap-8">
-      <div>
-        <h3 class="text-lg font-bold text-white">Let's build something extraordinary.</h3>
-        <p class="text-xs sm:text-sm text-slate-400 mt-1">Open for game programming collaborations, technical art consulting, and engineering roles.</p>
-        <div class="mt-4 flex flex-wrap items-center gap-3">
-          <a href="mailto:movlution@gmail.com" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-xs shadow-sm transition">
-            <i data-lucide="mail" class="w-3.5 h-3.5"></i>
-            <span>movlution@gmail.com</span>
+  <!-- Dedicated Contact & Collaboration Section (Linear / Raycast Style) -->
+  <section id="contact" class="py-24 border-t border-white/[0.06] bg-[#07090f] relative overflow-hidden">
+    <!-- Ambient Radial Spotlight -->
+    <div class="absolute inset-0 bg-[radial-gradient(circle_600px_at_50%_0%,rgba(94,106,210,0.1),transparent_70%)] pointer-events-none"></div>
+
+    <div class="max-w-6xl mx-auto px-5 sm:px-8 relative z-10">
+      
+      <!-- Section Header -->
+      <div class="max-w-2xl mb-12">
+        <span class="text-xs font-mono font-semibold uppercase tracking-wider text-indigo-400">Get In Touch</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mt-1">Let's Connect & Collaborate</h2>
+        <p class="text-sm text-slate-400 mt-2 leading-relaxed">
+          Terbuka untuk kolaborasi proyek game (Unity C#), konsultasi Technical Art (VFX/Shaders), pembuatan tools/automasi, serta peluang karier remote/hybrid.
+        </p>
+      </div>
+
+      <!-- Contact Channels Grid (Raycast Interactive Cards) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+
+        <!-- 1. Email -->
+        <a href="mailto:movlution@gmail.com" 
+           class="raycast-card p-5 flex flex-col justify-between group hover:border-indigo-500/50 transition">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-4 group-hover:scale-105 transition">
+              <i data-lucide="mail" class="w-5 h-5"></i>
+            </div>
+            <div class="text-[11px] font-mono text-slate-500 uppercase tracking-wider">Direct Email</div>
+            <h3 class="text-base font-bold text-white mt-1 group-hover:text-indigo-400 transition">movlution@gmail.com</h3>
+            <p class="text-xs text-slate-400 mt-1">Kirim pesan kerja sama atau proposal proyek.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-white/[0.04] flex items-center gap-1.5 text-xs font-semibold text-indigo-400">
+            <span>Send Email</span>
+            <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+          </div>
+        </a>
+
+        <!-- 2. LinkedIn -->
+        <a href="https://www.linkedin.com/in/farismiqdad/" target="_blank" rel="noopener noreferrer" 
+           class="raycast-card p-5 flex flex-col justify-between group hover:border-sky-500/50 transition">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 mb-4 group-hover:scale-105 transition">
+              <i data-lucide="linkedin" class="w-5 h-5"></i>
+            </div>
+            <div class="text-[11px] font-mono text-slate-500 uppercase tracking-wider">Professional Network</div>
+            <h3 class="text-base font-bold text-white mt-1 group-hover:text-sky-400 transition">Faris Miqdad Al Barro'</h3>
+            <p class="text-xs text-slate-400 mt-1">500+ connections • Riwayat karier & rekomendasi.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-white/[0.04] flex items-center gap-1.5 text-xs font-semibold text-sky-400">
+            <span>Connect on LinkedIn</span>
+            <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+          </div>
+        </a>
+
+        <!-- 3. Discord Community -->
+        <a href="https://discord.gg/zreAsusu25" target="_blank" rel="noopener noreferrer" 
+           class="raycast-card p-5 flex flex-col justify-between group hover:border-indigo-400/50 transition">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-indigo-600/10 border border-indigo-600/20 flex items-center justify-center text-indigo-400 mb-4 group-hover:scale-105 transition">
+              <i data-lucide="message-circle" class="w-5 h-5"></i>
+            </div>
+            <div class="text-[11px] font-mono text-slate-500 uppercase tracking-wider">Discord Community</div>
+            <h3 class="text-base font-bold text-white mt-1 group-hover:text-indigo-400 transition">Basement GameDev</h3>
+            <p class="text-xs text-slate-400 mt-1">Komunitas game dev, sharing karya & game jam.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-white/[0.04] flex items-center gap-1.5 text-xs font-semibold text-indigo-400">
+            <span>Join Discord Guild</span>
+            <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+          </div>
+        </a>
+
+        <!-- 4. Google Play & Studio -->
+        <a href="https://play.google.com/store/apps/dev?id=6814346565652097883" target="_blank" rel="noopener noreferrer" 
+           class="raycast-card p-5 flex flex-col justify-between group hover:border-emerald-500/50 transition">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-4 group-hover:scale-105 transition">
+              <i data-lucide="play" class="w-5 h-5"></i>
+            </div>
+            <div class="text-[11px] font-mono text-slate-500 uppercase tracking-wider">Official Publisher</div>
+            <h3 class="text-base font-bold text-white mt-1 group-hover:text-emerald-400 transition">MAINRA Games</h3>
+            <p class="text-xs text-slate-400 mt-1">Katalog rilis game Android di Play Store.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-white/[0.04] flex items-center gap-1.5 text-xs font-semibold text-emerald-400">
+            <span>Explore Developer Page</span>
+            <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- Quick Summary Card -->
+      <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/[0.06] flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+            <span class="text-xs font-mono text-emerald-400 font-semibold uppercase">Currently Active</span>
+          </div>
+          <h3 class="text-base font-bold text-white mt-1">Looking for a Unity Developer or Technical Artist?</h3>
+          <p class="text-xs sm:text-sm text-slate-400 mt-0.5">
+            Tersedia untuk proyek freelance, kontrak studio, maupun posisi full-time jarak jauh (remote).
+          </p>
+        </div>
+        <div class="flex items-center gap-3 shrink-0">
+          <a href="mailto:movlution@gmail.com" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-sm transition">
+            <i data-lucide="mail" class="w-4 h-4"></i>
+            <span>Start a Conversation</span>
           </a>
-          <a href="https://discord.gg/zreAsusu25" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 border border-white/10 font-medium text-xs transition">
-            <i data-lucide="message-circle" class="w-3.5 h-3.5 text-indigo-400"></i>
-            <span>Basement Discord</span>
+          <a href="https://www.mainragames.com/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] text-slate-200 border border-white/10 text-xs font-medium transition">
+            <i data-lucide="globe" class="w-4 h-4 text-purple-400"></i>
+            <span>mainragames.com</span>
           </a>
         </div>
       </div>
-      <div class="text-xs text-slate-500 md:text-right">
-        <p>© 2026 Faris Miqdad Al Barro' (@movlution).</p>
-        <p class="mt-1">Crafted with Linear/Raycast design system principles.</p>
+
+    </div>
+  </section>
+
+  <!-- Clean Minimalist Footer -->
+  <footer class="py-12 bg-[#05070a] border-t border-white/[0.06]">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8 flex flex-col md:flex-row md:items-center justify-between gap-6 text-xs text-slate-500">
+      <div>
+        <p class="text-slate-400 font-medium">© 2026 Faris Miqdad Al Barro' (@movlution). All rights reserved.</p>
+        <p class="mt-0.5 text-slate-600">Built with Linear/Raycast design system principles • Deployed on GitHub Pages.</p>
+      </div>
+      <div class="flex flex-wrap items-center gap-5">
+        <a href="https://github.com/movlution" target="_blank" rel="noopener noreferrer" class="hover:text-slate-300 transition">GitHub</a>
+        <a href="https://www.linkedin.com/in/farismiqdad/" target="_blank" rel="noopener noreferrer" class="hover:text-slate-300 transition">LinkedIn</a>
+        <a href="https://play.google.com/store/apps/dev?id=6814346565652097883" target="_blank" rel="noopener noreferrer" class="hover:text-slate-300 transition">Google Play</a>
+        <a href="https://movlution.itch.io/" target="_blank" rel="noopener noreferrer" class="hover:text-slate-300 transition">itch.io</a>
+        <a href="https://www.mainragames.com/" target="_blank" rel="noopener noreferrer" class="hover:text-slate-300 transition">mainragames.com</a>
       </div>
     </div>
   </footer>
