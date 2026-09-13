@@ -10,6 +10,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- GSAP & ScrollTrigger for Fluid Motion Graphics -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -52,18 +55,52 @@
     .project-card {
       background: #0d1322;
       border: 1px solid #1e293b;
-      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+      will-change: transform;
     }
     .project-card:hover {
-      transform: translateY(-4px);
-      border-color: #334155;
-      box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(99, 102, 241, 0.2);
+      transform: translateY(-6px);
+      border-color: #3b82f6;
+      box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(99, 102, 241, 0.25);
     }
 
     /* Browser Mockup Header */
     .mockup-header {
       background: #090e1a;
       border-bottom: 1px solid #1e293b;
+    }
+
+    /* Floating Motion Graphics Orb */
+    .motion-orb {
+      position: absolute;
+      border-radius: 9999px;
+      filter: blur(80px);
+      pointer-events: none;
+      opacity: 0.35;
+      z-index: 0;
+      animation: floatMotion 12s ease-in-out infinite alternate;
+    }
+    @keyframes floatMotion {
+      0% { transform: translate(0px, 0px) scale(1); }
+      50% { transform: translate(35px, -25px) scale(1.08); }
+      100% { transform: translate(-25px, 30px) scale(0.95); }
+    }
+
+    /* Animated interactive gradient border */
+    .glass-border-pulse {
+      position: relative;
+    }
+    .glass-border-pulse::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.4), rgba(56, 189, 248, 0.1), transparent 60%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
     }
   </style>
 </head>
@@ -111,28 +148,32 @@
   </header>
 
   <!-- Hero Section -->
-  <section class="relative hero-glow pt-20 pb-16 md:pt-28 md:pb-24 border-b border-slate-800/40">
-    <div class="max-w-6xl mx-auto px-5 sm:px-8">
+  <section class="relative hero-glow pt-20 pb-16 md:pt-28 md:pb-24 border-b border-slate-800/40 overflow-hidden">
+    <!-- Ambient Floating Motion Glows -->
+    <div class="motion-orb w-96 h-96 bg-indigo-600/20 -top-24 -left-20"></div>
+    <div class="motion-orb w-80 h-80 bg-sky-500/15 top-1/3 -right-20" style="animation-delay: -5s;"></div>
+    
+    <div class="max-w-6xl mx-auto px-5 sm:px-8 relative z-10">
       
       <div class="max-w-3xl">
         
         <!-- Status Pill -->
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs font-medium mb-6">
-          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+        <div class="hero-anim-item inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs font-medium mb-6">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
           Open to Remote & Hybrid Roles • 5 Years Total Exp
         </div>
 
         <!-- Headline -->
-        <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-[1.15]">
+        <h1 class="hero-anim-item text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-[1.15]">
           Unity Developer & Technical Artist bridging gameplay systems, VFX & shaders.
         </h1>
 
-        <p class="text-base sm:text-lg text-slate-400 mt-5 leading-relaxed font-normal">
+        <p class="hero-anim-item text-base sm:text-lg text-slate-400 mt-5 leading-relaxed font-normal">
           Hi, I'm <strong class="text-white font-semibold">Faris Miqdad Al Barro'</strong>. Creative and technical Game Developer with 4+ years of industry experience, combining Unity C# engineering with Technical Art (VFX/Shaders). Founder of <strong class="text-slate-200 font-medium">MAINRA Games</strong> and <strong class="text-slate-200 font-medium">Basement GameDev Community</strong>. Focused on clean code, performance optimization, and custom developer tooling.
         </p>
 
         <!-- CTA Links -->
-        <div class="flex flex-wrap items-center gap-3.5 pt-8">
+        <div class="hero-anim-item flex flex-wrap items-center gap-3.5 pt-8">
           <a href="#projects" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-xs sm:text-sm shadow-sm transition">
             <span>View Featured Work</span>
             <i data-lucide="arrow-down" class="w-4 h-4"></i>
@@ -822,6 +863,83 @@
 
   <script>
     lucide.createIcons();
+
+    // Motion Graphics Animations with GSAP & ScrollTrigger
+    if (typeof gsap !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+
+      // 1. Fluid Hero Entrance Motion
+      gsap.from(".hero-anim-item", {
+        opacity: 0,
+        y: 28,
+        duration: 0.9,
+        stagger: 0.15,
+        ease: "power3.out",
+        delay: 0.1
+      });
+
+      // 2. Project Cards Scroll-Triggered Stagger Motion
+      gsap.utils.toArray("#projects .project-card").forEach((card, index) => {
+        gsap.from(card, {
+          scrollTrigger: {
+            trigger: card,
+            start: "top 88%",
+            toggleActions: "play none none none"
+          },
+          opacity: 0,
+          y: 35,
+          duration: 0.7,
+          ease: "power2.out"
+        });
+      });
+
+      // 3. Skills Grid Motion Graphics Reveal
+      gsap.from("#skills .grid > div", {
+        scrollTrigger: {
+          trigger: "#skills",
+          start: "top 80%",
+          toggleActions: "play none none none"
+        },
+        opacity: 0,
+        scale: 0.94,
+        y: 20,
+        duration: 0.6,
+        stagger: 0.08,
+        ease: "power2.out"
+      });
+
+      // 4. Experience Timeline Motion Reveal
+      gsap.utils.toArray("#experience .space-y-6 > div").forEach((item) => {
+        gsap.from(item, {
+          scrollTrigger: {
+            trigger: item,
+            start: "top 88%",
+            toggleActions: "play none none none"
+          },
+          opacity: 0,
+          x: -24,
+          duration: 0.65,
+          ease: "power2.out"
+        });
+      });
+
+      // 5. Interactive 3D Card Tilt Effect on Mouse Move
+      const cards = document.querySelectorAll(".project-card");
+      cards.forEach(card => {
+        card.addEventListener("mousemove", (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+          const rotateX = (-y / rect.height) * 8;
+          const rotateY = (x / rect.width) * 8;
+          card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-6px)`;
+        });
+
+        card.addEventListener("mouseleave", () => {
+          card.style.transform = "";
+        });
+      });
+    }
   </script>
 </body>
 </html>
