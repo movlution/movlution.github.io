@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Membangun Particle System di Unity UI Toolkit — Faris Miqdad</title>
+  <meta name="description" content="Teknik perancangan package OpenUPM untuk merender efek partikel langsung di atas UIBuilder Unity UI Toolkit." />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Inter"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #08090c;
+      color: #cbd5e1;
+      font-family: 'Inter', sans-serif;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+    .article-content p {
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+      color: #94a3b8;
+    }
+    .article-content h2 {
+      color: #ffffff;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+    .article-content code {
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 0.15rem 0.4rem;
+      border-radius: 0.25rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85em;
+      color: #c7d2fe;
+    }
+    .article-content pre {
+      background-color: #0d1017;
+      border: 1px solid #1a2233;
+      padding: 1.25rem;
+      border-radius: 0.75rem;
+      overflow-x: auto;
+      margin-bottom: 1.75rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: #e2e8f0;
+    }
+    .article-content ul {
+      list-style-type: disc;
+      padding-left: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: #94a3b8;
+    }
+    .article-content li {
+      margin-bottom: 0.5rem;
+      line-height: 1.7;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-indigo-500/30 selection:text-indigo-200">
+
+  <!-- Header Navigation -->
+  <header class="sticky top-0 z-40 w-full border-b border-white/[0.06] bg-[#08090c]/80 backdrop-blur-xl">
+    <div class="max-w-4xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
+      <a href="../" class="inline-flex items-center gap-2 text-xs font-mono text-slate-400 hover:text-white transition">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        <span>Kembali ke Indeks Blog</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../../" class="text-xs font-medium text-slate-400 hover:text-white transition">Portfolio</a>
+        <a href="https://github.com/MainraGames/UI-Toolkit-Particle-System" target="_blank" rel="noopener noreferrer" class="p-1.5 text-slate-400 hover:text-white transition" aria-label="GitHub Repository">
+          <i data-lucide="github" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Article Container -->
+  <main class="py-14 sm:py-20 flex-1">
+    <article class="max-w-3xl mx-auto px-5 sm:px-8">
+
+      <!-- Meta Info -->
+      <div class="flex items-center gap-3 text-xs font-mono mb-4 text-slate-400">
+        <span class="px-2.5 py-1 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 font-semibold">Tech Art & Tooling</span>
+        <span>•</span>
+        <span>10 September 2026</span>
+        <span>•</span>
+        <span>6 min read</span>
+      </div>
+
+      <!-- Title -->
+      <h1 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight leading-[1.2] mb-6">
+        Membangun Particle System di Unity UI Toolkit: Menjembatani Tech Art & UI Engineering
+      </h1>
+
+      <!-- Author -->
+      <div class="flex items-center gap-3 pb-8 mb-8 border-b border-white/[0.08]">
+        <div class="w-10 h-10 rounded-full bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400 font-bold text-sm">
+          FM
+        </div>
+        <div>
+          <div class="text-sm font-semibold text-white">Faris Miqdad Al Barro'</div>
+          <div class="text-xs text-slate-400">Unity Developer & Technical Artist • Founder @ Mainra Games</div>
+        </div>
+      </div>
+
+      <!-- Article Body -->
+      <div class="article-content">
+        <p>
+          Bagi developer yang bermigrasi dari <strong>Unity UGUI</strong> ke sistem modern <strong>UI Toolkit (UIElements)</strong>, salah satu kendala terbesar yang sering dihadapi Technical Artist adalah: <em>"Bagaimana cara merender efek partikel langsung di atas elemen UIBuilder?"</em>
+        </p>
+        <p>
+          Di UGUI tradisional, kita biasa menggunakan Canvas dengan mode <em>Screen Space - Camera</em> lalu meletakkan komponen <code>ParticleSystem</code> di antara layer kamera. Namun di UI Toolkit, rendering UI ditangani melalui pipeline retain-mode berbasis vector & batching vertex khusus, sehingga objek 3D atau Shuriken particle di hierarchy tidak langsung digambar di atas visual element.
+        </p>
+
+        <h2>Tantangan Teknis: Kamera Ganda vs Komposisi Terisolasi</h2>
+        <p>
+          Solusi naif yang sering dipakai banyak tim adalah membuat kamera kedua khusus partikel lalu mengombinasikan target render texture ke UI raw image. Sayangnya, trik ini memiliki banyak kekurangan:
+        </p>
+        <ul>
+          <li><strong>Overhead Drawcalls & GPU Memory:</strong> Render texture resolusi penuh di perangkat mobile (Android/iOS) sangat memboroskan fillrate dan bandwith memori.</li>
+          <li><strong>Sinkronisasi Transform Koordinat:</strong> Menghitung posisi koordinat partikel di dunia 3D terhadap pixel bounding box UI Toolkit saat resolusi layar dinamis berubah sering kali menyebabkan offset dan desinkronisasi.</li>
+          <li><strong>Workflow Iterasi yang Lambat:</strong> Desainer UI tidak bisa melihat preview efek partikel langsung di jendela UIBuilder tanpa menjalankan mode Play (Playmode).</li>
+        </ul>
+
+        <h2>Solusi Kami: Package UI-Toolkit-Particle-System</h2>
+        <p>
+          Melalui riset di studio <strong>MAINRA Games</strong>, kami merancang dan merilis package open-source <code>UI-Toolkit-Particle-System</code> yang kini tersedia secara resmi di OpenUPM.
+        </p>
+        <p>
+          Pendekatan utama yang kami gunakan adalah memetakan siklus hidup particle emitter dan menghasilkan representasi mesh quad langsung ke pipeline tessellation UI Toolkit dengan custom <code>MeshWriteData</code> atau menginjeksi render order shader material yang kompatibel dengan UI Toolkit canvas rendering context.
+        </p>
+
+        <pre><code>// Contoh registrasi VisualElement partikel di UIBuilder
+using MainraGames.UIToolkitParticle;
+using UnityEngine.UIElements;
+
+public class InventoryRewardModal : VisualElement
+{
+    private UIParticleEmitter rewardBurst;
+
+    public void TriggerSuccessEffect()
+    {
+        rewardBurst = this.Q&lt;UIParticleEmitter&gt;("reward-particles");
+        rewardBurst?.Play();
+    }
+}</code></pre>
+
+        <h2>Hasil & Keuntungan di Production</h2>
+        <p>
+          Dengan pendekatan native UI Toolkit ini, performa game kami meningkat drastis:
+        </p>
+        <ul>
+          <li><strong>Nol Setup Kamera Tambahan:</strong> Partikel langsung berada dalam hierarchy UI yang sama dengan tombol, panel, dan popup modal.</li>
+          <li><strong>Hemat Baterai & Performa Ringan di Mobile:</strong> Tidak ada alokasi fullscreen render texture terpisah, menjaga frame rate tetap stabil di 60 FPS pada pengujian perangkat Android menengah ke bawah.</li>
+          <li><strong>Open Source untuk Komunitas:</strong> Kami mendistribusikannya via OpenUPM agar seluruh komunitas game developer Indonesia dan global dapat memanfaatkannya dengan mudah cukup satu baris konfigurasi package manager.</li>
+        </ul>
+
+        <h2>Kesimpulan</h2>
+        <p>
+          Menjembatani batas antara rekayasa software dan keindahan seni visual (Technical Art) selalu menuntut pemahaman mendalam tentang bagaimana engine menangani grafik di bawah kap mesin. Anda dapat mengecek kode sumber lengkap, dokumentasi instalasi, dan sample scene langsung di repositori open-source GitHub kami.
+        </p>
+      </div>
+
+      <!-- Call to Action Box -->
+      <div class="mt-12 p-6 rounded-2xl bg-white/[0.02] border border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+          <h3 class="text-sm font-bold text-white">Lihat Repositori & Kode Lengkap</h3>
+          <p class="text-xs text-slate-400 mt-0.5">Tersedia lisensi MIT dan package OpenUPM siap pakai.</p>
+        </div>
+        <a href="https://github.com/MainraGames/UI-Toolkit-Particle-System" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-xs shadow-sm transition shrink-0">
+          <i data-lucide="github" class="w-4 h-4"></i>
+          <span>GitHub Repo</span>
+        </a>
+      </div>
+
+    </article>
+  </main>
+
+  <!-- Clean Minimalist Footer -->
+  <footer class="py-12 bg-[#05070a] border-t border-white/[0.06]">
+    <div class="max-w-4xl mx-auto px-5 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+      <p>© 2026 Faris Miqdad Al Barro'. All rights reserved.</p>
+      <div class="flex items-center gap-4">
+        <a href="../" class="hover:text-slate-300 transition">Daftar Blog</a>
+        <a href="../../" class="hover:text-slate-300 transition">Portfolio Utama</a>
+        <a href="https://www.linkedin.com/in/farismiqdad/" target="_blank" rel="noopener noreferrer" class="hover:text-slate-300 transition">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

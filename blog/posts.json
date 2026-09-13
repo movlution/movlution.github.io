@@ -1,0 +1,29 @@
+[
+  {
+    "slug": "membangun-ui-toolkit-particle-system-unity",
+    "title": "Membangun Particle System di Unity UI Toolkit: Menjembatani Tech Art & UI Engineering",
+    "excerpt": "Bagaimana kami merancang package OpenUPM untuk merender efek partikel langsung di atas UIBuilder Unity tanpa trik canvas camera yang membebani performa.",
+    "date": "2026-09-10",
+    "readingTime": "6 min read",
+    "category": "Tech Art & Tooling",
+    "tags": ["Unity", "UI Toolkit", "C#", "VFX", "OpenUPM"]
+  },
+  {
+    "slug": "merilis-game-mobile-ke-google-play-mainra-games",
+    "title": "Pengalaman Merilis & Mengelola Game Indie di Google Play Store (Studi Kasus MAINRA Games)",
+    "excerpt": "Catatan praktis seputar optimasi performa mobile, batching drawcall di Android, implementasi physics loop yang stabil, dan proses rilis ke Google Play Developer Console.",
+    "date": "2026-08-25",
+    "readingTime": "8 min read",
+    "category": "Game Dev & Studio",
+    "tags": ["Google Play", "Android", "Mobile Optimization", "Mainra Games"]
+  },
+  {
+    "slug": "arsitektur-ui-state-machine-unity",
+    "title": "Mengapa Anda Membutuhkan State Machine untuk Antarmuka Game yang Kompleks",
+    "excerpt": "Belajar dari pengembangan StatefulUI: bagaimana memisahkan alur logika state, input controller, dan transisi animasi UI agar codebase game tetap bersih dan mudah diuji.",
+    "date": "2026-07-18",
+    "readingTime": "5 min read",
+    "category": "Architecture",
+    "tags": ["Unity C#", "Design Patterns", "State Machine", "Clean Code"]
+  }
+]

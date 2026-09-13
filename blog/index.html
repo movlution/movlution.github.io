@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog & Tech Articles — Faris Miqdad Al Barro'</title>
+  <meta name="description" content="Kumpulan artikel, studi kasus teknik, dan pengalaman seputar Unity C# game development, Technical Art, shader, dan tools engineering oleh Faris Miqdad." />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Inter"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #08090c;
+      color: #94a3b8;
+      font-family: 'Inter', sans-serif;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .bg-linear-mesh {
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    .spotlight-glow {
+      background: radial-gradient(circle 700px at 50% 0%, rgba(94, 106, 210, 0.12), transparent 70%);
+    }
+
+    .raycast-card {
+      position: relative;
+      background: #0d1017;
+      border: 1px solid #1a2233;
+      border-radius: 1rem;
+      overflow: hidden;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+    .raycast-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.06), transparent 40%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .raycast-card:hover::before {
+      opacity: 1;
+    }
+    .raycast-card:hover {
+      border-color: #2e3852;
+    }
+
+    .tab-btn.active {
+      background: #1a2234;
+      color: #ffffff;
+      border-color: #2e3852;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-indigo-500/30 selection:text-indigo-200">
+
+  <!-- Top Navigation Bar -->
+  <header class="sticky top-0 z-40 w-full border-b border-white/[0.06] bg-[#08090c]/80 backdrop-blur-xl">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
+      
+      <!-- Back to Portfolio -->
+      <a href="../" class="flex items-center gap-2.5 group text-slate-300 hover:text-white transition">
+        <div class="w-8 h-8 rounded-lg bg-white/[0.05] border border-white/10 flex items-center justify-center text-indigo-400 group-hover:border-indigo-500/40 group-hover:bg-indigo-500/10 transition">
+          <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        </div>
+        <div class="flex items-baseline gap-2">
+          <span class="text-sm font-semibold tracking-tight">Faris Miqdad</span>
+          <span class="text-xs font-mono text-slate-500 hidden sm:inline">/ Blog</span>
+        </div>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="hidden md:flex items-center gap-1 bg-white/[0.03] p-1 rounded-full border border-white/[0.05] text-xs font-medium">
+        <a href="../" class="px-3.5 py-1.5 rounded-full text-slate-400 hover:text-white transition">Portfolio</a>
+        <a href="../#games-showcase" class="px-3.5 py-1.5 rounded-full text-slate-400 hover:text-white transition">Game Dev</a>
+        <a href="./" class="px-3.5 py-1.5 rounded-full text-white bg-white/[0.08] transition">Articles & Notes</a>
+        <a href="../#contact" class="px-3.5 py-1.5 rounded-full text-slate-400 hover:text-white transition">Contact</a>
+      </nav>
+
+      <!-- Quick Action -->
+      <a href="https://www.linkedin.com/in/farismiqdad/" target="_blank" rel="noopener noreferrer" 
+         class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-sky-500/10 hover:bg-sky-500/20 text-sky-400 border border-sky-500/20 text-xs font-medium transition">
+        <i data-lucide="linkedin" class="w-3.5 h-3.5"></i>
+        <span>LinkedIn</span>
+      </a>
+
+    </div>
+  </header>
+
+  <!-- Hero Header -->
+  <section class="relative spotlight-glow bg-linear-mesh pt-16 pb-14 border-b border-white/[0.06]">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8 relative z-10">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs text-indigo-300 font-mono mb-4">
+          <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
+          <span>Writings, Devlogs & Technical Insights</span>
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-[1.15]">
+          Engineering Notes & Game Dev Journeys.
+        </h1>
+        <p class="text-base sm:text-lg text-slate-400 mt-4 leading-relaxed">
+          Catatan pengalaman, dokumentasi arsitektur sistem, bedah teknis pembuatan tool game Unity C#, serta pelajaran nyata seputar manajemen rilis studio game.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Articles List Section -->
+  <main class="py-16 bg-[#08090c] flex-1">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8">
+
+      <!-- Filter Controls & Search Counter -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10">
+        <div class="flex items-center gap-1.5 p-1 bg-white/[0.03] border border-white/[0.06] rounded-xl text-xs font-mono">
+          <button class="tab-btn active px-3 py-1.5 rounded-lg text-slate-300 hover:text-white transition" data-filter="all">Semua Artikel (3)</button>
+          <button class="tab-btn px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition" data-filter="tech-art">Tech Art & Tools</button>
+          <button class="tab-btn px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition" data-filter="studio">Studio & Release</button>
+        </div>
+        <div class="text-xs font-mono text-slate-500">
+          Diperbarui secara berkala
+        </div>
+      </div>
+
+      <!-- Articles Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="articles-container">
+
+        <!-- Article 1 -->
+        <article class="raycast-card flex flex-col justify-between" data-category="tech-art">
+          <div>
+            <div class="px-5 py-3 border-b border-white/[0.06] bg-white/[0.02] flex items-center justify-between text-xs font-mono">
+              <span class="text-indigo-400">Tech Art & Tooling</span>
+              <span class="text-slate-500">6 min read</span>
+            </div>
+            <div class="p-6">
+              <span class="text-xs font-mono text-slate-500">10 September 2026</span>
+              <h2 class="text-lg font-bold text-white mt-1 hover:text-indigo-400 transition">
+                <a href="posts/membangun-ui-toolkit-particle-system-unity.html">
+                  Membangun Particle System di Unity UI Toolkit: Menjembatani Tech Art & UI Engineering
+                </a>
+              </h2>
+              <p class="text-xs sm:text-sm text-slate-400 mt-2.5 leading-relaxed">
+                Bagaimana kami merancang package OpenUPM untuk merender efek partikel langsung di atas UIBuilder Unity tanpa trik canvas camera yang membebani performa.
+              </p>
+            </div>
+          </div>
+          <div class="p-6 pt-0">
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.04] text-slate-300">Unity</span>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.04] text-slate-300">UI Toolkit</span>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.04] text-slate-300">OpenUPM</span>
+            </div>
+            <a href="posts/membangun-ui-toolkit-particle-system-unity.html" class="inline-flex items-center gap-1 text-xs font-semibold text-indigo-400 hover:text-indigo-300 transition">
+              <span>Baca Artikel Lengkap</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Article 2 -->
+        <article class="raycast-card flex flex-col justify-between" data-category="studio">
+          <div>
+            <div class="px-5 py-3 border-b border-white/[0.06] bg-white/[0.02] flex items-center justify-between text-xs font-mono">
+              <span class="text-emerald-400">Game Dev & Studio</span>
+              <span class="text-slate-500">8 min read</span>
+            </div>
+            <div class="p-6">
+              <span class="text-xs font-mono text-slate-500">25 Agustus 2026</span>
+              <h2 class="text-lg font-bold text-white mt-1 hover:text-emerald-400 transition">
+                <a href="posts/merilis-game-mobile-ke-google-play-mainra-games.html">
+                  Pengalaman Merilis & Mengelola Game Indie di Google Play Store (Studi Kasus MAINRA Games)
+                </a>
+              </h2>
+              <p class="text-xs sm:text-sm text-slate-400 mt-2.5 leading-relaxed">
+                Catatan praktis seputar optimasi performa mobile, batching drawcall di Android, implementasi physics loop yang stabil, dan proses rilis ke Google Play Developer Console.
+              </p>
+            </div>
+          </div>
+          <div class="p-6 pt-0">
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.04] text-slate-300">Google Play</span>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.04] text-slate-300">Android</span>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.04] text-slate-300">MAINRA Games</span>
+            </div>
+            <a href="posts/merilis-game-mobile-ke-google-play-mainra-games.html" class="inline-flex items-center gap-1 text-xs font-semibold text-emerald-400 hover:text-emerald-300 transition">
+              <span>Baca Artikel Lengkap</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Article 3 -->
+        <article class="raycast-card flex flex-col justify-between" data-category="tech-art">
+          <div>
+            <div class="px-5 py-3 border-b border-white/[0.06] bg-white/[0.02] flex items-center justify-between text-xs font-mono">
+              <span class="text-amber-400">Architecture</span>
+              <span class="text-slate-500">5 min read</span>
+            </div>
+            <div class="p-6">
+              <span class="text-xs font-mono text-slate-500">18 Juli 2026</span>
+              <h2 class="text-lg font-bold text-white mt-1 hover:text-amber-400 transition">
+                <a href="posts/arsitektur-ui-state-machine-unity.html">
+                  Mengapa Anda Membutuhkan State Machine untuk Antarmuka Game yang Kompleks
+                </a>
+              </h2>
+              <p class="text-xs sm:text-sm text-slate-400 mt-2.5 leading-relaxed">
+                Belajar dari pengembangan StatefulUI: bagaimana memisahkan alur logika state, input controller, dan transisi animasi UI agar codebase game tetap bersih dan mudah diuji.
+              </p>
+            </div>
+          </div>
+          <div class="p-6 pt-0">
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.04] text-slate-300">Unity C#</span>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.04] text-slate-300">State Machine</span>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.04] text-slate-300">Clean Code</span>
+            </div>
+            <a href="posts/arsitektur-ui-state-machine-unity.html" class="inline-flex items-center gap-1 text-xs font-semibold text-amber-400 hover:text-amber-300 transition">
+              <span>Baca Artikel Lengkap</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Clean Minimalist Footer -->
+  <footer class="py-12 bg-[#05070a] border-t border-white/[0.06]">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8 flex flex-col md:flex-row md:items-center justify-between gap-6 text-xs text-slate-500">
+      <div>
+        <p class="text-slate-400 font-medium">© 2026 Faris Miqdad Al Barro' (@movlution). All rights reserved.</p>
+        <p class="mt-0.5 text-slate-600">Blog & Devlog Notes • Deployed on GitHub Pages.</p>
+      </div>
+      <div class="flex flex-wrap items-center gap-5">
+        <a href="../" class="hover:text-slate-300 transition">Portfolio Home</a>
+        <a href="https://github.com/movlution" target="_blank" rel="noopener noreferrer" class="hover:text-slate-300 transition">GitHub</a>
+        <a href="https://www.linkedin.com/in/farismiqdad/" target="_blank" rel="noopener noreferrer" class="hover:text-slate-300 transition">LinkedIn</a>
+        <a href="https://play.google.com/store/apps/dev?id=6814346565652097883" target="_blank" rel="noopener noreferrer" class="hover:text-slate-300 transition">Google Play</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    // Spotlight effect
+    const cards = document.querySelectorAll('.raycast-card');
+    cards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+        card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+      });
+    });
+
+    // Category Filter
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const articles = document.querySelectorAll('#articles-container article');
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.getAttribute('data-filter');
+        articles.forEach(card => {
+          const cat = card.getAttribute('data-category');
+          if (filter === 'all' || cat === filter) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pengalaman Merilis Game Mobile di Google Play Store — Faris Miqdad</title>
+  <meta name="description" content="Studi kasus teknis rilis game Android MAINRA Games di Google Play Store: optimasi performa, drawcalls, dan game loop." />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Inter"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #08090c;
+      color: #cbd5e1;
+      font-family: 'Inter', sans-serif;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+    .article-content p {
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+      color: #94a3b8;
+    }
+    .article-content h2 {
+      color: #ffffff;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+    .article-content ul {
+      list-style-type: disc;
+      padding-left: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: #94a3b8;
+    }
+    .article-content li {
+      margin-bottom: 0.5rem;
+      line-height: 1.7;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-emerald-500/30 selection:text-emerald-200">
+
+  <!-- Header Navigation -->
+  <header class="sticky top-0 z-40 w-full border-b border-white/[0.06] bg-[#08090c]/80 backdrop-blur-xl">
+    <div class="max-w-4xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
+      <a href="../" class="inline-flex items-center gap-2 text-xs font-mono text-slate-400 hover:text-white transition">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        <span>Kembali ke Indeks Blog</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../../" class="text-xs font-medium text-slate-400 hover:text-white transition">Portfolio</a>
+        <a href="https://play.google.com/store/apps/dev?id=6814346565652097883" target="_blank" rel="noopener noreferrer" class="p-1.5 text-emerald-400 hover:text-white transition" aria-label="Google Play">
+          <i data-lucide="play" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Article Container -->
+  <main class="py-14 sm:py-20 flex-1">
+    <article class="max-w-3xl mx-auto px-5 sm:px-8">
+
+      <!-- Meta Info -->
+      <div class="flex items-center gap-3 text-xs font-mono mb-4 text-slate-400">
+        <span class="px-2.5 py-1 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-semibold">Game Dev & Studio</span>
+        <span>•</span>
+        <span>25 Agustus 2026</span>
+        <span>•</span>
+        <span>8 min read</span>
+      </div>
+
+      <!-- Title -->
+      <h1 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight leading-[1.2] mb-6">
+        Pengalaman Merilis & Mengelola Game Indie di Google Play Store (Studi Kasus MAINRA Games)
+      </h1>
+
+      <!-- Author -->
+      <div class="flex items-center gap-3 pb-8 mb-8 border-b border-white/[0.08]">
+        <div class="w-10 h-10 rounded-full bg-emerald-600/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-bold text-sm">
+          FM
+        </div>
+        <div>
+          <div class="text-sm font-semibold text-white">Faris Miqdad Al Barro'</div>
+          <div class="text-xs text-slate-400">Founder & Lead Game Developer @ MAINRA Games Studio</div>
+        </div>
+      </div>
+
+      <!-- Article Body -->
+      <div class="article-content">
+        <p>
+          Merilis game pertama ke <strong>Google Play Store</strong> sering kali dianggap hanya sekadar mengekspor berkas <code>.aab</code> (Android App Bundle) lalu mengunggahnya ke Google Play Console. Namun dalam kenyataan produksi di <strong>MAINRA Games</strong>, proses peluncuran game seperti <em>Pop It 3D Fidget Multiplayer</em> dan <em>Squishy Jelly Merge</em> membutuhkan perpaduan ketat antara optimasi teknis performa perangkat keras Android dan kepatuhan kebijakan platform.
+        </p>
+
+        <h2>1. Kunci Optimasi Performa Mobile Android di Unity</h2>
+        <p>
+          Target utama kami adalah memastikan game dapat berjalan stabil pada 60 FPS bahkan di smartphone Android entry-level dengan RAM 2GB-3GB. Beberapa strategi teknis inti yang kami terapkan:
+        </p>
+        <ul>
+          <li><strong>Dynamic & Static Batching:</strong> Mengurangi jumlah drawcall GPU dengan mengelompokkan atlas sprite 2D dan material 3D yang berbagi texture yang sama.</li>
+          <li><strong>Physics Step Tuning:</strong> Mengatur <code>Fixed Timestep</code> dari default 0.02s menjadi 0.033s (30Hz physics tick) jika mekanik kasual tidak membutuhkan presisi mikroskopis, yang menghemat beban CPU hingga 30%.</li>
+          <li><strong>Memory Profiling & GC Allocation:</strong> Menghindari instansiasi objek berulang pada runtime loop dengan menerapkan <em>Object Pooling pattern</em> untuk efek partikel, koin reward, dan objek jeli.</li>
+        </ul>
+
+        <h2>2. Menghadapi Kebutuhan Multiplayer Real-Time</h2>
+        <p>
+          Pada game <em>Pop It 3D Fidget</em>, tantangan utama adalah sinkronisasi state interaksi bubble pop antara dua pemain secara real-time. Kami mengimplementasikan model data ringan yang hanya mengirimkan delta index tombol yang ditekan (bukan sinkronisasi transform berat) melalui socket network, sehingga latensi tetap rendah meski pemain menggunakan jaringan seluler 4G yang fluktuatif.
+        </p>
+
+        <h2>3. Proses Kepatuhan & Manajemen Konsol Google Play</h2>
+        <p>
+          Mulai dari verifikasi akun developer resmi, target SDK Android API level terbaru (API 34+), konfigurasi App Signing by Google Play, hingga kebijakan privasi anak (khusus untuk game edukasi <em>Pengenalan Binatang</em>) menjadi checklist wajib sebelum publikasi. Keteraturan dokumentasi dan pengujian internal track sangat mempercepat proses review tim Google Play.
+        </p>
+
+        <h2>Pelajaran Terbesar</h2>
+        <p>
+          Bagi developer indie, game yang bagus tidak hanya ditentukan oleh grafis yang memukau, melainkan responsivitas kontrol dan kelancaran pengalaman pertama bermain pemain (smooth first-time user experience).
+        </p>
+      </div>
+
+      <!-- Call to Action Box -->
+      <div class="mt-12 p-6 rounded-2xl bg-white/[0.02] border border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+          <h3 class="text-sm font-bold text-white">Coba Game Kami di Google Play</h3>
+          <p class="text-xs text-slate-400 mt-0.5">Lihat katalog rilis resmi studio MAINRA Games.</p>
+        </div>
+        <a href="https://play.google.com/store/apps/dev?id=6814346565652097883" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-medium text-xs shadow-sm transition shrink-0">
+          <i data-lucide="play" class="w-4 h-4"></i>
+          <span>Developer Page</span>
+        </a>
+      </div>
+
+    </article>
+  </main>
+
+  <!-- Clean Minimalist Footer -->
+  <footer class="py-12 bg-[#05070a] border-t border-white/[0.06]">
+    <div class="max-w-4xl mx-auto px-5 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+      <p>© 2026 Faris Miqdad Al Barro'. All rights reserved.</p>
+      <div class="flex items-center gap-4">
+        <a href="../" class="hover:text-slate-300 transition">Daftar Blog</a>
+        <a href="../../" class="hover:text-slate-300 transition">Portfolio Utama</a>
+        <a href="https://www.linkedin.com/in/farismiqdad/" target="_blank" rel="noopener noreferrer" class="hover:text-slate-300 transition">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

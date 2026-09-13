@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>State Machine untuk Antarmuka Game Unity — Faris Miqdad</title>
+  <meta name="description" content="Arsitektur state-based UI di Unity C# untuk memisahkan alur logika, animasi menu, dan manipulasi data." />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Inter"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #08090c;
+      color: #cbd5e1;
+      font-family: 'Inter', sans-serif;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+    .article-content p {
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+      color: #94a3b8;
+    }
+    .article-content h2 {
+      color: #ffffff;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+    .article-content code {
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 0.15rem 0.4rem;
+      border-radius: 0.25rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85em;
+      color: #fde68a;
+    }
+    .article-content ul {
+      list-style-type: disc;
+      padding-left: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: #94a3b8;
+    }
+    .article-content li {
+      margin-bottom: 0.5rem;
+      line-height: 1.7;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-amber-500/30 selection:text-amber-200">
+
+  <!-- Header Navigation -->
+  <header class="sticky top-0 z-40 w-full border-b border-white/[0.06] bg-[#08090c]/80 backdrop-blur-xl">
+    <div class="max-w-4xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
+      <a href="../" class="inline-flex items-center gap-2 text-xs font-mono text-slate-400 hover:text-white transition">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        <span>Kembali ke Indeks Blog</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../../" class="text-xs font-medium text-slate-400 hover:text-white transition">Portfolio</a>
+        <a href="https://github.com/movlution/StatefulUI" target="_blank" rel="noopener noreferrer" class="p-1.5 text-amber-400 hover:text-white transition" aria-label="GitHub Repository">
+          <i data-lucide="github" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Article Container -->
+  <main class="py-14 sm:py-20 flex-1">
+    <article class="max-w-3xl mx-auto px-5 sm:px-8">
+
+      <!-- Meta Info -->
+      <div class="flex items-center gap-3 text-xs font-mono mb-4 text-slate-400">
+        <span class="px-2.5 py-1 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20 font-semibold">Architecture</span>
+        <span>•</span>
+        <span>18 Juli 2026</span>
+        <span>•</span>
+        <span>5 min read</span>
+      </div>
+
+      <!-- Title -->
+      <h1 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight leading-[1.2] mb-6">
+        Mengapa Anda Membutuhkan State Machine untuk Antarmuka Game yang Kompleks
+      </h1>
+
+      <!-- Author -->
+      <div class="flex items-center gap-3 pb-8 mb-8 border-b border-white/[0.08]">
+        <div class="w-10 h-10 rounded-full bg-amber-600/20 border border-amber-500/30 flex items-center justify-center text-amber-400 font-bold text-sm">
+          FM
+        </div>
+        <div>
+          <div class="text-sm font-semibold text-white">Faris Miqdad Al Barro'</div>
+          <div class="text-xs text-slate-400">Unity Developer • Author of StatefulUI</div>
+        </div>
+      </div>
+
+      <!-- Article Body -->
+      <div class="article-content">
+        <p>
+          Banyak developer game pemula mengawali sistem menu dengan menambahkan puluhan boolean flag di skrip MonoBehaviour: <code>isPauseMenuOpen</code>, <code>isInventoryOpen</code>, <code>isShopping</code>, dan seterusnya. Ketika sistem berkembang dengan modal dialog, konfirmasi pop-up, dan animasi transisi halaman, kode tersebut berubah menjadi <em>"spaghetti code"</em> yang sangat rentan terhadap bug status ganda.
+        </p>
+
+        <h2>Masalah Klasik Spaghetti UI</h2>
+        <p>
+          Pernahkah Anda menemui bug di mana pemain menekan tombol Escape saat berbelanja di toko game, lalu menu pause terbuka di atas inventori, namun input keyboard tetap menggerakkan karakter di belakang layar?
+        </p>
+        <p>
+          Hal itu terjadi karena ketiadaan <strong>Single Source of Truth</strong> yang mengatur transisi status antarmuka. Komponen menu berdiri sendiri-sendiri tanpa ada regulator yang mengontrol state aktif.
+        </p>
+
+        <h2>Penerapan Finite State Machine (StatefulUI)</h2>
+        <p>
+          Di library <strong>StatefulUI</strong>, setiap layar antarmuka diperlakukan sebagai sebuah Node State yang memiliki siklus hidup eksplisit:
+        </p>
+        <ul>
+          <li><code>OnEnterState()</code>: Mengaktifkan input action, memulai animasi fade-in, dan memicu SFX menu.</li>
+          <li><code>OnUpdateState()</code>: Memproses navigasi tombol arah/gamepad khusus state aktif.</li>
+          <li><code>OnExitState()</code>: Mengunci input, memainkan transisi exit, dan merapikan alokasi sementara.</li>
+        </ul>
+
+        <p>
+          Dengan pola ini, tidak akan pernah terjadi dua state yang saling bertentangan secara tidak sengaja. Transisi dari menu <em>Main Menu ➔ Level Select ➔ Gameplay HUD</em> tercatat secara deklaratif dan mudah dilacak untuk keperluan debugging.
+        </p>
+
+        <h2>Manfaat untuk Tim</h2>
+        <p>
+          Arsitektur terstruktur memudahkan programmer fokus pada logika game sementara UI designer dapat bebas menyusun tata letak visual tanpa khawatir merusak alur kontrol permainan.
+        </p>
+      </div>
+
+      <!-- Call to Action Box -->
+      <div class="mt-12 p-6 rounded-2xl bg-white/[0.02] border border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+          <h3 class="text-sm font-bold text-white">Pelajari Kode StatefulUI</h3>
+          <p class="text-xs text-slate-400 mt-0.5">Tersedia di GitHub untuk referensi arsitektur Unity C# Anda.</p>
+        </div>
+        <a href="https://github.com/movlution/StatefulUI" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-medium text-xs shadow-sm transition shrink-0">
+          <i data-lucide="github" class="w-4 h-4"></i>
+          <span>GitHub Repo</span>
+        </a>
+      </div>
+
+    </article>
+  </main>
+
+  <!-- Clean Minimalist Footer -->
+  <footer class="py-12 bg-[#05070a] border-t border-white/[0.06]">
+    <div class="max-w-4xl mx-auto px-5 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+      <p>© 2026 Faris Miqdad Al Barro'. All rights reserved.</p>
+      <div class="flex items-center gap-4">
+        <a href="../" class="hover:text-slate-300 transition">Daftar Blog</a>
+        <a href="../../" class="hover:text-slate-300 transition">Portfolio Utama</a>
+        <a href="https://www.linkedin.com/in/farismiqdad/" target="_blank" rel="noopener noreferrer" class="hover:text-slate-300 transition">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
