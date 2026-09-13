@@ -55,13 +55,13 @@
     .project-card {
       background: #0d1322;
       border: 1px solid #1e293b;
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+      transform-style: preserve-3d;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
       will-change: transform;
     }
     .project-card:hover {
-      transform: translateY(-6px);
       border-color: #3b82f6;
-      box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(99, 102, 241, 0.25);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(99, 102, 241, 0.25);
     }
 
     /* Browser Mockup Header */
@@ -865,81 +865,107 @@
     lucide.createIcons();
 
     // Motion Graphics Animations with GSAP & ScrollTrigger
-    if (typeof gsap !== 'undefined') {
-      gsap.registerPlugin(ScrollTrigger);
+    document.addEventListener("DOMContentLoaded", () => {
+      if (typeof gsap !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
 
-      // 1. Fluid Hero Entrance Motion
-      gsap.from(".hero-anim-item", {
-        opacity: 0,
-        y: 28,
-        duration: 0.9,
-        stagger: 0.15,
-        ease: "power3.out",
-        delay: 0.1
-      });
+        // 1. Fluid Hero Entrance Motion
+        gsap.from(".hero-anim-item", {
+          opacity: 0,
+          y: 28,
+          duration: 0.8,
+          stagger: 0.12,
+          ease: "power3.out",
+          delay: 0.05
+        });
 
-      // 2. Project Cards Scroll-Triggered Stagger Motion
-      gsap.utils.toArray("#projects .project-card").forEach((card, index) => {
-        gsap.from(card, {
+        // 2. Project Cards Scroll Reveal
+        gsap.utils.toArray("#projects .project-card").forEach((card) => {
+          gsap.from(card, {
+            scrollTrigger: {
+              trigger: card,
+              start: "top 92%",
+              toggleActions: "play none none none"
+            },
+            opacity: 0,
+            y: 30,
+            duration: 0.6,
+            ease: "power2.out",
+            clearProps: "transform,opacity"
+          });
+        });
+
+        // 3. Skills Grid Reveal
+        gsap.from("#skills .grid > div", {
           scrollTrigger: {
-            trigger: card,
-            start: "top 88%",
+            trigger: "#skills",
+            start: "top 85%",
             toggleActions: "play none none none"
           },
           opacity: 0,
-          y: 35,
-          duration: 0.7,
-          ease: "power2.out"
-        });
-      });
-
-      // 3. Skills Grid Motion Graphics Reveal
-      gsap.from("#skills .grid > div", {
-        scrollTrigger: {
-          trigger: "#skills",
-          start: "top 80%",
-          toggleActions: "play none none none"
-        },
-        opacity: 0,
-        scale: 0.94,
-        y: 20,
-        duration: 0.6,
-        stagger: 0.08,
-        ease: "power2.out"
-      });
-
-      // 4. Experience Timeline Motion Reveal
-      gsap.utils.toArray("#experience .space-y-6 > div").forEach((item) => {
-        gsap.from(item, {
-          scrollTrigger: {
-            trigger: item,
-            start: "top 88%",
-            toggleActions: "play none none none"
-          },
-          opacity: 0,
-          x: -24,
-          duration: 0.65,
-          ease: "power2.out"
-        });
-      });
-
-      // 5. Interactive 3D Card Tilt Effect on Mouse Move
-      const cards = document.querySelectorAll(".project-card");
-      cards.forEach(card => {
-        card.addEventListener("mousemove", (e) => {
-          const rect = card.getBoundingClientRect();
-          const x = e.clientX - rect.left - rect.width / 2;
-          const y = e.clientY - rect.top - rect.height / 2;
-          const rotateX = (-y / rect.height) * 8;
-          const rotateY = (x / rect.width) * 8;
-          card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-6px)`;
+          scale: 0.95,
+          y: 18,
+          duration: 0.5,
+          stagger: 0.06,
+          ease: "power2.out",
+          clearProps: "all"
         });
 
-        card.addEventListener("mouseleave", () => {
-          card.style.transform = "";
+        // 4. Experience Timeline Motion Reveal
+        gsap.utils.toArray("#experience .space-y-6 > div").forEach((item) => {
+          gsap.from(item, {
+            scrollTrigger: {
+              trigger: item,
+              start: "top 90%",
+              toggleActions: "play none none none"
+            },
+            opacity: 0,
+            x: -20,
+            duration: 0.55,
+            ease: "power2.out",
+            clearProps: "all"
+          });
         });
-      });
-    }
+
+        // 5. High Performance Interactive 3D Tilt with GSAP
+        const cards = document.querySelectorAll(".project-card");
+        cards.forEach((card) => {
+          card.addEventListener("mousemove", (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const xPercent = (x / rect.width - 0.5) * 2;
+            const yPercent = (y / rect.height - 0.5) * 2;
+
+            gsap.to(card, {
+              rotationY: xPercent * 6,
+              rotationX: -yPercent * 6,
+              y: -8,
+              transformPerspective: 900,
+              ease: "power1.out",
+              duration: 0.25,
+              overwrite: "auto"
+            });
+          });
+
+          card.addEventListener("mouseleave", () => {
+            gsap.to(card, {
+              rotationY: 0,
+              rotationX: 0,
+              y: 0,
+              ease: "power2.out",
+              duration: 0.5,
+              overwrite: "auto"
+            });
+          });
+        });
+
+        // Refresh triggers once all assets (like images) settle
+        window.addEventListener("load", () => {
+          ScrollTrigger.refresh();
+        });
+      }
+    });
   </script>
 </body>
 </html>
