@@ -117,8 +117,8 @@
 <body class="selection:bg-indigo-500/20 selection:text-indigo-200 min-h-screen flex flex-col antialiased bg-[#07090e] text-slate-300">
 
   <!-- Accessible Skip Link -->
-  <a href="#projects" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-indigo-600 focus:text-white focus:rounded-lg focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-400 font-mono text-xs">
-    Skip to projects
+  <a href="#games" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-indigo-600 focus:text-white focus:rounded-lg focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-400 font-mono text-xs">
+    Skip to game projects
   </a>
 
   <!-- Header / Navigation -->
@@ -136,7 +136,8 @@
       <!-- Nav Links -->
       <nav class="hidden md:flex items-center gap-7 text-xs font-medium text-slate-400">
         <a href="#about" class="hover:text-slate-200 transition">About</a>
-        <a href="#projects" class="hover:text-slate-200 transition">Projects</a>
+        <a href="#games" class="text-indigo-400 font-semibold hover:text-indigo-300 transition">Game Dev</a>
+        <a href="#other-works" class="hover:text-slate-200 transition">Software & Web</a>
         <a href="#skills" class="hover:text-slate-200 transition">Skills</a>
         <a href="#experience" class="hover:text-slate-200 transition">Experience</a>
         <a href="#contact" class="hover:text-slate-200 transition">Contact</a>
@@ -209,21 +210,21 @@
 
         <!-- CTA Links -->
         <div class="hero-anim-item flex flex-wrap items-center gap-3.5 pt-6">
-          <a href="#projects" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-xs sm:text-sm shadow-sm transition">
-            <span>View Featured Work</span>
-            <i data-lucide="arrow-down" class="w-4 h-4"></i>
+          <a href="#games" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-xs sm:text-sm shadow-sm transition">
+            <i data-lucide="gamepad-2" class="w-4 h-4"></i>
+            <span>Explore Game Projects</span>
           </a>
           <a href="https://play.google.com/store/apps/dev?id=6814346565652097883" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 font-medium text-xs sm:text-sm border border-emerald-500/30 transition">
             <i data-lucide="play" class="w-4 h-4"></i>
             <span>Google Play Games</span>
           </a>
           <a href="https://movlution.itch.io/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium text-xs sm:text-sm border border-slate-700 transition">
-            <i data-lucide="gamepad-2" class="w-4 h-4 text-indigo-400"></i>
+            <i data-lucide="external-link" class="w-4 h-4 text-indigo-400"></i>
             <span>itch.io</span>
           </a>
           <a href="https://www.linkedin.com/in/farismiqdad/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium text-xs sm:text-sm border border-slate-700 transition">
             <i data-lucide="linkedin" class="w-4 h-4 text-sky-400"></i>
-            <span>LinkedIn Profile</span>
+            <span>LinkedIn</span>
           </a>
         </div>
 
@@ -232,23 +233,26 @@
     </div>
   </section>
 
-  <!-- Featured Projects Section with Real Visual Previews -->
-  <section id="projects" class="py-20 md:py-24">
+  <!-- Primary Section: Game Development Showcase -->
+  <section id="games" class="py-20 md:py-24">
     <div class="max-w-6xl mx-auto px-5 sm:px-8">
       
       <!-- Section Header -->
       <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
         <div>
-          <span class="text-xs font-semibold uppercase tracking-wider text-indigo-400 font-mono">Portfolio</span>
-          <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight mt-1">Featured Projects</h2>
-          <p class="text-sm text-slate-400 mt-1">Selected web platforms, released games, and developer tools.</p>
+          <div class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-indigo-400 font-mono mb-1">
+            <i data-lucide="gamepad-2" class="w-3.5 h-3.5"></i>
+            <span>Primary Domain</span>
+          </div>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">Game Development & Technical Art</h2>
+          <p class="text-sm text-slate-400 mt-1 max-w-xl">Published titles, indie game studio ecosystem, shader pipelines, and gameplay engineering.</p>
         </div>
         <div class="text-xs font-mono text-slate-500">
-          Showing 7 curated works
+          Core Focus • 5 Projects
         </div>
       </div>
 
-      <!-- Projects Grid -->
+      <!-- Game Projects Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-7">
 
         <!-- Project 1: INDO GAME DEV Collective -->
@@ -366,42 +370,52 @@
           </div>
         </div>
 
-        <!-- Project 2: inviteme.id (With Image Preview) -->
+        <!-- Project 4: StatefulUI -->
         <div class="project-card rounded-xl overflow-hidden flex flex-col">
-          <!-- Mockup Header -->
           <div class="mockup-header px-4 py-2.5 flex items-center justify-between text-xs text-slate-400">
             <div class="flex items-center gap-1.5">
               <span class="w-2.5 h-2.5 rounded-full bg-red-500/60"></span>
               <span class="w-2.5 h-2.5 rounded-full bg-amber-500/60"></span>
               <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/60"></span>
-              <span class="ml-2 font-mono text-[11px] text-slate-400">inviteme.id</span>
+              <span class="ml-2 font-mono text-[11px] text-slate-400">github.com/movlution/StatefulUI</span>
             </div>
-            <span class="text-[11px] font-mono text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded border border-indigo-500/20">Production SaaS</span>
+            <span class="text-[11px] font-mono text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">Unity Library</span>
           </div>
 
-          <!-- Real Image Preview -->
-          <div class="relative bg-[#070b14] border-b border-slate-800/80 overflow-hidden h-[180px] flex items-center justify-center">
-            <img src="assets/previews/inviteme.png" alt="inviteme.id platform preview" class="w-full h-full object-cover object-top hover:scale-105 transition duration-500" />
+          <div class="relative bg-gradient-to-br from-[#1f1608] to-[#0c0f17] border-b border-slate-800/80 p-6 flex flex-col justify-center min-h-[180px]">
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400">
+                <i data-lucide="layers" class="w-8 h-8"></i>
+              </div>
+              <div>
+                <span class="text-xs font-mono text-amber-400 font-semibold">Architecture Framework</span>
+                <h4 class="text-xl font-bold text-white mt-0.5">Stateful UI for Unity</h4>
+                <p class="text-xs text-slate-400 mt-1">Structured state-based UI development in Unity</p>
+              </div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800/70 text-xs text-slate-400 flex items-center justify-between">
+              <span>Clean Code & Decoupled State</span>
+              <span class="text-amber-400 font-mono text-[11px]">Unity 2022+</span>
+            </div>
           </div>
 
-          <!-- Card Content -->
           <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
             <div>
-              <h3 class="text-lg font-bold text-white">inviteme.id — Wedding Platform</h3>
+              <h3 class="text-lg font-bold text-white">StatefulUI — Unity Game UI Architecture</h3>
               <p class="text-xs sm:text-sm text-slate-400 mt-2 leading-relaxed">
-                Platform digital invitation terintegrasi dengan kustomisasi tema interaktif, manajemen tamu real-time, RSVP online, check-in QR Code di venue, dan WhatsApp blast automation.
+                Library arsitektur antarmuka berbasis state machine untuk Unity. Memisahkan logika presentasi, animasi menu, dan manipulasi elemen UI agar tetap scalable dan mudah diuji.
               </p>
             </div>
 
             <div>
               <div class="flex flex-wrap gap-2 mb-4">
-                <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">Next.js</span>
-                <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">TailwindCSS</span>
-                <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">Supabase</span>
+                <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">C#</span>
+                <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">Unity Engine</span>
+                <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">Open Source</span>
               </div>
 
               <div class="flex items-center gap-4 text-xs font-semibold">
-                <a href="https://github.com/movlution/Weeding-Website" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-indigo-400 hover:text-indigo-300 transition">
+                <a href="https://github.com/movlution/StatefulUI" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-amber-400 hover:text-amber-300 transition">
                   <i data-lucide="github" class="w-3.5 h-3.5"></i>
                   <span>GitHub Repository</span>
                 </a>
@@ -410,8 +424,170 @@
           </div>
         </div>
 
+        <!-- Project 5: AR Experience & Education -->
+        <div class="project-card rounded-xl overflow-hidden flex flex-col">
+          <div class="mockup-header px-4 py-2.5 flex items-center justify-between text-xs text-slate-400">
+            <div class="flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-red-500/60"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-amber-500/60"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/60"></span>
+              <span class="ml-2 font-mono text-[11px] text-slate-400">github.com/movlution/Latihan-AR-Vuforia</span>
+            </div>
+            <span class="text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">Augmented Reality</span>
+          </div>
+
+          <div class="relative bg-gradient-to-br from-[#0c1f19] to-[#07130f] border-b border-slate-800/80 p-6 flex flex-col justify-center min-h-[180px]">
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                <i data-lucide="scan" class="w-8 h-8"></i>
+              </div>
+              <div>
+                <span class="text-xs font-mono text-emerald-400 font-semibold">Marker-based AR Engine</span>
+                <h4 class="text-xl font-bold text-white mt-0.5">Vuforia AR & Educational Game</h4>
+                <p class="text-xs text-slate-400 mt-1">Interactive 3D tracking & kids education games</p>
+              </div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800/70 text-xs text-slate-400 flex items-center justify-between">
+              <span>Target: Mobile Android</span>
+              <span class="text-emerald-400 font-mono text-[11px]">Vuforia SDK</span>
+            </div>
+          </div>
+
+          <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+            <div>
+              <h3 class="text-lg font-bold text-white">AR Experience & Game Edukasi</h3>
+              <p class="text-xs sm:text-sm text-slate-400 mt-2 leading-relaxed">
+                Penerapan Augmented Reality interaktif dengan marker tracking menggunakan Vuforia SDK, dipadukan dengan game pengenalan edukasi hewan yang interaktif dan ramah anak.
+              </p>
+            </div>
+
+            <div>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">Unity 3D</span>
+                <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">Vuforia SDK</span>
+                <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">Android APK</span>
+              </div>
+
+              <div class="flex items-center gap-4 text-xs font-semibold">
+                <a href="https://github.com/movlution/Latihan-AR-Vuforia" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-emerald-400 hover:text-emerald-300 transition">
+                  <i data-lucide="github" class="w-3.5 h-3.5"></i>
+                  <span>GitHub Repository</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Secondary Track: Web & Software Applications -->
+  <section id="other-works" class="py-16 bg-[#06080e] border-t border-slate-800/70">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8">
+      
+      <!-- Secondary Section Header -->
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-3">
+        <div>
+          <span class="text-xs font-mono font-semibold text-slate-500 uppercase tracking-wider">Secondary Track</span>
+          <h3 class="text-xl font-bold text-white tracking-tight mt-0.5">Web Systems & Software Applications</h3>
+          <p class="text-xs sm:text-sm text-slate-400 mt-1">Full-stack web solutions, logistics tooling, and digital SaaS products.</p>
+        </div>
+        <div class="text-xs font-mono text-slate-500">
+          2 Additional Works
+        </div>
+      </div>
+
+      <!-- Secondary Grid (Subtle compact cards) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <!-- Secondary 1: inviteme.id -->
+        <div class="project-card rounded-xl overflow-hidden flex flex-col border border-slate-800/80 bg-[#0a0e17]">
+          <div class="mockup-header px-4 py-2 flex items-center justify-between text-xs text-slate-400">
+            <div class="flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-red-500/50"></span>
+              <span class="w-2 h-2 rounded-full bg-amber-500/50"></span>
+              <span class="w-2 h-2 rounded-full bg-emerald-500/50"></span>
+              <span class="ml-2 font-mono text-[11px] text-slate-400">inviteme.id</span>
+            </div>
+            <span class="text-[10px] font-mono text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded">Digital SaaS</span>
+          </div>
+
+          <div class="relative bg-[#070b14] border-b border-slate-800/80 overflow-hidden h-[150px] flex items-center justify-center">
+            <img src="assets/previews/inviteme.png" alt="inviteme.id preview" class="w-full h-full object-cover object-top hover:scale-105 transition duration-500" />
+          </div>
+
+          <div class="p-5 flex-1 flex flex-col justify-between space-y-3">
+            <div>
+              <h4 class="text-base font-bold text-white">inviteme.id — Wedding Invitation Platform</h4>
+              <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+                Platform digital invitation terintegrasi dengan kustomisasi tema interaktif, RSVP online, check-in QR Code di venue, dan WhatsApp blast automation.
+              </p>
+            </div>
+            <div class="flex items-center justify-between pt-2">
+              <div class="flex flex-wrap gap-1.5">
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">Next.js</span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">Supabase</span>
+              </div>
+              <a href="https://github.com/movlution/Weeding-Website" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-xs font-semibold text-indigo-400 hover:text-indigo-300 transition">
+                <i data-lucide="github" class="w-3.5 h-3.5"></i>
+                <span>Repository</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Secondary 2: Cairo Cargo Connect -->
+        <div class="project-card rounded-xl overflow-hidden flex flex-col border border-slate-800/80 bg-[#0a0e17]">
+          <div class="mockup-header px-4 py-2 flex items-center justify-between text-xs text-slate-400">
+            <div class="flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-red-500/50"></span>
+              <span class="w-2 h-2 rounded-full bg-amber-500/50"></span>
+              <span class="w-2 h-2 rounded-full bg-emerald-500/50"></span>
+              <span class="ml-2 font-mono text-[11px] text-slate-400">cairo-cargo-connect</span>
+            </div>
+            <span class="text-[10px] font-mono text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded">Logistics Platform</span>
+          </div>
+
+          <div class="relative bg-[#08101e] border-b border-slate-800/80 p-5 flex flex-col justify-center min-h-[150px]">
+            <div class="flex items-center gap-3">
+              <img src="assets/previews/cairo-cargo-logo.svg" alt="Cairo Cargo Connect Logo" class="w-12 h-12 rounded-xl p-2 bg-slate-900 border border-slate-700" />
+              <div>
+                <span class="text-[11px] font-mono text-cyan-400 font-semibold">Route: Cairo — Jakarta</span>
+                <h4 class="text-base font-bold text-white">Cairo Cargo Connect</h4>
+                <p class="text-[11px] text-slate-400">Real-time Baggage Schedule & Cargo Tracking</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-5 flex-1 flex flex-col justify-between space-y-3">
+            <div>
+              <h4 class="text-base font-bold text-white">Cairo Cargo Connect & BagageTracker</h4>
+              <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+                Aplikasi logistik kargo dan pelacakan bagasi penerbangan Kairo—Jakarta dengan validasi manifes otomatis dan pembaruan jadwal real-time.
+              </p>
+            </div>
+            <div class="flex items-center justify-between pt-2">
+              <div class="flex flex-wrap gap-1.5">
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">React</span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">Convex DB</span>
+              </div>
+              <a href="https://github.com/movlution/cairo-cargo-connect" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-xs font-semibold text-cyan-400 hover:text-cyan-300 transition">
+                <i data-lucide="github" class="w-3.5 h-3.5"></i>
+                <span>Repository</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
         <!-- Project 3: MAINRA Games (Google Play Store Developer Console & Itch) -->
-        <div class="project-card rounded-xl overflow-hidden flex flex-col md:col-span-2">
+        <div class="project-card rounded-xl overflow-hidden flex flex-col md:col-span-2 border-indigo-500/30">
           <!-- Mockup Header -->
           <div class="mockup-header px-4 py-2.5 flex items-center justify-between text-xs text-slate-400">
             <div class="flex items-center gap-1.5">
@@ -420,26 +596,34 @@
               <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/60"></span>
               <span class="ml-2 font-mono text-[11px] text-slate-400">play.google.com/store/apps/dev?id=6814346565652097883</span>
             </div>
-            <span class="text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">Google Play Official Developer</span>
+            <span class="text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">Featured Game Releases</span>
           </div>
 
           <!-- Studio Header & Games Preview Grid -->
-          <div class="p-6 bg-[#070c16] border-b border-slate-800/80">
+          <div class="p-6 md:p-7 bg-gradient-to-br from-[#0c1424] via-[#09101d] to-[#060a12] border-b border-slate-800/80">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
               <div class="flex items-center gap-3.5">
-                <img src="assets/previews/mainra-icon.png" alt="MAINRA Games" class="w-12 h-12 rounded-xl border border-slate-700 shadow-sm" />
+                <img src="assets/previews/mainra-icon.png" alt="MAINRA Games" class="w-13 h-13 rounded-xl border border-indigo-500/30 p-1 bg-slate-900 shadow-sm" />
                 <div>
-                  <h4 class="text-xl font-bold text-white tracking-tight">MAINRA Games — Google Play Developer</h4>
+                  <div class="inline-flex items-center gap-1.5 text-[11px] font-mono text-indigo-400 font-semibold mb-0.5">
+                    <i data-lucide="award" class="w-3.5 h-3.5"></i>
+                    <span>PUBLISHED GAME STUDIO</span>
+                  </div>
+                  <h4 class="text-xl sm:text-2xl font-bold text-white tracking-tight">MAINRA Games — Google Play Publisher</h4>
                   <p class="text-xs text-slate-400 mt-0.5 font-normal">"Games that can be enjoyed by everyone, regardless of age, gender, or skill level."</p>
                 </div>
               </div>
               <div class="flex items-center gap-3 shrink-0">
-                <a href="https://play.google.com/store/apps/dev?id=6814346565652097883" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-400 border border-emerald-500/30 text-xs font-semibold transition">
+                <a href="https://play.google.com/store/apps/dev?id=6814346565652097883" target="_blank" rel="noopener noreferrer" 
+                   class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold shadow-sm transition"
+                   aria-label="Open MAINRA Games on Google Play Store">
                   <i data-lucide="play" class="w-3.5 h-3.5"></i>
-                  <span>Google Play Page</span>
+                  <span>Google Play Dev Page</span>
                 </a>
-                <a href="https://movlution.itch.io/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 text-xs font-medium transition">
-                  <i data-lucide="gamepad-2" class="w-3.5 h-3.5"></i>
+                <a href="https://movlution.itch.io/" target="_blank" rel="noopener noreferrer" 
+                   class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-medium transition"
+                   aria-label="Open itch.io releases">
+                  <i data-lucide="gamepad-2" class="w-3.5 h-3.5 text-indigo-400"></i>
                   <span>itch.io</span>
                 </a>
               </div>
@@ -450,9 +634,9 @@
               
               <!-- Game 1 -->
               <a href="https://play.google.com/store/apps/details?id=com.MainraGames.Popit3DFidget" target="_blank" rel="noopener noreferrer" 
-                 class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-slate-700 flex items-center gap-3 group transition"
+                 class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-indigo-500/50 flex items-center gap-3 group transition"
                  aria-label="View Pop It 3D Fidget Multiplayer on Google Play Store">
-                <img src="assets/previews/popit.png" alt="Pop It 3D Fidget" class="w-12 h-12 rounded-lg object-cover border border-slate-700/60 shadow-sm shrink-0" />
+                <img src="assets/previews/popit.png" alt="Pop It 3D Fidget" class="w-12 h-12 rounded-lg object-cover border border-slate-700/60 shadow-sm shrink-0 group-hover:scale-105 transition duration-300" />
                 <div class="min-w-0">
                   <div class="text-xs font-bold text-white group-hover:text-emerald-400 transition truncate">Pop It 3D Fidget</div>
                   <div class="text-[11px] text-slate-400 truncate">Multiplayer 3D Arcade</div>
@@ -462,9 +646,9 @@
 
               <!-- Game 2 -->
               <a href="https://play.google.com/store/apps/details?id=com.MainraGames.SquishyJellyMerge" target="_blank" rel="noopener noreferrer" 
-                 class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-slate-700 flex items-center gap-3 group transition"
+                 class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-indigo-500/50 flex items-center gap-3 group transition"
                  aria-label="View Squishy Jelly Merge on Google Play Store">
-                <img src="assets/previews/squishy.png" alt="Squishy Jelly Merge" class="w-12 h-12 rounded-lg object-cover border border-slate-700/60 shadow-sm shrink-0" />
+                <img src="assets/previews/squishy.png" alt="Squishy Jelly Merge" class="w-12 h-12 rounded-lg object-cover border border-slate-700/60 shadow-sm shrink-0 group-hover:scale-105 transition duration-300" />
                 <div class="min-w-0">
                   <div class="text-xs font-bold text-white group-hover:text-emerald-400 transition truncate">Squishy Jelly Merge</div>
                   <div class="text-[11px] text-slate-400 truncate">Casual Merge Physics</div>
@@ -474,9 +658,9 @@
 
               <!-- Game 3 -->
               <a href="https://play.google.com/store/apps/details?id=com.Mainra.GamePengenalanBinatang" target="_blank" rel="noopener noreferrer" 
-                 class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-slate-700 flex items-center gap-3 group transition"
+                 class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-indigo-500/50 flex items-center gap-3 group transition"
                  aria-label="View Game Edukasi Binatang on Google Play Store">
-                <img src="assets/previews/binatang.png" alt="Pengenalan Binatang" class="w-12 h-12 rounded-lg object-cover border border-slate-700/60 shadow-sm shrink-0" />
+                <img src="assets/previews/binatang.png" alt="Pengenalan Binatang" class="w-12 h-12 rounded-lg object-cover border border-slate-700/60 shadow-sm shrink-0 group-hover:scale-105 transition duration-300" />
                 <div class="min-w-0">
                   <div class="text-xs font-bold text-white group-hover:text-emerald-400 transition truncate">Pengenalan Binatang</div>
                   <div class="text-[11px] text-slate-400 truncate">Kids Educational Game</div>
@@ -488,74 +672,20 @@
           </div>
 
           <!-- Card Content -->
-          <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+          <div class="p-6 bg-[#070b14] flex-1 flex flex-col justify-between space-y-4">
             <div>
-              <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
                 Ekosistem perilisan game studio <strong>MAINRA Games</strong> di Google Play Store dan itch.io. Mencakup game arcade 3D real-time multiplayer, game merge physics santai, serta serial game edukasi interaktif ramah anak yang dirancang untuk performa tinggi dan kompatibilitas luas di perangkat mobile.
               </p>
             </div>
 
             <div>
-              <div class="flex flex-wrap gap-2 mb-2">
-                <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">Unity 3D Mobile</span>
-                <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">C# Gameplay Logic</span>
-                <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">Multiplayer Networking</span>
-                <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">Play Console Publishing</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 4: Cairo Cargo Connect -->
-        <div class="project-card rounded-xl overflow-hidden flex flex-col">
-          <!-- Mockup Header -->
-          <div class="mockup-header px-4 py-2.5 flex items-center justify-between text-xs text-slate-400">
-            <div class="flex items-center gap-1.5">
-              <span class="w-2.5 h-2.5 rounded-full bg-red-500/60"></span>
-              <span class="w-2.5 h-2.5 rounded-full bg-amber-500/60"></span>
-              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/60"></span>
-              <span class="ml-2 font-mono text-[11px] text-slate-400">cairo-cargo-connect</span>
-            </div>
-            <span class="text-[11px] font-mono text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/20">Logistics & Tracking</span>
-          </div>
-
-          <!-- Preview Header Mockup -->
-          <div class="relative bg-gradient-to-br from-[#0c1e28] to-[#07131b] border-b border-slate-800/80 p-6 flex flex-col justify-center min-h-[180px]">
-            <div class="flex items-center gap-4">
-              <img src="assets/previews/cairo-cargo-logo.svg" alt="Cairo Cargo Connect Logo" class="w-14 h-14 rounded-xl p-2 bg-slate-800/80 border border-slate-700 shadow-sm" />
-              <div>
-                <span class="text-xs font-mono text-cyan-400 font-semibold">Cairo - Jakarta Cargo Route</span>
-                <h4 class="text-xl font-bold text-white mt-0.5">Cairo Cargo Connect</h4>
-                <p class="text-xs text-slate-400 mt-1">Real-time Baggage Schedule & Cargo Tracking</p>
-              </div>
-            </div>
-            <div class="mt-4 pt-3 border-t border-slate-800/70 text-xs text-slate-400 flex items-center justify-between">
-              <span>Audit Resi & Logistics Management</span>
-              <span class="text-cyan-400 font-mono text-[11px]">Freebuff Project</span>
-            </div>
-          </div>
-
-          <!-- Card Content -->
-          <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
-            <div>
-              <h3 class="text-lg font-bold text-white">Cairo Cargo Connect & BagageTracker</h3>
-              <p class="text-xs sm:text-sm text-slate-400 mt-2 leading-relaxed">
-                Aplikasi manajemen logistik kargo dan pelacakan bagasi penerbangan Kairo—Jakarta dengan integrasi data resi otomatis, validasi manifes, dan live update status penerbangan.
-              </p>
-            </div>
-
-            <div>
-              <div class="flex flex-wrap gap-2 mb-4">
-                <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">TypeScript</span>
-                <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">Convex DB</span>
-                <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">Vite & React</span>
-              </div>
-
-              <div class="flex items-center gap-4 text-xs font-semibold">
-                <a href="https://github.com/movlution/cairo-cargo-connect" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-cyan-400 hover:text-cyan-300 transition">
-                  <i data-lucide="github" class="w-3.5 h-3.5"></i>
-                  <span>GitHub Repository</span>
-                </a>
+              <div class="flex flex-wrap gap-2">
+                <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-slate-900 text-slate-300 border border-slate-800">Unity 3D Engine</span>
+                <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-slate-900 text-slate-300 border border-slate-800">C# Gameplay Systems</span>
+                <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-slate-900 text-slate-300 border border-slate-800">Multiplayer Networking</span>
+                <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-slate-900 text-slate-300 border border-slate-800">Mobile Optimization</span>
+                <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-slate-900 text-slate-300 border border-slate-800">Google Play Console</span>
               </div>
             </div>
           </div>
@@ -921,7 +1051,7 @@
         });
 
         // 2. Project Cards Scroll Reveal
-        gsap.utils.toArray("#projects .project-card").forEach((card) => {
+        gsap.utils.toArray("#games .project-card, #other-works .project-card").forEach((card) => {
           gsap.from(card, {
             scrollTrigger: {
               trigger: card,
