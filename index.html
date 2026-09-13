@@ -278,10 +278,10 @@
 
           <!-- Studio Hero Strip -->
           <div class="p-6 md:p-8 bg-gradient-to-r from-indigo-950/20 via-transparent to-transparent border-b border-white/[0.06]">
-            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+            <div class="flex flex-col xl:flex-row xl:items-center justify-between gap-6">
               <div class="max-w-xl">
                 <div class="flex items-center gap-3.5 mb-3">
-                  <img src="assets/previews/mainra-icon.png" alt="MAINRA Games Icon" class="w-12 h-12 rounded-xl border border-white/10 p-1 bg-white/[0.03]" />
+                  <img src="assets/previews/mainra-icon.png" alt="MAINRA Games Icon" class="w-12 h-12 rounded-xl border border-white/10 p-1 bg-white/[0.03] shrink-0" />
                   <div>
                     <h3 class="text-xl font-bold text-white tracking-tight">MAINRA Games Studio</h3>
                     <p class="text-xs text-slate-400">Multiplatform Indie Studio • Android & WebGL</p>
@@ -290,45 +290,45 @@
                 <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
                   Studio independen yang didirikan untuk menghadirkan game santai dan seru yang dapat dinikmati semua kalangan. Menghadirkan mekanisme gameplay berbasis fisika, multiplayer real-time, dan game edukasi ramah anak.
                 </p>
-                <div class="mt-4 flex items-center gap-3">
+                <div class="mt-4 flex flex-wrap items-center gap-3">
                   <a href="https://play.google.com/store/apps/dev?id=6814346565652097883" target="_blank" rel="noopener noreferrer"
-                     class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold shadow-sm transition">
+                     class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold shadow-sm transition whitespace-nowrap">
                     <i data-lucide="play" class="w-3.5 h-3.5"></i>
                     <span>Visit Play Store Console</span>
                   </a>
                   <a href="https://movlution.itch.io/" target="_blank" rel="noopener noreferrer"
-                     class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-white/[0.05] hover:bg-white/10 text-slate-200 text-xs font-medium border border-white/10 transition">
+                     class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-white/[0.05] hover:bg-white/10 text-slate-200 text-xs font-medium border border-white/10 transition whitespace-nowrap">
                     <i data-lucide="gamepad-2" class="w-3.5 h-3.5 text-indigo-400"></i>
                     <span>itch.io Releases</span>
                   </a>
                 </div>
               </div>
 
-              <!-- Released Games Icon Showcase -->
-              <div class="grid grid-cols-3 gap-3 shrink-0">
+              <!-- Released Games Icon Showcase (Responsive Grid without overflow/cutoff) -->
+              <div class="grid grid-cols-3 gap-2.5 sm:gap-3 w-full xl:w-auto xl:max-w-md pt-4 xl:pt-0 border-t xl:border-t-0 border-white/[0.06]">
                 <!-- Game 1 -->
                 <a href="https://play.google.com/store/apps/details?id=com.MainraGames.Popit3DFidget" target="_blank" rel="noopener noreferrer" 
-                   class="group flex flex-col items-center p-3 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-emerald-500/40 transition text-center"
+                   class="group flex flex-col items-center p-3 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-emerald-500/40 hover:bg-white/[0.04] transition text-center"
                    aria-label="Pop It 3D Fidget Multiplayer on Play Store">
-                  <img src="assets/previews/popit.png" alt="Pop It 3D Fidget" class="w-13 h-13 rounded-xl object-cover shadow group-hover:scale-105 transition duration-300" />
-                  <span class="text-xs font-semibold text-white mt-2 truncate w-full">Pop It 3D</span>
-                  <span class="text-[10px] text-emerald-400 font-mono">Multiplayer</span>
+                  <img src="assets/previews/popit.png" alt="Pop It 3D Fidget" class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl object-cover shadow group-hover:scale-105 transition duration-300" />
+                  <span class="text-xs font-semibold text-white mt-2 truncate max-w-full">Pop It 3D</span>
+                  <span class="text-[10px] text-emerald-400 font-mono truncate max-w-full">Multiplayer</span>
                 </a>
                 <!-- Game 2 -->
                 <a href="https://play.google.com/store/apps/details?id=com.MainraGames.SquishyJellyMerge" target="_blank" rel="noopener noreferrer" 
-                   class="group flex flex-col items-center p-3 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-emerald-500/40 transition text-center"
+                   class="group flex flex-col items-center p-3 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-emerald-500/40 hover:bg-white/[0.04] transition text-center"
                    aria-label="Squishy Jelly Merge on Play Store">
-                  <img src="assets/previews/squishy.png" alt="Squishy Jelly Merge" class="w-13 h-13 rounded-xl object-cover shadow group-hover:scale-105 transition duration-300" />
-                  <span class="text-xs font-semibold text-white mt-2 truncate w-full">Squishy Jelly</span>
-                  <span class="text-[10px] text-amber-400 font-mono">Physics</span>
+                  <img src="assets/previews/squishy.png" alt="Squishy Jelly Merge" class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl object-cover shadow group-hover:scale-105 transition duration-300" />
+                  <span class="text-xs font-semibold text-white mt-2 truncate max-w-full">Squishy Jelly</span>
+                  <span class="text-[10px] text-amber-400 font-mono truncate max-w-full">Physics</span>
                 </a>
                 <!-- Game 3 -->
                 <a href="https://play.google.com/store/apps/details?id=com.Mainra.GamePengenalanBinatang" target="_blank" rel="noopener noreferrer" 
-                   class="group flex flex-col items-center p-3 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-emerald-500/40 transition text-center"
+                   class="group flex flex-col items-center p-3 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-emerald-500/40 hover:bg-white/[0.04] transition text-center"
                    aria-label="Pengenalan Binatang on Play Store">
-                  <img src="assets/previews/binatang.png" alt="Pengenalan Binatang" class="w-13 h-13 rounded-xl object-cover shadow group-hover:scale-105 transition duration-300" />
-                  <span class="text-xs font-semibold text-white mt-2 truncate w-full">Edukasi</span>
-                  <span class="text-[10px] text-sky-400 font-mono">Kids Game</span>
+                  <img src="assets/previews/binatang.png" alt="Pengenalan Binatang" class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl object-cover shadow group-hover:scale-105 transition duration-300" />
+                  <span class="text-xs font-semibold text-white mt-2 truncate max-w-full">Edukasi</span>
+                  <span class="text-[10px] text-sky-400 font-mono truncate max-w-full">Kids Game</span>
                 </a>
               </div>
             </div>
