@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- GANTI DENGAN JUDUL ARTIKEL ANDA -->
+  <title>Judul Artikel Anda — Faris Miqdad</title>
+  <meta name="description" content="Deskripsi singkat artikel untuk preview Google dan media sosial." />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Inter"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #08090c;
+      color: #cbd5e1;
+      font-family: 'Inter', sans-serif;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+    .article-content p {
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+      color: #94a3b8;
+    }
+    .article-content h2 {
+      color: #ffffff;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+    .article-content code {
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 0.15rem 0.4rem;
+      border-radius: 0.25rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85em;
+      color: #c7d2fe;
+    }
+    .article-content pre {
+      background-color: #0d1017;
+      border: 1px solid #1a2233;
+      padding: 1.25rem;
+      border-radius: 0.75rem;
+      overflow-x: auto;
+      margin-bottom: 1.75rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: #e2e8f0;
+    }
+    .article-content ul {
+      list-style-type: disc;
+      padding-left: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: #94a3b8;
+    }
+    .article-content li {
+      margin-bottom: 0.5rem;
+      line-height: 1.7;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-indigo-500/30 selection:text-indigo-200">
+
+  <!-- Header Navigation -->
+  <header class="sticky top-0 z-40 w-full border-b border-white/[0.06] bg-[#08090c]/80 backdrop-blur-xl">
+    <div class="max-w-4xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
+      <a href="../" class="inline-flex items-center gap-2 text-xs font-mono text-slate-400 hover:text-white transition">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        <span>Kembali ke Indeks Blog</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../../" class="text-xs font-medium text-slate-400 hover:text-white transition">Portfolio</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Article Container -->
+  <main class="py-14 sm:py-20 flex-1">
+    <article class="max-w-3xl mx-auto px-5 sm:px-8">
+
+      <!-- Meta Info -->
+      <div class="flex items-center gap-3 text-xs font-mono mb-4 text-slate-400">
+        <!-- KATEGORI: Tech Art & Tooling / Game Dev & Studio / Architecture -->
+        <span class="px-2.5 py-1 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 font-semibold">Tech Art & Tooling</span>
+        <span>•</span>
+        <span>15 September 2026</span>
+        <span>•</span>
+        <span>5 min read</span>
+      </div>
+
+      <!-- Judul Artikel -->
+      <h1 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight leading-[1.2] mb-6">
+        Tulis Judul Artikel Anda Di Sini
+      </h1>
+
+      <!-- Profil Penulis -->
+      <div class="flex items-center gap-3 pb-8 mb-8 border-b border-white/[0.08]">
+        <div class="w-10 h-10 rounded-full bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400 font-bold text-sm">
+          FM
+        </div>
+        <div>
+          <div class="text-sm font-semibold text-white">Faris Miqdad Al Barro'</div>
+          <div class="text-xs text-slate-400">Unity Developer & Technical Artist • Founder @ Mainra Games</div>
+        </div>
+      </div>
+
+      <!-- Isi Artikel -->
+      <div class="article-content">
+        <p>
+          Tulis paragraf pembuka artikel Anda di sini. Jelaskan latar belakang topik, masalah yang dihadapi, atau pengalaman yang ingin Anda bagikan.
+        </p>
+
+        <h2>Sub-Judul Bagian 1</h2>
+        <p>
+          Tulis penjelasan teknis atau cerita pengalaman Anda. Anda bisa menambahkan poin-poin menggunakan tag daftar:
+        </p>
+        <ul>
+          <li><strong>Poin Pertama:</strong> Penjelasan poin pertama.</li>
+          <li><strong>Poin Kedua:</strong> Penjelasan poin kedua.</li>
+        </ul>
+
+        <h2>Contoh Kode (Opsional)</h2>
+        <p>
+          Jika ingin menyertakan potongan kode C# atau skrip, gunakan blok <code>&lt;pre&gt;&lt;code&gt;</code>:
+        </p>
+        <pre><code>// Contoh skrip C# Unity
+using UnityEngine;
+
+public class PlayerController : MonoBehaviour
+{
+    void Start()
+    {
+        Debug.Log("Hello GameDev!");
+    }
+}</code></pre>
+
+        <h2>Kesimpulan</h2>
+        <p>
+          Tulis rangkuman atau pesan penutup untuk pembaca.
+        </p>
+      </div>
+
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-12 bg-[#05070a] border-t border-white/[0.06]">
+    <div class="max-w-4xl mx-auto px-5 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+      <p>© 2026 Faris Miqdad Al Barro'. All rights reserved.</p>
+      <div class="flex items-center gap-4">
+        <a href="../" class="hover:text-slate-300 transition">Daftar Blog</a>
+        <a href="../../" class="hover:text-slate-300 transition">Portfolio Utama</a>
+        <a href="https://www.linkedin.com/in/farismiqdad/" target="_blank" rel="noopener noreferrer" class="hover:text-slate-300 transition">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
