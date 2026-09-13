@@ -3,8 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Meta & Open Graph Tags -->
   <title>Faris Miqdad Al Barro' — Unity Developer & Technical Artist</title>
   <meta name="description" content="Portfolio of Faris Miqdad Al Barro' — Unity Developer, Technical Artist, Gameplay Systems & Founder of MAINRA Games." />
+  <meta property="og:title" content="Faris Miqdad Al Barro' — Unity Developer & Technical Artist" />
+  <meta property="og:description" content="Gameplay systems, HLSL shaders, developer tools, and published Google Play games." />
+  <meta property="og:url" content="https://movlution.github.io/" />
+  <meta property="og:type" content="website" />
+  <link rel="canonical" href="https://movlution.github.io/" />
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -174,18 +180,29 @@
            aria-label="YouTube Channel MOVLUTION">
           <i data-lucide="youtube" class="w-4 h-4"></i>
         </a>
-        <a href="https://github.com/movlution" target="_blank" rel="noopener noreferrer" 
-           class="p-2 text-slate-400 hover:text-white hover:bg-white/[0.05] rounded-lg border border-transparent hover:border-white/10 transition"
-           aria-label="GitHub Profile">
-          <i data-lucide="github" class="w-4 h-4"></i>
-        </a>
-      </div>
+      <!-- Mobile Hamburger Button -->
+      <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-400 hover:text-white rounded-lg hover:bg-white/[0.05] transition" aria-label="Toggle navigation menu">
+        <i data-lucide="menu" class="w-5 h-5"></i>
+      </button>
 
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-white/[0.06] bg-[#08090c]/95 backdrop-blur-xl px-5 py-4 space-y-3 text-sm">
+      <a href="#games-showcase" class="mobile-nav-link block py-1.5 text-white font-medium">Game Dev</a>
+      <a href="#skills" class="mobile-nav-link block py-1.5 text-slate-400 hover:text-white">Tooling & Specs</a>
+      <a href="#experience" class="mobile-nav-link block py-1.5 text-slate-400 hover:text-white">Experience</a>
+      <a href="blog/" class="block py-1.5 text-indigo-400 hover:text-indigo-300 font-medium flex items-center justify-between">
+        <span>Blog & Notes</span>
+        <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-indigo-500/10 border border-indigo-500/20">Articles</span>
+      </a>
+      <a href="#secondary-works" class="mobile-nav-link block py-1.5 text-slate-400 hover:text-white">Software & Web</a>
+      <a href="#contact" class="mobile-nav-link block py-1.5 text-slate-400 hover:text-white">Contact</a>
     </div>
   </header>
 
   <!-- Hero Section: Raycast/Linear Spotlight -->
-  <section class="relative spotlight-glow bg-linear-mesh pt-20 pb-16 md:pt-28 md:pb-24 border-b border-white/[0.06] overflow-hidden">
+  <section id="about" class="relative spotlight-glow bg-linear-mesh pt-20 pb-16 md:pt-28 md:pb-24 border-b border-white/[0.06] overflow-hidden">
     <div class="max-w-6xl mx-auto px-5 sm:px-8 relative z-10">
       
       <div class="max-w-3xl">
@@ -940,7 +957,24 @@
         });
       });
 
-      // 3. Fluid Hero Entrance Motion via GSAP
+      // 3. Mobile Navigation Menu Toggle
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+      if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', () => {
+          mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileNavLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+          });
+        });
+      }
+
+      // 4. Fluid Hero Entrance Motion via GSAP
       if (typeof gsap !== 'undefined') {
         gsap.from(".hero-item", {
           opacity: 0,
